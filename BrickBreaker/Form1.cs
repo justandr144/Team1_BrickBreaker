@@ -47,6 +47,16 @@ namespace BrickBreaker
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             //TODO put scoreList data into score.xml
+            XmlWriter xmlWriter = XmlWriter.Create("Resources/HighScores.xml");
+
+            foreach (int s in scoreList)
+            {
+                xmlWriter.WriteStartElement("highScore");
+
+                xmlWriter.WriteAttributeString("score", Convert.ToString(s));
+
+                xmlWriter.WriteEndElement();
+            }
         }
     }
 }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.gameLoop = new System.Windows.Forms.Timer(this.components);
+            this.exitBarrelBox = new System.Windows.Forms.PictureBox();
             this.exitBox = new System.Windows.Forms.PictureBox();
             this.howToBox = new System.Windows.Forms.PictureBox();
             this.titleBox = new System.Windows.Forms.PictureBox();
@@ -40,7 +42,7 @@
             this.barBox2 = new System.Windows.Forms.PictureBox();
             this.barBox1 = new System.Windows.Forms.PictureBox();
             this.topMenuBox = new System.Windows.Forms.PictureBox();
-            this.gameLoop = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.exitBarrelBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.howToBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleBox)).BeginInit();
@@ -53,6 +55,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.barBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topMenuBox)).BeginInit();
             this.SuspendLayout();
+            // 
+            // gameLoop
+            // 
+            this.gameLoop.Enabled = true;
+            this.gameLoop.Interval = 20;
+            this.gameLoop.Tick += new System.EventHandler(this.gameLoop_Tick);
+            // 
+            // exitBarrelBox
+            // 
+            this.exitBarrelBox.Location = new System.Drawing.Point(499, 419);
+            this.exitBarrelBox.Name = "exitBarrelBox";
+            this.exitBarrelBox.Size = new System.Drawing.Size(65, 50);
+            this.exitBarrelBox.TabIndex = 13;
+            this.exitBarrelBox.TabStop = false;
             // 
             // exitBox
             // 
@@ -155,17 +171,12 @@
             this.topMenuBox.TabIndex = 2;
             this.topMenuBox.TabStop = false;
             // 
-            // gameLoop
-            // 
-            this.gameLoop.Enabled = true;
-            this.gameLoop.Interval = 20;
-            this.gameLoop.Tick += new System.EventHandler(this.gameLoop_Tick);
-            // 
             // MenuScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.exitBarrelBox);
             this.Controls.Add(this.exitBox);
             this.Controls.Add(this.howToBox);
             this.Controls.Add(this.titleBox);
@@ -177,10 +188,13 @@
             this.Controls.Add(this.barBox2);
             this.Controls.Add(this.barBox1);
             this.Controls.Add(this.topMenuBox);
+            this.DoubleBuffered = true;
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(854, 542);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuScreen_Paint);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MenuScreen_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MenuScreen_PreviewKeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.exitBarrelBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.howToBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleBox)).EndInit();
@@ -209,5 +223,6 @@
         private System.Windows.Forms.PictureBox howToBox;
         private System.Windows.Forms.PictureBox exitBox;
         private System.Windows.Forms.Timer gameLoop;
+        private System.Windows.Forms.PictureBox exitBarrelBox;
     }
 }

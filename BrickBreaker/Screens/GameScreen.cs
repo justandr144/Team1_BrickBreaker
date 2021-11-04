@@ -25,18 +25,17 @@ namespace BrickBreaker
         // Game values
         int lives;
 
-        // Paddle and Ball objects
-        Paddle paddle;
+        // p and Ball objects
+        Paddle p;
         Ball ball;
 
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
 
         // Brushes
-        SolidBrush paddleBrush = new SolidBrush(Color.White);
+        SolidBrush pBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
-
         #endregion
 
         public GameScreen()
@@ -54,21 +53,20 @@ namespace BrickBreaker
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
 
-            // setup starting paddle values and create paddle object
-            int paddleWidth = 80;
-            int paddleHeight = 20;
-            int paddleX = ((this.Width / 2) - (paddleWidth / 2));
-            int paddleY = (this.Height - paddleHeight) - 60;
-            int paddleSpeed = 8;
-            paddle = new Paddle(paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed, Color.White);
+            // setup starting p values and create p object
+            int pWidth = 80;
+            int pHeight = 20;
+            int pX = ((this.Width / 2) - (pWidth / 2));
+            int pY = (this.Height - pHeight) - 60;
+            int pSpeed = 8;
+            p = new Paddle(pX, pY, pWidth, pHeight, pSpeed, Color.White);
 
             // setup starting ball values
             int ballX = this.Width / 2 - 10;
-            int ballY = this.Height - paddle.height - 80;
+            int ballY = this.Height - p.height - 85;
 
             // Creates a new ball
-            int xSpeed = 6;
-            int ySpeed = 6;
+            int xSpeed = 1; int ySpeed =1;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
@@ -103,8 +101,6 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = true;
                     break;
-                default:
-                    break;
             }
         }
 
@@ -119,21 +115,19 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = false;
                     break;
-                default:
-                    break;
             }
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            // Move the paddle
-            if (leftArrowDown && paddle.x > 0)
+            // Move the p
+            if (leftArrowDown && p.x > 0)
             {
-                paddle.Move("left");
+                p.Move("left");
             }
-            if (rightArrowDown && paddle.x < (this.Width - paddle.width))
+            if (rightArrowDown && p.x < (this.Width - p.width))
             {
-                paddle.Move("right");
+                p.Move("right");
             }
 
             // Move ball
@@ -148,8 +142,8 @@ namespace BrickBreaker
                 lives--;
 
                 // Moves the ball back to origin
-                ball.x = ((paddle.x - (ball.size / 2)) + (paddle.width / 2));
-                ball.y = (this.Height - paddle.height) - 85;
+                ball.x = ((p.x - (ball.size / 2)) + (p.width / 2));
+                ball.y = (this.Height - p.height) - 85;
 
                 if (lives == 0)
                 {
@@ -158,8 +152,8 @@ namespace BrickBreaker
                 }
             }
 
-            // Check for collision of ball with paddle, (incl. paddle movement)
-            ball.PaddleCollision(paddle);
+            // Check for collision of ball with p, (incl. p movement)
+            ball.PaddleCollision(p);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
@@ -196,9 +190,15 @@ namespace BrickBreaker
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
-            // Draws paddle
-            paddleBrush.Color = paddle.colour;
-            e.Graphics.FillRectangle(paddleBrush, paddle.x, paddle.y, paddle.width, paddle.height);
+            // Draws p
+            pBrush.Color = p.colour;
+            e.Graphics.FillRectangle(pBrush, p.x, p.y, p.width, p.height);
+
+            //hut booxes
+            e.Graphics.FillRectangle(blockBrush, p.x, p.y, 80, 1);
+            e.Graphics.FillRectangle(blockBrush, p.x, p.y, 1, p.height);
+            e.Graphics.FillRectangle(blockBrush, p.x + 79, p.y, 1, p.height);
+            e.Graphics.FillRectangle(blockBrush, p.x, p.y + 20, 80, 1);
 
             // Draws blocks
             foreach (Block b in blocks)

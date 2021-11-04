@@ -32,6 +32,7 @@ namespace BrickBreaker
         public void LoadScore()
         {
             //TODO read score.xml and copy data into scoreList
+            XmlReader xmlReader = XmlReader.Create("Resources/HighScores.xml");
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

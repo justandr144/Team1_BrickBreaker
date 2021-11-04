@@ -20,7 +20,7 @@ namespace BrickBreaker
             InitializeComponent();
         }
 
-        private void MenuScreen_KeyUp(object sender, KeyEventArgs e)
+        private void MenuScreen_KeyUp(object sender, KeyEventArgs e)    //Keys being unpressed
         {
             switch (e.KeyCode)
             {
@@ -36,7 +36,7 @@ namespace BrickBreaker
             }
         }
 
-        private void MenuScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void MenuScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)    //Keys being pressed
         {
             switch (e.KeyCode)
             {
@@ -52,7 +52,7 @@ namespace BrickBreaker
             }
         }
 
-        private void gameLoop_Tick(object sender, EventArgs e)
+        private void gameLoop_Tick(object sender, EventArgs e)  //Loop to check for key presses
         {
             switch (state)
             {
@@ -109,7 +109,7 @@ namespace BrickBreaker
             Refresh();
         }
 
-        private void MenuScreen_Paint(object sender, PaintEventArgs e)
+        private void MenuScreen_Paint(object sender, PaintEventArgs e)      //Painting and placing the barrel on selection
         {
             switch (state)
             {

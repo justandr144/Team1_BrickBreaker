@@ -139,8 +139,20 @@
   <data name="LeftDownBar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LeftDownBar.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="moveInstruct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\moveInstruct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="moveInstruct2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\moveInstruct2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="powerupsInstruct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\powerupsInstruct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="powerupsInstruct2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\powerupsInstruct2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RightDownBar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RightDownBar.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -72,10 +72,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="InstructionsScreen.cs">
+    <Compile Include="Screens\InstructionsScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InstructionsScreen.Designer.cs">
+    <Compile Include="Screens\InstructionsScreen.Designer.cs">
       <DependentUpon>InstructionsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Paddle.cs" />
@@ -102,7 +102,7 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InstructionsScreen.resx">
+    <EmbeddedResource Include="Screens\InstructionsScreen.resx">
       <DependentUpon>InstructionsScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -177,6 +177,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\barrel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moveInstruct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moveInstruct2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\powerupsInstruct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\powerupsInstruct2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

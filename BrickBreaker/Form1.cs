@@ -18,6 +18,8 @@ namespace BrickBreaker
             InitializeComponent();
         }
 
+        List<int> scoreList = new List<int>();
+
         private void Form1_Load(object sender, EventArgs e)
         {
             // Start the program centred on the Menu Screen
@@ -29,7 +31,12 @@ namespace BrickBreaker
 
         public void LoadScore()
         {
+            //TODO read score.xml and copy data into scoreList
+        }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //TODO put scoreList data into score.xml
         }
     }
 }

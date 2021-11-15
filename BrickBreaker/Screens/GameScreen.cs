@@ -58,7 +58,7 @@ namespace BrickBreaker
             int pHeight = 20;
             int pX = ((this.Width / 2) - (pWidth / 2));
             int pY = (this.Height - pHeight) - 60;
-            int pSpeed = 8;
+            int pSpeed = 5;
             p = new Paddle(pX, pY, pWidth, pHeight, pSpeed, Color.White);
 
             // setup starting ball values
@@ -66,7 +66,7 @@ namespace BrickBreaker
             int ballY = this.Height - p.height - 85;
 
             // Creates a new ball
-            int xSpeed = 1; int ySpeed =1;
+            int xSpeed = 3; int ySpeed = 3;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
@@ -153,7 +153,7 @@ namespace BrickBreaker
             }
 
             // Check for collision of ball with p, (incl. p movement)
-            ball.PaddleCollision(p);
+            ball.PaddleCollision(p, ball);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)

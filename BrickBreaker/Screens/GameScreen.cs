@@ -58,7 +58,7 @@ namespace BrickBreaker
             int pHeight = 20;
             int pX = ((this.Width / 2) - (pWidth / 2));
             int pY = (this.Height - pHeight) - 60;
-            int pSpeed = 8;
+            int pSpeed = 9;
             p = new Paddle(pX, pY, pWidth, pHeight, pSpeed, Color.White);
 
             // setup starting ball values
@@ -66,8 +66,8 @@ namespace BrickBreaker
             int ballY = this.Height - p.height - 85;
 
             // Creates a new ball
-            int xSpeed = 10;
-            int ySpeed = 10;
+            int xSpeed = 7;
+            int ySpeed = 7;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
@@ -196,10 +196,10 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(pBrush, p.x, p.y, p.width, p.height);
 
             //hut booxes
-            e.Graphics.FillRectangle(blockBrush, p.x, p.y, 80, 1);
-            e.Graphics.FillRectangle(blockBrush, p.x, p.y, 1, p.height);
-            e.Graphics.FillRectangle(blockBrush, p.x + 79, p.y, 1, p.height);
-            e.Graphics.FillRectangle(blockBrush, p.x, p.y + 20, 80, 1);
+            e.Graphics.FillRectangle(blockBrush, p.x + 1, p.y, 78, 1);
+            e.Graphics.FillRectangle(blockBrush, p.x - 1, p.y, 1, p.height);
+            e.Graphics.FillRectangle(blockBrush, p.x + 80, p.y, 1, p.height);
+            e.Graphics.FillRectangle(blockBrush, p.x + 1, p.y + 19, 78, 1);
 
             // Draws blocks
             foreach (Block b in blocks)
@@ -215,7 +215,6 @@ namespace BrickBreaker
         {
 
         }
-
 
 
     }

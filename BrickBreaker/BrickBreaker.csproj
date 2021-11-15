@@ -138,6 +138,7 @@
   <ItemGroup>
     <Content Include="..\HighScores.xml">
       <Link>HighScores.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

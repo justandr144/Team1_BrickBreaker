@@ -154,7 +154,7 @@ namespace BrickBreaker
             }
 
             // Check for collision of ball with p, (incl. p movement)
-            ball.PaddleCollision(p);
+            ball.PaddleCollision(p, ball);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)

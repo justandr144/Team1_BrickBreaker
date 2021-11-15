@@ -33,8 +33,7 @@ namespace BrickBreaker
             // 
             // InstructionsScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "InstructionsScreen";
             this.Size = new System.Drawing.Size(854, 542);

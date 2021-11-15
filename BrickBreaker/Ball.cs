@@ -50,17 +50,23 @@ namespace BrickBreaker
             Rectangle rightPaddleRec = new Rectangle(p.x + 80, p.y, 1, p.height);
             Rectangle bottomPaddleRec = new Rectangle(p.x + 1, p.y + 19, 78, 1);
 
-            if (ballRec.IntersectsWith(leftPaddleRec) || ballRec.IntersectsWith(rightPaddleRec))
-            {
-                xSpeed *= -1;
-            }
-            else if (ballRec.IntersectsWith(topPaddleRec))
+
+            if (ballRec.IntersectsWith(topPaddleRec))
             {
                 ySpeed *= -1;
             }
             else if (ballRec.IntersectsWith(bottomPaddleRec))
             {
                 ySpeed *= -1;
+            }
+            else if (ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(leftPaddleRec) || 
+                ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(rightPaddleRec))
+            {
+                xSpeed *= -1;
+            }
+            else if (ballRec.IntersectsWith(leftPaddleRec) || ballRec.IntersectsWith(rightPaddleRec))
+            {
+                xSpeed *= -1;
             }
         }
 

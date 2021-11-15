@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace BrickBreaker
 {
@@ -14,10 +15,21 @@ namespace BrickBreaker
     {
         bool upArrowDown, downArrowDown, bDown;
         int state = 0;
+        int musicCounter = 10000;
+
+        System.Windows.Media.MediaPlayer music;
+        System.Windows.Media.MediaPlayer menuBeep;
 
         public MenuScreen()
         {
             InitializeComponent();
+            this.Focus();
+
+            music = new System.Windows.Media.MediaPlayer();
+            music.Open(new Uri(Application.StartupPath + "/Resources/MenuTheme.mp3"));
+
+            menuBeep = new System.Windows.Media.MediaPlayer();
+            menuBeep.Open(new Uri(Application.StartupPath + "/Resources/MenuBeep.mp3"));
         }
 
         private void MenuScreen_KeyUp(object sender, KeyEventArgs e)    //Keys being unpressed
@@ -54,50 +66,75 @@ namespace BrickBreaker
 
         private void gameLoop_Tick(object sender, EventArgs e)  //Loop to check for key presses
         {
+            if (musicCounter >= 405)
+            {
+                music.Stop();
+                music.Play();
+                musicCounter = 0;
+            }
+
             switch (state)
             {
                 case (0):
                     if (downArrowDown)
                     {
+                        menuBeep.Stop();
                         state = 1;
                         downArrowDown = false;
+
+                        menuBeep.Play();
                     }
                     else if (bDown)
                     {
+                        music.Stop();
                         Form f = this.FindForm();
                         f.Controls.Remove(this);
 
                         GameScreen gs = new GameScreen();
                         f.Controls.Add(gs);
+
+                        gs.Location = new Point((f.Width - gs.Width) / 2, (f.Height - gs.Height) / 2);
                         bDown = false;
                     }
                     break;
                 case (1):
                     if (upArrowDown)
                     {
+                        menuBeep.Stop();
                         state = 0;
                         upArrowDown = false;
+
+                        menuBeep.Play();
                     }
                     else if (downArrowDown)
                     {
+                        menuBeep.Stop();
                         state = 2;
                         downArrowDown = false;
+
+                        menuBeep.Play();
                     }
                     else if (bDown)
                     {
+                        music.Stop();
                         Form f = this.FindForm();
                         f.Controls.Remove(this);
 
                         InstructionsScreen ins = new InstructionsScreen();
                         f.Controls.Add(ins);
+
+                        ins.Location = new Point((f.Width - ins.Width) / 2, (f.Height - ins.Height) / 2);
                         bDown = false;
                     }
                     break;
                 case (2):
                     if (upArrowDown)
                     {
+                        menuBeep.Stop();
                         state = 1;
                         upArrowDown = false;
+
+                        menuBeep.Play();
                     }
                     else if (bDown)
                     {
@@ -106,6 +143,7 @@ namespace BrickBreaker
                     break;
             }
 
+            musicCounter++;
             Refresh();
         }
 

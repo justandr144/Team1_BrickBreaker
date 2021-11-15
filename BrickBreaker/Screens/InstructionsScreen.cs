@@ -7,16 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace BrickBreaker
 {
     public partial class InstructionsScreen : UserControl
     {
         bool mDown = false;
+        int musicCounter = 10000;
+
+        System.Windows.Media.MediaPlayer music;
 
         public InstructionsScreen()
         {
             InitializeComponent();
+            this.Focus();
+
+            music = new System.Windows.Media.MediaPlayer();
+            music.Open(new Uri(Application.StartupPath + "/Resources/InstructionsTheme.mp3"));
         }
 
         private void InstructionsScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -41,15 +49,27 @@ namespace BrickBreaker
 
         private void gameLoop_Tick(object sender, EventArgs e)
         {
+            if (musicCounter >= 500)
+            {
+                music.Stop();
+                music.Play();
+                musicCounter = 0;
+            }
+
             if (mDown)
             {
+                music.Stop();
                 Form f = this.FindForm();
                 f.Controls.Remove(this);
 
                 MenuScreen ms = new MenuScreen();
                 f.Controls.Add(ms);
+
+                ms.Location = new Point((f.Width - ms.Width) / 2, (f.Height - ms.Height) / 2);
                 mDown = false;
             }
+
+            musicCounter++;
         }
     }
 }

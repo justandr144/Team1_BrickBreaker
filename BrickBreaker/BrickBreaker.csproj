@@ -51,6 +51,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -62,6 +63,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
@@ -189,6 +191,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\powerupsInstruct2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Triforce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QuestionBlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Metroid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EnergyTank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuBeep.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\InstructionsTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

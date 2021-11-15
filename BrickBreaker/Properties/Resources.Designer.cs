@@ -93,6 +93,16 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap EnergyTank {
+            get {
+                object obj = ResourceManager.GetObject("EnergyTank", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap exit {
             get {
                 object obj = ResourceManager.GetObject("exit", resourceCulture);
@@ -107,6 +117,16 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("howToPlay", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] InstructionsTheme {
+            get {
+                object obj = ResourceManager.GetObject("InstructionsTheme", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -126,6 +146,36 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap LeftDownBar {
             get {
                 object obj = ResourceManager.GetObject("LeftDownBar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MenuBeep {
+            get {
+                object obj = ResourceManager.GetObject("MenuBeep", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MenuTheme {
+            get {
+                object obj = ResourceManager.GetObject("MenuTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Metroid {
+            get {
+                object obj = ResourceManager.GetObject("Metroid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,6 +233,16 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap QuestionBlock {
+            get {
+                object obj = ResourceManager.GetObject("QuestionBlock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap RightDownBar {
             get {
                 object obj = ResourceManager.GetObject("RightDownBar", resourceCulture);
@@ -196,6 +256,16 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap TopMenuImage {
             get {
                 object obj = ResourceManager.GetObject("TopMenuImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Triforce {
+            get {
+                object obj = ResourceManager.GetObject("Triforce", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

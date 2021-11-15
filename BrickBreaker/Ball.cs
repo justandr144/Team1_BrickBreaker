@@ -6,7 +6,7 @@ namespace BrickBreaker
 {
     public class Ball
     {
-        public int x, y, xSpeed, ySpeed, size, strength, bounce;
+        public int tempX, tempY, x, y, xSpeed, ySpeed, size, strength, bounce;
         public Color colour;
 
         public static Random rand = new Random();
@@ -15,6 +15,8 @@ namespace BrickBreaker
         {
             x = _x;
             y = _y;
+            tempX = x + xSpeed;
+            tempY = y + ySpeed;
             xSpeed = _xSpeed;
             ySpeed = _ySpeed;
             size = _ballSize;
@@ -40,12 +42,29 @@ namespace BrickBreaker
             return blockRec.IntersectsWith(ballRec);
         }
 
-        public void PaddleCollision(Paddle p)
+        public void PaddleCollision(Paddle p, Ball ball)
         {
-            Rectangle ballRec = new Rectangle(x, y, size, size);
-            Rectangle paddleRec = new Rectangle(p.x, p.y, p.width, p.height);
+            Rectangle ballRec = new Rectangle(x + xSpeed, y + ySpeed, size, size);
+            Rectangle topPaddleRec = new Rectangle(p.x + 2, p.y, 76, 1);
+            Rectangle leftPaddleRec = new Rectangle(p.x, p.y, 2, p.height);
+            Rectangle rightPaddleRec = new Rectangle(p.x + 79, p.y, 2, p.height);
+            Rectangle bottomPaddleRec = new Rectangle(p.x + 2, p.y + 20, 76, 1);
 
-            if (ballRec.IntersectsWith(paddleRec))
+
+            if (ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(leftPaddleRec) || 
+                ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(rightPaddleRec))
+            {
+                xSpeed *= -1;
+            }
+            else if (ballRec.IntersectsWith(leftPaddleRec) || ballRec.IntersectsWith(rightPaddleRec))
+            {
+                xSpeed *= -1;
+            }
+            else if (ballRec.IntersectsWith(topPaddleRec))
+            {
+                ySpeed *= -1;
+            }
+            else if (ballRec.IntersectsWith(bottomPaddleRec))
             {
                 ySpeed *= -1;
             }

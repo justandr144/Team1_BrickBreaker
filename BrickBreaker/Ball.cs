@@ -6,7 +6,7 @@ namespace BrickBreaker
 {
     public class Ball
     {
-        public int tempX, tempY, x, y, xSpeed, ySpeed, size;
+        public int tempX, tempY, x, y, xSpeed, ySpeed, size, strength, bounce;
         public Color colour;
 
         public static Random rand = new Random();
@@ -42,13 +42,14 @@ namespace BrickBreaker
             return blockRec.IntersectsWith(ballRec);
         }
 
-        public void PaddleCollision(Paddle p)
+        public void PaddleCollision(Paddle p, Ball ball)
         {
             Rectangle ballRec = new Rectangle(x + xSpeed, y + ySpeed, size, size);
-            Rectangle topPaddleRec = new Rectangle(p.x + 1, p.y, 78, 1);
-            Rectangle leftPaddleRec = new Rectangle(p.x -1, p.y, 1, p.height);
-            Rectangle rightPaddleRec = new Rectangle(p.x + 80, p.y, 1, p.height);
-            Rectangle bottomPaddleRec = new Rectangle(p.x + 1, p.y + 19, 78, 1);
+            Rectangle topPaddleRec = new Rectangle(p.x + 2, p.y, 76, 1);
+            Rectangle leftPaddleRec = new Rectangle(p.x, p.y, 2, p.height);
+            Rectangle rightPaddleRec = new Rectangle(p.x + 79, p.y, 2, p.height);
+            Rectangle bottomPaddleRec = new Rectangle(p.x + 2, p.y + 20, 76, 1);
+
 
 
             if (ballRec.IntersectsWith(topPaddleRec))

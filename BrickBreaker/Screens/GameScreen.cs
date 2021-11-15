@@ -20,17 +20,20 @@ namespace BrickBreaker
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
-        Boolean leftArrowDown, rightArrowDown;
+        Boolean leftArrowDown, rightArrowDown, spaceBarDown;
 
         // Game values
-        int lives;
+        public static int lives;
 
         // p and Ball objects
-        Paddle p;
-        Ball ball;
+        public static Paddle p;
+        public static Ball ball;
 
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
+
+        // powerup object
+        PowerUp powerUps;
 
         // Brushes
         SolidBrush pBrush = new SolidBrush(Color.White);
@@ -71,6 +74,9 @@ namespace BrickBreaker
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
+            //set up powerups (temperary)
+            powerUps = new PowerUp(100,200, "star");
+
             #region Creates blocks for generic level. Need to replace with code that loads levels.
             
             //TODO - replace all the code in this region eventually with code that loads levels from xml files
@@ -102,6 +108,11 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = true;
                     break;
+                case Keys.Space:
+                    spaceBarDown = true;
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -115,6 +126,11 @@ namespace BrickBreaker
                     break;
                 case Keys.Right:
                     rightArrowDown = false;
+                    break;
+                case Keys.Space:
+                    spaceBarDown = false;
+                    break;
+                default:
                     break;
             }
         }
@@ -133,6 +149,9 @@ namespace BrickBreaker
 
             // Move ball
             ball.Move();
+
+            // PowerUps
+            SamMethod();
 
             // Check for collision with top and side walls
             ball.WallCollision(this);
@@ -154,7 +173,7 @@ namespace BrickBreaker
             }
 
             // Check for collision of ball with p, (incl. p movement)
-            ball.PaddleCollision(p);
+            ball.PaddleCollision(p, ball);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
@@ -209,13 +228,42 @@ namespace BrickBreaker
 
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            
+            // Draws powerup
+            if (powerUps.state != "wait")
+            {
+                e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
+            }
+            
         }
 
         public void SamMethod()
         {
+            switch (powerUps.state)
+            {
+                case "wait":
+                    if (powerUps.check == true)
+                    {
 
+
+                        powerUps.check = false;
+                    }
+                    break;
+                case "fall":
+                    powerUps.Move();
+                    powerUps.Collision(paddle.x, paddle.y, paddle.height, paddle.width);
+
+                    break;
+                case "activate":
+                    if (spaceBarDown == true)
+                    {
+                        powerUps.Active();
+                    }
+                    break;
+                case "power":
+                    powerUps.UsingPowerUp();
+                    break;
+            }
         }
-
-
     }
 }

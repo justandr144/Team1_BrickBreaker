@@ -66,7 +66,8 @@ namespace BrickBreaker
             int ballY = this.Height - p.height - 85;
 
             // Creates a new ball
-            int xSpeed = 1; int ySpeed =1;
+            int xSpeed = 10;
+            int ySpeed = 10;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
@@ -209,5 +210,13 @@ namespace BrickBreaker
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
         }
+
+        public void SamMethod()
+        {
+
+        }
+
+
+
     }
 }

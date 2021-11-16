@@ -173,21 +173,21 @@
             // 
             // MenuScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Controls.Add(this.exitBarrelBox);
-            this.Controls.Add(this.exitBox);
-            this.Controls.Add(this.howToBox);
-            this.Controls.Add(this.titleBox);
-            this.Controls.Add(this.playBox);
             this.Controls.Add(this.ladder3Box);
             this.Controls.Add(this.ladder2Box);
             this.Controls.Add(this.ladder1Box);
+            this.Controls.Add(this.titleBox);
+            this.Controls.Add(this.topMenuBox);
+            this.Controls.Add(this.playBox);
+            this.Controls.Add(this.howToBox);
+            this.Controls.Add(this.exitBox);
             this.Controls.Add(this.bottomBarBox);
             this.Controls.Add(this.barBox2);
             this.Controls.Add(this.barBox1);
-            this.Controls.Add(this.topMenuBox);
             this.DoubleBuffered = true;
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(854, 542);

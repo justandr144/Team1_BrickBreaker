@@ -61,7 +61,7 @@ namespace BrickBreaker
             int pHeight = 20;
             int pX = ((this.Width / 2) - (pWidth / 2));
             int pY = (this.Height - pHeight) - 60;
-            int pSpeed = 9;
+            int pSpeed = 15;
             p = new Paddle(pX, pY, pWidth, pHeight, pSpeed, Color.White);
 
             // setup starting ball values
@@ -69,8 +69,8 @@ namespace BrickBreaker
             int ballY = this.Height - p.height - 85;
 
             // Creates a new ball
-            int xSpeed = 7;
-            int ySpeed = 7;
+            int xSpeed = 13;
+            int ySpeed = 13;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 

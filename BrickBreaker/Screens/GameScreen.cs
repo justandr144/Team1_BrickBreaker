@@ -20,17 +20,20 @@ namespace BrickBreaker
         #region global values
 
         //player1 button control keys - DO NOT CHANGE
-        Boolean leftArrowDown, rightArrowDown;
+        Boolean leftArrowDown, rightArrowDown, spaceBarDown;
 
         // Game values
-        int lives;
+        public static int lives;
 
         // p and Ball objects
-        Paddle p;
-        Ball ball;
+        public static Paddle p;
+        public static Ball ball;
 
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
+
+        // powerup object
+        PowerUp powerUps;
 
         // Brushes
         SolidBrush pBrush = new SolidBrush(Color.White);
@@ -58,7 +61,7 @@ namespace BrickBreaker
             int pHeight = 20;
             int pX = ((this.Width / 2) - (pWidth / 2));
             int pY = (this.Height - pHeight) - 60;
-            int pSpeed = 9;
+            int pSpeed = 15;
             p = new Paddle(pX, pY, pWidth, pHeight, pSpeed, Color.White);
 
             // setup starting ball values
@@ -66,10 +69,13 @@ namespace BrickBreaker
             int ballY = this.Height - p.height - 85;
 
             // Creates a new ball
-            int xSpeed = 7;
-            int ySpeed = 7;
+            int xSpeed = 13;
+            int ySpeed = 13;
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
+
+            //set up powerups (temperary)
+            powerUps = new PowerUp(100,200, "star");
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
             
@@ -102,6 +108,11 @@ namespace BrickBreaker
                 case Keys.Right:
                     rightArrowDown = true;
                     break;
+                case Keys.Space:
+                    spaceBarDown = true;
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -115,6 +126,11 @@ namespace BrickBreaker
                     break;
                 case Keys.Right:
                     rightArrowDown = false;
+                    break;
+                case Keys.Space:
+                    spaceBarDown = false;
+                    break;
+                default:
                     break;
             }
         }
@@ -133,6 +149,9 @@ namespace BrickBreaker
 
             // Move ball
             ball.Move();
+
+            // PowerUps
+            SamMethod();
 
             // Check for collision with top and side walls
             ball.WallCollision(this);
@@ -209,13 +228,42 @@ namespace BrickBreaker
 
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            
+            // Draws powerup
+            if (powerUps.state != "wait")
+            {
+                e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
+            }
+            
         }
 
         public void SamMethod()
         {
+            switch (powerUps.state)
+            {
+                case "wait":
+                    if (powerUps.check == true)
+                    {
 
+
+                        powerUps.check = false;
+                    }
+                    break;
+                case "fall":
+                    powerUps.Move();
+                    powerUps.Collision(paddle.x, paddle.y, paddle.height, paddle.width);
+
+                    break;
+                case "activate":
+                    if (spaceBarDown == true)
+                    {
+                        powerUps.Active();
+                    }
+                    break;
+                case "power":
+                    powerUps.UsingPowerUp();
+                    break;
+            }
         }
-
-
     }
 }

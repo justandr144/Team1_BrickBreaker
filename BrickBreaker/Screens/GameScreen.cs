@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 
 namespace BrickBreaker
 {
@@ -74,16 +75,48 @@ namespace BrickBreaker
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
             
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
+            ////TODO - replace all the code in this region eventually with code that loads levels from xml files
             
-            blocks.Clear();
-            int x = 10;
+            //blocks.Clear();
+            //int x = 10;
 
-            while (blocks.Count < 12)
+            //while (blocks.Count < 12)
+            //{
+            //    x += 57;
+            //    Block b1 = new Block(x, 10, 1, Color.White);
+            //    blocks.Add(b1);
+            //}
+
+            #endregion
+
+            #region Code that loads levels from xml files. 
+
+            //TODO make code load from correct level 
+            blocks.Clear();
+
+            int newX, newY, newHp;
+            Color newColour;
+            
+            XmlReader reader = XmlReader.Create("level01.xml");
+
+            while (reader.Read())
             {
-                x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
-                blocks.Add(b1);
+                if (reader.NodeType == XmlNodeType.Text)
+                {
+                    newX = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("y");
+                    newY = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("hp");
+                    newHp = Convert.ToInt32(reader.ReadString());
+
+                    reader.ReadToNextSibling("colour");
+                    newColour = Color.FromName(reader.ReadString());
+
+                    Block b = new Block(newX, newY, newHp, newColour);
+                    blocks.Add(b);
+                }
             }
 
             #endregion

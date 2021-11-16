@@ -16,15 +16,15 @@ namespace BrickBreaker
         bool mDown = false;
         int musicCounter = 10000;
 
-        System.Windows.Media.MediaPlayer music;
+        System.Windows.Media.MediaPlayer instructionsMusic;
 
         public InstructionsScreen()
         {
             InitializeComponent();
             this.Focus();
 
-            music = new System.Windows.Media.MediaPlayer();
-            music.Open(new Uri(Application.StartupPath + "/Resources/InstructionsTheme.mp3"));
+            instructionsMusic = new System.Windows.Media.MediaPlayer();
+            instructionsMusic.Open(new Uri(Application.StartupPath + "/Resources/InstructionsTheme.mp3"));
         }
 
         private void InstructionsScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -51,14 +51,16 @@ namespace BrickBreaker
         {
             if (musicCounter >= 500)
             {
-                music.Stop();
-                music.Play();
+                instructionsMusic.Stop();
+                instructionsMusic.Play();
                 musicCounter = 0;
             }
 
             if (mDown)
             {
-                music.Stop();
+                instructionsMusic.Stop();
+                gameLoop.Enabled = false;
+
                 Form f = this.FindForm();
                 f.Controls.Remove(this);
 
@@ -67,9 +69,16 @@ namespace BrickBreaker
 
                 ms.Location = new Point((f.Width - ms.Width) / 2, (f.Height - ms.Height) / 2);
                 mDown = false;
+
+                ms.Focus();
             }
 
             musicCounter++;
+        }
+
+        private void InstructionsScreen_Load(object sender, EventArgs e)
+        {
+            gameLoop.Enabled = true;
         }
     }
 }

@@ -145,6 +145,25 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ladder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\howTo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuBeep.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopMenuImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\LeftDownBar.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -154,43 +173,22 @@
     <None Include="Resources\BottomBar.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ladder.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ladderImage.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\play.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\howTo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TopMenuImage.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\BrickBreaker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barrel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\howToPlay.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\barrel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\moveInstruct.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\moveInstruct2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\powerupsInstruct.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\powerupsInstruct2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Triforce.png" />
@@ -205,17 +203,22 @@
     <None Include="Resources\EnergyTank.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MenuTheme.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\moveInstruct.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MenuBeep.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Resources\moveInstruct2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\InstructionsTheme.mp3">
+    <None Include="Resources\powerupsInstruct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\powerupsInstruct2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pressM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\instructionsTheme.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

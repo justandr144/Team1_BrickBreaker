@@ -71,7 +71,7 @@ namespace BrickBreaker
             // Creates a new ball
             int xSpeed = 13;
             int ySpeed = 13;
-            int ballSize = 20;
+            int ballSize = 15;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
             //set up powerups (temperary)
@@ -215,10 +215,10 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(pBrush, p.x, p.y, p.width, p.height);
 
             //hut booxes
-            e.Graphics.FillRectangle(blockBrush, p.x + 1, p.y, 78, 1);
-            e.Graphics.FillRectangle(blockBrush, p.x - 1, p.y, 1, p.height);
-            e.Graphics.FillRectangle(blockBrush, p.x + 80, p.y, 1, p.height);
-            e.Graphics.FillRectangle(blockBrush, p.x + 1, p.y + 19, 78, 1);
+            e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y - 2, 85, 1);
+            e.Graphics.FillRectangle(blockBrush, p.x - 4, p.y - 2, 1, p.height + 4);
+            e.Graphics.FillRectangle(blockBrush, p.x + 84, p.y - 2, 1, p.height + 4);
+            e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y + 22, 85, 1);
 
             // Draws blocks
             foreach (Block b in blocks)

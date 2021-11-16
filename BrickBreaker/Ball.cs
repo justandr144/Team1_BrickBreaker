@@ -8,7 +8,6 @@ namespace BrickBreaker
     {
         public int tempX, tempY, x, y, xSpeed, ySpeed, size, strength, bounce;
         public Color colour;
-
         public static Random rand = new Random();
 
         public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize)
@@ -20,7 +19,6 @@ namespace BrickBreaker
             xSpeed = _xSpeed;
             ySpeed = _ySpeed;
             size = _ballSize;
-
         }
 
         public void Move()
@@ -45,26 +43,20 @@ namespace BrickBreaker
         public void PaddleCollision(Paddle p, Ball ball)
         {
             Rectangle ballRec = new Rectangle(x + xSpeed, y + ySpeed, size, size);
-            Rectangle topPaddleRec = new Rectangle(p.x + 2, p.y, 76, 1);
-            Rectangle leftPaddleRec = new Rectangle(p.x, p.y, 2, p.height);
-            Rectangle rightPaddleRec = new Rectangle(p.x + 79, p.y, 2, p.height);
-            Rectangle bottomPaddleRec = new Rectangle(p.x + 2, p.y + 20, 76, 1);
+            Rectangle topPaddleRec = new Rectangle(p.x - 2, p.y - 2, 85, 1);
+            Rectangle leftPaddleRec = new Rectangle(p.x - 4, p.y - 2, 1, p.height + 4);
+            Rectangle rightPaddleRec = new Rectangle(p.x + 84, p.y - 2, 1, p.height + 4);
+            Rectangle bottomPaddleRec = new Rectangle(p.x - 2, p.y + 22, 85, 1);
 
-
-
-            if (ballRec.IntersectsWith(topPaddleRec))
-            {
-                ySpeed *= -1;
-            }
-            else if (ballRec.IntersectsWith(bottomPaddleRec))
-            {
-                ySpeed *= -1;
-            }
-            else if (ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(leftPaddleRec) || 
+            if (ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(leftPaddleRec) ||
                 ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(rightPaddleRec))
             {
                 xSpeed *= -1;
             }
+            else if (ballRec.IntersectsWith(topPaddleRec) || ballRec.IntersectsWith(bottomPaddleRec))
+            {
+                ySpeed *= -1;
+            }            
             else if (ballRec.IntersectsWith(leftPaddleRec) || ballRec.IntersectsWith(rightPaddleRec))
             {
                 xSpeed *= -1;

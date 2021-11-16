@@ -143,40 +143,76 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\LeftDownBar.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RightDownBar.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BottomBar.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ladder.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ladderImage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\play.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\howTo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\TopMenuImage.jpg" />
+    <None Include="Resources\instructionsTheme.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuBeep.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuTheme.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barrel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BottomBar.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BrickBreaker.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\howToPlay.png" />
+    <None Include="Resources\EnergyTank.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\exit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\barrel.png" />
+    <None Include="Resources\howToPlay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ladderImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LeftDownBar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Metroid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moveInstruct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moveInstruct2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\powerupsInstruct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\powerupsInstruct2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pressM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QuestionBlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RightDownBar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TopMenuImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Triforce.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

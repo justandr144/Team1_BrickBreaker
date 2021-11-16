@@ -101,11 +101,11 @@ namespace BrickBreaker
                     timer--;
                     if (timer > 0)
                     {
-                        GameScreen.paddle.width = 160;
+                        GameScreen.p.width = 160;
                     }
                     else
                     {
-                        GameScreen.paddle.width = 80;
+                        GameScreen.p.width = 80;
                         state = "wait";
                         timer = 500;
                     }

@@ -251,7 +251,7 @@ namespace BrickBreaker
                     break;
                 case "fall":
                     powerUps.Move();
-                    powerUps.Collision(paddle.x, paddle.y, paddle.height, paddle.width);
+                    powerUps.Collision(p.x, p.y, p.height, p.width);
 
                     break;
                 case "activate":

@@ -119,6 +119,8 @@ namespace BrickBreaker
                 }
             }
 
+            reader.Close();
+
             #endregion
 
             // start the game engine loop

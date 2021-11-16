@@ -70,7 +70,7 @@ namespace BrickBreaker
 
             // Creates a new ball
             int xSpeed = 13;
-            int ySpeed = 13;
+            int ySpeed = -13;
             int ballSize = 15;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 

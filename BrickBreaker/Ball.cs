@@ -51,7 +51,14 @@ namespace BrickBreaker
             if (ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(leftPaddleRec) ||
                 ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(rightPaddleRec))
             {
-                xSpeed *= -1;
+                if (x > p.x && ySpeed > 0)
+                {
+                    ySpeed *= -1;
+                }
+                else if (x < p.x && ySpeed > 0)
+                {
+                    xSpeed *= -1;
+                }
             }
             else if (ballRec.IntersectsWith(topPaddleRec) || ballRec.IntersectsWith(bottomPaddleRec))
             {

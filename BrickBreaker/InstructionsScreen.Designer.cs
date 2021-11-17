@@ -31,6 +31,8 @@ namespace BrickBreaker
         {
             this.components = new System.ComponentModel.Container();
             this.gameLoop = new System.Windows.Forms.Timer(this.components);
+            this.mBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.mBox)).BeginInit();
             this.SuspendLayout();
             // 
             // gameLoop
@@ -38,12 +40,26 @@ namespace BrickBreaker
             this.gameLoop.Interval = 20;
             this.gameLoop.Tick += new System.EventHandler(this.gameLoop_Tick);
             // 
+            // mBox
+            // 
+            this.mBox.Image = global::BrickBreaker.Properties.Resources.pressM;
+            this.mBox.Location = new System.Drawing.Point(254, 462);
+            this.mBox.Name = "mBox";
+            this.mBox.Size = new System.Drawing.Size(676, 45);
+            this.mBox.TabIndex = 0;
+            this.mBox.TabStop = false;
+            // 
             // InstructionsScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.mBox);
             this.Name = "InstructionsScreen";
-            this.Size = new System.Drawing.Size(854, 542);
+            this.Size = new System.Drawing.Size(1200, 700);
+            this.Load += new System.EventHandler(this.InstructionsScreen_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.InstructionsScreen_KeyUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.InstructionsScreen_PreviewKeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.mBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -51,5 +67,6 @@ namespace BrickBreaker
         #endregion
 
         private System.Windows.Forms.Timer gameLoop;
+        private System.Windows.Forms.PictureBox mBox;
     }
 }

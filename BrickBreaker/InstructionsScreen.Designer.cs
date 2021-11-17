@@ -29,7 +29,14 @@ namespace BrickBreaker
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.gameLoop = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // gameLoop
+            // 
+            this.gameLoop.Interval = 20;
+            this.gameLoop.Tick += new System.EventHandler(this.gameLoop_Tick);
             // 
             // InstructionsScreen
             // 
@@ -42,5 +49,7 @@ namespace BrickBreaker
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer gameLoop;
     }
 }

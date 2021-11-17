@@ -206,7 +206,6 @@ namespace BrickBreaker
 
                 if (lives == 0)
                 {
-                    gameTimer.Enabled = false;
                     OnEnd();
                 }
             }
@@ -225,9 +224,8 @@ namespace BrickBreaker
                     
                     if (blocks.Count == 0)
                     {
-                        gameTimer.Enabled = false;
-                        OnEnd();
-                        //TODO make game progress to next level instead of quitting to menu
+                        currentLevel++;
+                        LoadLevel();
                     }
 
                     break;
@@ -240,6 +238,9 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            //halt game engine
+            gameTimer.Enabled = false;
+            
             //TODO add score to scorelist
             
             

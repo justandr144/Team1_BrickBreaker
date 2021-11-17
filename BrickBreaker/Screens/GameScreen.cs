@@ -39,6 +39,8 @@ namespace BrickBreaker
         SolidBrush pBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+        SolidBrush blackBrush = new SolidBrush(Color.Black);
+
         #endregion
 
         public GameScreen()
@@ -230,13 +232,14 @@ namespace BrickBreaker
 
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+
+            JustinMethod(lives, e);
             
             // Draws powerup
             if (powerUps.state != "wait")
             {
                 e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
             }
-            
         }
 
         public void SamMethod()
@@ -263,6 +266,41 @@ namespace BrickBreaker
                 case "power":
                     powerUps.UsingPowerUp();
                     break;
+            }
+        }
+        
+        public void JustinMethod(int lives, PaintEventArgs g) //Lives Counter Method
+        {
+            g.Graphics.FillRectangle(blackBrush, 0, 0, this.Width, 78);
+
+            if (lives > 0)
+            {
+                g.Graphics.DrawImage(Properties.Resources.LozHeart, 10, 10);
+
+                if (lives > 1)
+                {
+                    g.Graphics.DrawImage(Properties.Resources.LozHeart, 68, 10);
+
+                    if (lives > 2)
+                    {
+                        g.Graphics.DrawImage(Properties.Resources.LozHeart, 126, 10);
+
+                        if (lives > 3)
+                        {
+                            g.Graphics.DrawImage(Properties.Resources.LozHeart, 184, 10);
+
+                            if (lives > 4)
+                            {
+                                g.Graphics.DrawImage(Properties.Resources.LozHeart, 242, 10);
+
+                                if (lives > 5)
+                                {
+                                    g.Graphics.DrawImage(Properties.Resources.LozHeart, 300, 10);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -53,6 +53,7 @@ namespace BrickBreaker
             // 
             // gameLoop
             // 
+            this.gameLoop.Enabled = true;
             this.gameLoop.Interval = 20;
             this.gameLoop.Tick += new System.EventHandler(this.gameLoop_Tick);
             // 
@@ -62,17 +63,17 @@ namespace BrickBreaker
             this.mBox.Location = new System.Drawing.Point(254, 462);
             this.mBox.Name = "mBox";
             this.mBox.Size = new System.Drawing.Size(676, 45);
-            this.mBox.TabIndex = 0;
+            this.mBox.TabIndex = 8;
             this.mBox.TabStop = false;
             // 
-            // energyTankBox
+            // engeryTankBox
             // 
-            this.energyTankBox.Image = global::BrickBreaker.Properties.Resources.EnergyTank;
-            this.energyTankBox.Location = new System.Drawing.Point(1036, 542);
-            this.energyTankBox.Name = "energyTankBox";
-            this.energyTankBox.Size = new System.Drawing.Size(147, 146);
-            this.energyTankBox.TabIndex = 1;
-            this.energyTankBox.TabStop = false;
+            this.engeryTankBox.Image = global::BrickBreaker.Properties.Resources.EnergyTank;
+            this.engeryTankBox.Location = new System.Drawing.Point(1036, 542);
+            this.engeryTankBox.Name = "engeryTankBox";
+            this.engeryTankBox.Size = new System.Drawing.Size(147, 146);
+            this.engeryTankBox.TabIndex = 7;
+            this.engeryTankBox.TabStop = false;
             // 
             // metroidBox
             // 
@@ -80,7 +81,7 @@ namespace BrickBreaker
             this.metroidBox.Location = new System.Drawing.Point(17, 555);
             this.metroidBox.Name = "metroidBox";
             this.metroidBox.Size = new System.Drawing.Size(139, 133);
-            this.metroidBox.TabIndex = 2;
+            this.metroidBox.TabIndex = 6;
             this.metroidBox.TabStop = false;
             // 
             // questionBox
@@ -89,7 +90,7 @@ namespace BrickBreaker
             this.questionBox.Location = new System.Drawing.Point(1050, 15);
             this.questionBox.Name = "questionBox";
             this.questionBox.Size = new System.Drawing.Size(133, 136);
-            this.questionBox.TabIndex = 3;
+            this.questionBox.TabIndex = 5;
             this.questionBox.TabStop = false;
             // 
             // triforceBox
@@ -107,7 +108,7 @@ namespace BrickBreaker
             this.powerupsInstruct2Box.Location = new System.Drawing.Point(87, 385);
             this.powerupsInstruct2Box.Name = "powerupsInstruct2Box";
             this.powerupsInstruct2Box.Size = new System.Drawing.Size(1012, 43);
-            this.powerupsInstruct2Box.TabIndex = 5;
+            this.powerupsInstruct2Box.TabIndex = 3;
             this.powerupsInstruct2Box.TabStop = false;
             // 
             // powerupsInstructBox
@@ -116,7 +117,7 @@ namespace BrickBreaker
             this.powerupsInstructBox.Location = new System.Drawing.Point(143, 338);
             this.powerupsInstructBox.Name = "powerupsInstructBox";
             this.powerupsInstructBox.Size = new System.Drawing.Size(899, 41);
-            this.powerupsInstructBox.TabIndex = 6;
+            this.powerupsInstructBox.TabIndex = 2;
             this.powerupsInstructBox.TabStop = false;
             // 
             // moveInstruct2
@@ -125,7 +126,7 @@ namespace BrickBreaker
             this.moveInstruct2.Location = new System.Drawing.Point(254, 252);
             this.moveInstruct2.Name = "moveInstruct2";
             this.moveInstruct2.Size = new System.Drawing.Size(677, 50);
-            this.moveInstruct2.TabIndex = 7;
+            this.moveInstruct2.TabIndex = 1;
             this.moveInstruct2.TabStop = false;
             // 
             // moveInstructBox
@@ -134,29 +135,30 @@ namespace BrickBreaker
             this.moveInstructBox.Location = new System.Drawing.Point(58, 205);
             this.moveInstructBox.Name = "moveInstructBox";
             this.moveInstructBox.Size = new System.Drawing.Size(1089, 41);
-            this.moveInstructBox.TabIndex = 8;
+            this.moveInstructBox.TabIndex = 0;
             this.moveInstructBox.TabStop = false;
             // 
             // InstructionsScreen
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Controls.Add(this.moveInstructBox);
-            this.Controls.Add(this.moveInstruct2);
-            this.Controls.Add(this.powerupsInstructBox);
-            this.Controls.Add(this.powerupsInstruct2Box);
-            this.Controls.Add(this.triforceBox);
-            this.Controls.Add(this.questionBox);
-            this.Controls.Add(this.metroidBox);
-            this.Controls.Add(this.energyTankBox);
             this.Controls.Add(this.mBox);
+            this.Controls.Add(this.engeryTankBox);
+            this.Controls.Add(this.metroidBox);
+            this.Controls.Add(this.questionBox);
+            this.Controls.Add(this.triforceBox);
+            this.Controls.Add(this.powerupsInstruct2Box);
+            this.Controls.Add(this.powerupsInstructBox);
+            this.Controls.Add(this.moveInstruct2);
+            this.Controls.Add(this.moveInstructBox);
             this.Name = "InstructionsScreen";
             this.Size = new System.Drawing.Size(1200, 700);
             this.Load += new System.EventHandler(this.InstructionsScreen_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.InstructionsScreen_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.InstructionsScreen_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.mBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.energyTankBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.engeryTankBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.metroidBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.triforceBox)).EndInit();
@@ -171,14 +173,14 @@ namespace BrickBreaker
         #endregion
 
         private System.Windows.Forms.Timer gameLoop;
-        private System.Windows.Forms.PictureBox mBox;
-        private System.Windows.Forms.PictureBox energyTankBox;
-        private System.Windows.Forms.PictureBox metroidBox;
-        private System.Windows.Forms.PictureBox questionBox;
-        private System.Windows.Forms.PictureBox triforceBox;
-        private System.Windows.Forms.PictureBox powerupsInstruct2Box;
-        private System.Windows.Forms.PictureBox powerupsInstructBox;
-        private System.Windows.Forms.PictureBox moveInstruct2;
         private System.Windows.Forms.PictureBox moveInstructBox;
+        private System.Windows.Forms.PictureBox moveInstruct2;
+        private System.Windows.Forms.PictureBox powerupsInstructBox;
+        private System.Windows.Forms.PictureBox powerupsInstruct2Box;
+        private System.Windows.Forms.PictureBox triforceBox;
+        private System.Windows.Forms.PictureBox questionBox;
+        private System.Windows.Forms.PictureBox metroidBox;
+        private System.Windows.Forms.PictureBox engeryTankBox;
+        private System.Windows.Forms.PictureBox mBox;
     }
 }

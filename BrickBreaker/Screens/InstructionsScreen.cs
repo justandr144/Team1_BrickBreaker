@@ -32,7 +32,7 @@ namespace BrickBreaker
             {
                 case (Keys.M):
                     mDown = true;
-                    break;
+                break;
             }
         }
 

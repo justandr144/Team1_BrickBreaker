@@ -218,7 +218,7 @@ namespace BrickBreaker
 
         }
 
-        public void JustinMethod(int lives, PaintEventArgs g)
+        public void JustinMethod(int lives, PaintEventArgs g) //Lives Counter Method
         {
             g.Graphics.FillRectangle(blackBrush, 0, 0, this.Width, 78);
 

@@ -77,45 +77,71 @@ namespace BrickBreaker
                 case (0):
                     if (downArrowDown)
                     {
+                        menuBeep.Stop();
                         state = 1;
                         downArrowDown = false;
+
+                        menuBeep.Play();
                     }
                     else if (bDown)
                     {
+                        music.Stop();
+                        gameLoop.Enabled = false;
+
                         Form f = this.FindForm();
                         f.Controls.Remove(this);
 
                         GameScreen gs = new GameScreen();
+                        gs.Location = new Point((f.Width - gs.Width) / 2, (f.Height - gs.Height) / 2);
                         f.Controls.Add(gs);
+
                         bDown = false;
+
+                        gs.Focus();
                     }
                     break;
                 case (1):
                     if (upArrowDown)
                     {
+                        menuBeep.Stop();
                         state = 0;
                         upArrowDown = false;
+
+                        menuBeep.Play();
                     }
                     else if (downArrowDown)
                     {
+                        menuBeep.Stop();
                         state = 2;
                         downArrowDown = false;
+
+                        menuBeep.Play();
                     }
                     else if (bDown)
                     {
+                        music.Stop();
+                        gameLoop.Enabled = false;
+
                         Form f = this.FindForm();
                         f.Controls.Remove(this);
 
                         InstructionsScreen ins = new InstructionsScreen();
+                        ins.Location = new Point((f.Width - ins.Width) / 2, (f.Height - ins.Height) / 2);
                         f.Controls.Add(ins);
+
                         bDown = false;
+
+                        ins.Focus();
                     }
                     break;
                 case (2):
                     if (upArrowDown)
                     {
+                        menuBeep.Stop();
                         state = 1;
                         upArrowDown = false;
+
+                        menuBeep.Play();
                     }
                     else if (bDown)
                     {
@@ -133,11 +159,11 @@ namespace BrickBreaker
             switch (state)
             {
                 case (0):
-                    e.Graphics.DrawImage(Properties.Resources.barrel, 500, 182);
+                    e.Graphics.DrawImage(Properties.Resources.barrel, 720, 217);
                     break;
                 case (1):
                     exitBarrelBox.Image = null;
-                    e.Graphics.DrawImage(Properties.Resources.barrel, 270, 295);
+                    e.Graphics.DrawImage(Properties.Resources.barrel, 390, 390);
                     break;
                 case (2):
                     exitBarrelBox.Image = Properties.Resources.barrel;

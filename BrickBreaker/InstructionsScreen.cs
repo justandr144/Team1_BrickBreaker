@@ -64,9 +64,9 @@ namespace BrickBreaker
                 f.Controls.Remove(this);
 
                 MenuScreen ms = new MenuScreen();
+                ms.Location = new Point((f.Width - ms.Width) / 2, (f.Height - ms.Height) / 2);
                 f.Controls.Add(ms);
 
-                ms.Location = new Point((f.Width - ms.Width) / 2, (f.Height - ms.Height) / 2);
                 mDown = false;
 
                 ms.Focus();

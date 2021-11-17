@@ -25,6 +25,7 @@ namespace BrickBreaker
 
         // Game values
         int lives;
+        int score;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -73,7 +74,7 @@ namespace BrickBreaker
             int ballSize = 20;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
+            #region Creates blocks for generic level. No longer in use. 
             
             ////TODO - replace all the code in this region eventually with code that loads levels from xml files
             
@@ -207,6 +208,7 @@ namespace BrickBreaker
                     {
                         gameTimer.Enabled = false;
                         OnEnd();
+                        //TODO make game progress to next level instead of quitting to menu
                     }
 
                     break;
@@ -219,6 +221,8 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            //TODO add score to scorelist
+            
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();

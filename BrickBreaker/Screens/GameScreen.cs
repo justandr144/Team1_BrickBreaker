@@ -71,8 +71,10 @@ namespace BrickBreaker
             // Creates a new ball
             int xSpeed = 13;
             int ySpeed = -13;
+            int ballStrength = 1;
+            bool ballBounce = true;
             int ballSize = 15;
-            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
+            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, 13, ballStrength, ballBounce);
 
             //set up powerups (temperary)
             powerUps = new PowerUp(100,200, "star");

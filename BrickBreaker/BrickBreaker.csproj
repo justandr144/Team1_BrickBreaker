@@ -74,6 +74,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameoverScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GameoverScreen.Designer.cs">
+      <DependentUpon>GameoverScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\InstructionsScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,8 +107,17 @@
     <Compile Include="Screens\GameScreen.Designer.cs">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="VictoryScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VictoryScreen.Designer.cs">
+      <DependentUpon>VictoryScreen.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameoverScreen.resx">
+      <DependentUpon>GameoverScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\InstructionsScreen.resx">
       <DependentUpon>InstructionsScreen.cs</DependentUpon>
@@ -117,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VictoryScreen.resx">
+      <DependentUpon>VictoryScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -221,6 +239,12 @@
     <None Include="Resources\instructionsTheme.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LozHeart.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Congratulations.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

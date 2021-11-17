@@ -98,9 +98,9 @@ namespace BrickBreaker
                         f.Controls.Remove(this);
 
                         GameScreen gs = new GameScreen();
+                        gs.Location = new Point((f.Width - gs.Width) / 2, (f.Height - gs.Height) / 2);
                         f.Controls.Add(gs);
 
-                        gs.Location = new Point((f.Width - gs.Width) / 2, (f.Height - gs.Height) / 2);
                         bDown = false;
 
                         gs.Focus();
@@ -132,9 +132,9 @@ namespace BrickBreaker
                         f.Controls.Remove(this);
 
                         InstructionsScreen ins = new InstructionsScreen();
+                        ins.Location = new Point((f.Width - ins.Width) / 2, (f.Height - ins.Height) / 2);
                         f.Controls.Add(ins);
 
-                        ins.Location = new Point((f.Width - ins.Width) / 2, (f.Height - ins.Height) / 2);
                         bDown = false;
 
                         ins.Focus();

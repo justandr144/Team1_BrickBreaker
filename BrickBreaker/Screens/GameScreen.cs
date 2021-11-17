@@ -240,9 +240,10 @@ namespace BrickBreaker
         {
             //halt game engine
             gameTimer.Enabled = false;
-            
-            //TODO add score to scorelist
-            
+
+            // add score to scorelist and refresh scorelist
+            Form1.scoreList.Add(score);
+            Form1.scoreList.Sort();
             
             // Goes to the game over screen
             Form form = this.FindForm();

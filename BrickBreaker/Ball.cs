@@ -45,7 +45,7 @@ namespace BrickBreaker
                 {
                     //GameScreen.blocks.Remove(b);
                 }
-                DifferentAngles();
+                //DifferentAngles();
                 ySpeed *= -1;
             }
 
@@ -65,23 +65,23 @@ namespace BrickBreaker
             {
                 if (x > p.x && ySpeed > 0)
                 {
-                    DifferentAngles();
+                    //DifferentAngles();
                     ySpeed *= -1;
                 }
                 else if (x < p.x && ySpeed > 0)
                 {
-                    DifferentAngles();
+                  //  DifferentAngles();
                     xSpeed *= -1;
                 }
             }
             else if (ballRec.IntersectsWith(topPaddleRec) || ballRec.IntersectsWith(bottomPaddleRec))
             {
-                DifferentAngles();
+               // DifferentAngles();
                 ySpeed *= -1;
             }
             else if (ballRec.IntersectsWith(leftPaddleRec) || ballRec.IntersectsWith(rightPaddleRec))
             {
-                DifferentAngles();
+               /// DifferentAngles();
                 xSpeed *= -1;
             }
         }
@@ -91,19 +91,19 @@ namespace BrickBreaker
             // Collision with left wall
             if (x <= 0)
             {
-                DifferentAngles();
+               // DifferentAngles();
                 xSpeed *= -1;
             }
             // Collision with right wall
             if (x >= (UC.Width - size))
             {
-                DifferentAngles();
+               // DifferentAngles();
                 xSpeed *= -1;
             }
             // Collision with top wall
             if (y <= 2)
             {
-                DifferentAngles();
+               // DifferentAngles();
                 ySpeed *= -1;
             }
         }

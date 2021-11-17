@@ -1,4 +1,4 @@
-﻿/*  Created by: us
+﻿/*  Created by: Maeve, Justin, Sam, Hunter
  *  Project: Brick Breaker
  *  Date: 
  */ 
@@ -246,8 +246,6 @@ namespace BrickBreaker
                 case "wait":
                     if (powerUps.check == true)
                     {
-
-
                         powerUps.check = false;
                     }
                     break;

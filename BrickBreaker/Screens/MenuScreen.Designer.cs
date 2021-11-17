@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.gameLoop = new System.Windows.Forms.Timer(this.components);
             this.exitBarrelBox = new System.Windows.Forms.PictureBox();
             this.exitBox = new System.Windows.Forms.PictureBox();
@@ -64,128 +65,129 @@
             // 
             // exitBarrelBox
             // 
-            this.exitBarrelBox.Location = new System.Drawing.Point(250, 210);
-            this.exitBarrelBox.Margin = new System.Windows.Forms.Padding(1);
+            this.exitBarrelBox.Location = new System.Drawing.Point(724, 578);
+            this.exitBarrelBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.exitBarrelBox.Name = "exitBarrelBox";
-            this.exitBarrelBox.Size = new System.Drawing.Size(32, 25);
+            this.exitBarrelBox.Size = new System.Drawing.Size(84, 60);
             this.exitBarrelBox.TabIndex = 13;
             this.exitBarrelBox.TabStop = false;
             // 
             // exitBox
             // 
-            this.exitBox.Image = global::BrickBreaker.Properties.Resources.exit;
-            this.exitBox.Location = new System.Drawing.Point(168, 210);
-            this.exitBox.Margin = new System.Windows.Forms.Padding(1);
+            this.exitBox.Image = ((System.Drawing.Image)(resources.GetObject("exitBox.Image")));
+            this.exitBox.Location = new System.Drawing.Point(486, 578);
+            this.exitBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.exitBox.Name = "exitBox";
-            this.exitBox.Size = new System.Drawing.Size(79, 25);
+            this.exitBox.Size = new System.Drawing.Size(221, 60);
             this.exitBox.TabIndex = 12;
             this.exitBox.TabStop = false;
             // 
             // howToBox
             // 
-            this.howToBox.Image = global::BrickBreaker.Properties.Resources.howToPlay;
-            this.howToBox.Location = new System.Drawing.Point(158, 141);
-            this.howToBox.Margin = new System.Windows.Forms.Padding(1);
+            this.howToBox.Image = ((System.Drawing.Image)(resources.GetObject("howToBox.Image")));
+            this.howToBox.Location = new System.Drawing.Point(461, 372);
+            this.howToBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.howToBox.Name = "howToBox";
-            this.howToBox.Size = new System.Drawing.Size(99, 38);
+            this.howToBox.Size = new System.Drawing.Size(281, 95);
             this.howToBox.TabIndex = 11;
             this.howToBox.TabStop = false;
             // 
             // titleBox
             // 
-            this.titleBox.Image = global::BrickBreaker.Properties.Resources.BrickBreaker;
-            this.titleBox.Location = new System.Drawing.Point(168, 28);
-            this.titleBox.Margin = new System.Windows.Forms.Padding(1);
+            this.titleBox.Image = ((System.Drawing.Image)(resources.GetObject("titleBox.Image")));
+            this.titleBox.Location = new System.Drawing.Point(451, 54);
+            this.titleBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.titleBox.Name = "titleBox";
-            this.titleBox.Size = new System.Drawing.Size(234, 18);
+            this.titleBox.Size = new System.Drawing.Size(660, 51);
             this.titleBox.TabIndex = 10;
             this.titleBox.TabStop = false;
             // 
             // playBox
             // 
-            this.playBox.Image = global::BrickBreaker.Properties.Resources.play;
-            this.playBox.Location = new System.Drawing.Point(168, 90);
-            this.playBox.Margin = new System.Windows.Forms.Padding(1);
+            this.playBox.Image = ((System.Drawing.Image)(resources.GetObject("playBox.Image")));
+            this.playBox.Location = new System.Drawing.Point(486, 213);
+            this.playBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.playBox.Name = "playBox";
-            this.playBox.Size = new System.Drawing.Size(81, 25);
+            this.playBox.Size = new System.Drawing.Size(221, 65);
             this.playBox.TabIndex = 9;
             this.playBox.TabStop = false;
             // 
             // ladder3Box
             // 
-            this.ladder3Box.Image = global::BrickBreaker.Properties.Resources.ladderImage;
-            this.ladder3Box.Location = new System.Drawing.Point(338, 200);
-            this.ladder3Box.Margin = new System.Windows.Forms.Padding(1);
+            this.ladder3Box.Image = ((System.Drawing.Image)(resources.GetObject("ladder3Box.Image")));
+            this.ladder3Box.Location = new System.Drawing.Point(985, 534);
+            this.ladder3Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ladder3Box.Name = "ladder3Box";
-            this.ladder3Box.Size = new System.Drawing.Size(16, 25);
+            this.ladder3Box.Size = new System.Drawing.Size(44, 73);
             this.ladder3Box.TabIndex = 8;
             this.ladder3Box.TabStop = false;
             // 
             // ladder2Box
             // 
             this.ladder2Box.BackColor = System.Drawing.Color.Transparent;
-            this.ladder2Box.Image = global::BrickBreaker.Properties.Resources.ladderImage;
-            this.ladder2Box.Location = new System.Drawing.Point(71, 138);
-            this.ladder2Box.Margin = new System.Windows.Forms.Padding(1);
+            this.ladder2Box.Image = ((System.Drawing.Image)(resources.GetObject("ladder2Box.Image")));
+            this.ladder2Box.Location = new System.Drawing.Point(199, 354);
+            this.ladder2Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ladder2Box.Name = "ladder2Box";
-            this.ladder2Box.Size = new System.Drawing.Size(16, 28);
+            this.ladder2Box.Size = new System.Drawing.Size(44, 74);
             this.ladder2Box.TabIndex = 7;
             this.ladder2Box.TabStop = false;
             // 
             // ladder1Box
             // 
             this.ladder1Box.BackColor = System.Drawing.Color.Transparent;
-            this.ladder1Box.Image = global::BrickBreaker.Properties.Resources.ladderImage;
-            this.ladder1Box.Location = new System.Drawing.Point(352, 80);
-            this.ladder1Box.Margin = new System.Windows.Forms.Padding(1);
+            this.ladder1Box.Image = ((System.Drawing.Image)(resources.GetObject("ladder1Box.Image")));
+            this.ladder1Box.Location = new System.Drawing.Point(985, 190);
+            this.ladder1Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ladder1Box.Name = "ladder1Box";
-            this.ladder1Box.Size = new System.Drawing.Size(16, 28);
+            this.ladder1Box.Size = new System.Drawing.Size(44, 73);
             this.ladder1Box.TabIndex = 6;
             this.ladder1Box.TabStop = false;
             // 
             // bottomBarBox
             // 
-            this.bottomBarBox.Image = global::BrickBreaker.Properties.Resources.BottomBar;
-            this.bottomBarBox.Location = new System.Drawing.Point(-9, 218);
-            this.bottomBarBox.Margin = new System.Windows.Forms.Padding(1);
+            this.bottomBarBox.Image = ((System.Drawing.Image)(resources.GetObject("bottomBarBox.Image")));
+            this.bottomBarBox.Location = new System.Drawing.Point(0, 588);
+            this.bottomBarBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bottomBarBox.Name = "bottomBarBox";
-            this.bottomBarBox.Size = new System.Drawing.Size(430, 48);
+            this.bottomBarBox.Size = new System.Drawing.Size(1216, 112);
             this.bottomBarBox.TabIndex = 5;
             this.bottomBarBox.TabStop = false;
             // 
             // barBox2
             // 
-            this.barBox2.Image = global::BrickBreaker.Properties.Resources.RightDownBar;
-            this.barBox2.Location = new System.Drawing.Point(-9, 175);
-            this.barBox2.Margin = new System.Windows.Forms.Padding(1);
+            this.barBox2.Image = ((System.Drawing.Image)(resources.GetObject("barBox2.Image")));
+            this.barBox2.Location = new System.Drawing.Point(13, 464);
+            this.barBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.barBox2.Name = "barBox2";
-            this.barBox2.Size = new System.Drawing.Size(389, 39);
+            this.barBox2.Size = new System.Drawing.Size(1160, 77);
             this.barBox2.TabIndex = 4;
             this.barBox2.TabStop = false;
             // 
             // barBox1
             // 
-            this.barBox1.Image = global::BrickBreaker.Properties.Resources.LeftDownBar;
-            this.barBox1.Location = new System.Drawing.Point(6, 111);
-            this.barBox1.Margin = new System.Windows.Forms.Padding(1);
+            this.barBox1.Image = ((System.Drawing.Image)(resources.GetObject("barBox1.Image")));
+            this.barBox1.Location = new System.Drawing.Point(16, 284);
+            this.barBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.barBox1.Name = "barBox1";
-            this.barBox1.Size = new System.Drawing.Size(415, 28);
+            this.barBox1.Size = new System.Drawing.Size(1184, 94);
             this.barBox1.TabIndex = 3;
             this.barBox1.TabStop = false;
             // 
             // topMenuBox
             // 
-            this.topMenuBox.Image = global::BrickBreaker.Properties.Resources.TopMenuImage;
-            this.topMenuBox.Location = new System.Drawing.Point(6, -15);
-            this.topMenuBox.Margin = new System.Windows.Forms.Padding(1);
+            this.topMenuBox.Image = ((System.Drawing.Image)(resources.GetObject("topMenuBox.Image")));
+            this.topMenuBox.Location = new System.Drawing.Point(13, -77);
+            this.topMenuBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.topMenuBox.Name = "topMenuBox";
-            this.topMenuBox.Size = new System.Drawing.Size(402, 95);
+            this.topMenuBox.Size = new System.Drawing.Size(1160, 273);
             this.topMenuBox.TabIndex = 2;
             this.topMenuBox.TabStop = false;
             // 
             // MenuScreen
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Controls.Add(this.exitBarrelBox);
             this.Controls.Add(this.ladder3Box);
@@ -200,9 +202,9 @@
             this.Controls.Add(this.barBox2);
             this.Controls.Add(this.barBox1);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MenuScreen";
-            this.Size = new System.Drawing.Size(1068, 688);
+            this.Size = new System.Drawing.Size(1200, 700);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuScreen_Paint);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MenuScreen_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MenuScreen_PreviewKeyDown);

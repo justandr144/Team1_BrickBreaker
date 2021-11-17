@@ -53,6 +53,9 @@ namespace BrickBreaker
             //set life counter
             lives = 3;
 
+            //reset score
+            score = 0;
+
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
 

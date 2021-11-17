@@ -32,7 +32,7 @@ namespace BrickBreaker
             this.components = new System.ComponentModel.Container();
             this.gameLoop = new System.Windows.Forms.Timer(this.components);
             this.mBox = new System.Windows.Forms.PictureBox();
-            this.engeryTankBox = new System.Windows.Forms.PictureBox();
+            this.energyTankBox = new System.Windows.Forms.PictureBox();
             this.metroidBox = new System.Windows.Forms.PictureBox();
             this.questionBox = new System.Windows.Forms.PictureBox();
             this.triforceBox = new System.Windows.Forms.PictureBox();
@@ -41,7 +41,7 @@ namespace BrickBreaker
             this.moveInstruct2 = new System.Windows.Forms.PictureBox();
             this.moveInstructBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.mBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.engeryTankBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.energyTankBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metroidBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.triforceBox)).BeginInit();

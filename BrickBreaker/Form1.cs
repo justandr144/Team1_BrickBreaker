@@ -18,7 +18,7 @@ namespace BrickBreaker
             InitializeComponent();
         }
 
-        List<int> scoreList = new List<int>();
+        public List<int> scoreList = new List<int>();
 
         private void Form1_Load(object sender, EventArgs e)
         {

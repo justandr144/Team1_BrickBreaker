@@ -26,6 +26,7 @@ namespace BrickBreaker
         // Game values
         int lives;
         int score;
+        int currentLevel;
 
         // Paddle and Ball objects
         Paddle paddle;
@@ -56,6 +57,9 @@ namespace BrickBreaker
             //reset score
             score = 0;
 
+            //reset level counter
+            currentLevel = 1;
+
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
 
@@ -78,9 +82,9 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
             #region Creates blocks for generic level. No longer in use. 
-            
+
             ////TODO - replace all the code in this region eventually with code that loads levels from xml files
-            
+
             //blocks.Clear();
             //int x = 10;
 
@@ -92,45 +96,55 @@ namespace BrickBreaker
             //}
 
             #endregion
-
-            #region Code that loads levels from xml files. 
-
-            //TODO make code load from correct level 
-            blocks.Clear();
-
-            int newX, newY, newHp;
-            Color newColour;
             
-            XmlReader reader = XmlReader.Create("level01.xml");
-
-            while (reader.Read())
-            {
-                if (reader.NodeType == XmlNodeType.Text)
-                {
-                    newX = Convert.ToInt32(reader.ReadString());
-
-                    reader.ReadToNextSibling("y");
-                    newY = Convert.ToInt32(reader.ReadString());
-
-                    reader.ReadToNextSibling("hp");
-                    newHp = Convert.ToInt32(reader.ReadString());
-
-                    reader.ReadToNextSibling("colour");
-                    newColour = Color.FromName(reader.ReadString());
-
-                    Block b = new Block(newX, newY, newHp, newColour);
-                    blocks.Add(b);
-                }
-            }
-
-            reader.Close();
-
-            #endregion
+            LoadLevel();
 
             // start the game engine loop
             gameTimer.Enabled = true;
         }
 
+        public void LoadLevel()
+        {
+            blocks.Clear();
+
+            string level = $"level0{currentLevel}.xml";
+
+            try
+            {
+                XmlReader reader = XmlReader.Create(level);
+
+                int newX, newY, newHp;
+                Color newColour;
+
+                while (reader.Read())
+                {
+                    if (reader.NodeType == XmlNodeType.Text)
+                    {
+                        newX = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("y");
+                        newY = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("hp");
+                        newHp = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("colour");
+                        newColour = Color.FromName(reader.ReadString());
+
+                        Block b = new Block(newX, newY, newHp, newColour);
+                        blocks.Add(b);
+                    }
+                }
+
+                reader.Close();
+            }
+            catch //if requested level doesn't exist, quit menu
+            {
+                OnEnd();
+                return;
+            }
+        }
+        
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             //player 1 button presses
@@ -227,6 +241,7 @@ namespace BrickBreaker
         public void OnEnd()
         {
             //TODO add score to scorelist
+            
             
             // Goes to the game over screen
             Form form = this.FindForm();

@@ -14,10 +14,21 @@ namespace BrickBreaker
     {
         bool upArrowDown, downArrowDown, bDown;
         int state = 0;
+        int musicCounter = 10000;
+
+        System.Windows.Media.MediaPlayer music;
+        System.Windows.Media.MediaPlayer menuBeep;
 
         public MenuScreen()
         {
             InitializeComponent();
+            this.Focus();
+
+            music = new System.Windows.Media.MediaPlayer();
+            music.Open(new Uri(Application.StartupPath + "/Resources/MenuTheme.mp3"));
+
+            menuBeep = new System.Windows.Media.MediaPlayer();
+            menuBeep.Open(new Uri(Application.StartupPath + "/Resources/MenuBeep.mp3"));
         }
 
         private void MenuScreen_KeyUp(object sender, KeyEventArgs e)
@@ -54,6 +65,13 @@ namespace BrickBreaker
 
         private void gameLoop_Tick(object sender, EventArgs e)
         {
+            if (musicCounter >= 405)
+            {
+                music.Stop();
+                music.Play();
+                musicCounter = 0;
+            }
+
             switch (state)
             {
                 case (0):
@@ -106,6 +124,7 @@ namespace BrickBreaker
                     break;
             }
 
+            musicCounter++;
             Refresh();
         }
 

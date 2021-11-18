@@ -29,32 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuScreen));
             this.gameLoop = new System.Windows.Forms.Timer(this.components);
             this.exitBarrelBox = new System.Windows.Forms.PictureBox();
-            this.exitBox = new System.Windows.Forms.PictureBox();
-            this.howToBox = new System.Windows.Forms.PictureBox();
-            this.titleBox = new System.Windows.Forms.PictureBox();
-            this.playBox = new System.Windows.Forms.PictureBox();
-            this.ladder3Box = new System.Windows.Forms.PictureBox();
-            this.ladder2Box = new System.Windows.Forms.PictureBox();
-            this.ladder1Box = new System.Windows.Forms.PictureBox();
-            this.bottomBarBox = new System.Windows.Forms.PictureBox();
-            this.barBox2 = new System.Windows.Forms.PictureBox();
-            this.barBox1 = new System.Windows.Forms.PictureBox();
-            this.topMenuBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.exitBarrelBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exitBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.howToBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.titleBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ladder3Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ladder2Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ladder1Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bottomBarBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topMenuBox)).BeginInit();
             this.SuspendLayout();
             // 
             // gameLoop
@@ -66,176 +43,32 @@
             // exitBarrelBox
             // 
             this.exitBarrelBox.Location = new System.Drawing.Point(724, 578);
-            this.exitBarrelBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exitBarrelBox.Margin = new System.Windows.Forms.Padding(1);
             this.exitBarrelBox.Name = "exitBarrelBox";
             this.exitBarrelBox.Size = new System.Drawing.Size(84, 60);
             this.exitBarrelBox.TabIndex = 13;
             this.exitBarrelBox.TabStop = false;
             // 
-            // exitBox
-            // 
-            this.exitBox.Image = ((System.Drawing.Image)(resources.GetObject("exitBox.Image")));
-            this.exitBox.Location = new System.Drawing.Point(486, 578);
-            this.exitBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.exitBox.Name = "exitBox";
-            this.exitBox.Size = new System.Drawing.Size(221, 60);
-            this.exitBox.TabIndex = 12;
-            this.exitBox.TabStop = false;
-            // 
-            // howToBox
-            // 
-            this.howToBox.Image = ((System.Drawing.Image)(resources.GetObject("howToBox.Image")));
-            this.howToBox.Location = new System.Drawing.Point(461, 372);
-            this.howToBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.howToBox.Name = "howToBox";
-            this.howToBox.Size = new System.Drawing.Size(281, 95);
-            this.howToBox.TabIndex = 11;
-            this.howToBox.TabStop = false;
-            // 
-            // titleBox
-            // 
-            this.titleBox.Image = ((System.Drawing.Image)(resources.GetObject("titleBox.Image")));
-            this.titleBox.Location = new System.Drawing.Point(451, 54);
-            this.titleBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.titleBox.Name = "titleBox";
-            this.titleBox.Size = new System.Drawing.Size(660, 51);
-            this.titleBox.TabIndex = 10;
-            this.titleBox.TabStop = false;
-            // 
-            // playBox
-            // 
-            this.playBox.Image = ((System.Drawing.Image)(resources.GetObject("playBox.Image")));
-            this.playBox.Location = new System.Drawing.Point(486, 213);
-            this.playBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.playBox.Name = "playBox";
-            this.playBox.Size = new System.Drawing.Size(221, 65);
-            this.playBox.TabIndex = 9;
-            this.playBox.TabStop = false;
-            // 
-            // ladder3Box
-            // 
-            this.ladder3Box.Image = ((System.Drawing.Image)(resources.GetObject("ladder3Box.Image")));
-            this.ladder3Box.Location = new System.Drawing.Point(985, 534);
-            this.ladder3Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ladder3Box.Name = "ladder3Box";
-            this.ladder3Box.Size = new System.Drawing.Size(44, 73);
-            this.ladder3Box.TabIndex = 8;
-            this.ladder3Box.TabStop = false;
-            // 
-            // ladder2Box
-            // 
-            this.ladder2Box.BackColor = System.Drawing.Color.Transparent;
-            this.ladder2Box.Image = ((System.Drawing.Image)(resources.GetObject("ladder2Box.Image")));
-            this.ladder2Box.Location = new System.Drawing.Point(199, 354);
-            this.ladder2Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ladder2Box.Name = "ladder2Box";
-            this.ladder2Box.Size = new System.Drawing.Size(44, 74);
-            this.ladder2Box.TabIndex = 7;
-            this.ladder2Box.TabStop = false;
-            // 
-            // ladder1Box
-            // 
-            this.ladder1Box.BackColor = System.Drawing.Color.Transparent;
-            this.ladder1Box.Image = ((System.Drawing.Image)(resources.GetObject("ladder1Box.Image")));
-            this.ladder1Box.Location = new System.Drawing.Point(985, 190);
-            this.ladder1Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ladder1Box.Name = "ladder1Box";
-            this.ladder1Box.Size = new System.Drawing.Size(44, 73);
-            this.ladder1Box.TabIndex = 6;
-            this.ladder1Box.TabStop = false;
-            // 
-            // bottomBarBox
-            // 
-            this.bottomBarBox.Image = ((System.Drawing.Image)(resources.GetObject("bottomBarBox.Image")));
-            this.bottomBarBox.Location = new System.Drawing.Point(0, 588);
-            this.bottomBarBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.bottomBarBox.Name = "bottomBarBox";
-            this.bottomBarBox.Size = new System.Drawing.Size(1216, 112);
-            this.bottomBarBox.TabIndex = 5;
-            this.bottomBarBox.TabStop = false;
-            // 
-            // barBox2
-            // 
-            this.barBox2.Image = ((System.Drawing.Image)(resources.GetObject("barBox2.Image")));
-            this.barBox2.Location = new System.Drawing.Point(13, 464);
-            this.barBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.barBox2.Name = "barBox2";
-            this.barBox2.Size = new System.Drawing.Size(1160, 77);
-            this.barBox2.TabIndex = 4;
-            this.barBox2.TabStop = false;
-            // 
-            // barBox1
-            // 
-            this.barBox1.Image = ((System.Drawing.Image)(resources.GetObject("barBox1.Image")));
-            this.barBox1.Location = new System.Drawing.Point(16, 284);
-            this.barBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.barBox1.Name = "barBox1";
-            this.barBox1.Size = new System.Drawing.Size(1184, 94);
-            this.barBox1.TabIndex = 3;
-            this.barBox1.TabStop = false;
-            // 
-            // topMenuBox
-            // 
-            this.topMenuBox.Image = ((System.Drawing.Image)(resources.GetObject("topMenuBox.Image")));
-            this.topMenuBox.Location = new System.Drawing.Point(13, -77);
-            this.topMenuBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.topMenuBox.Name = "topMenuBox";
-            this.topMenuBox.Size = new System.Drawing.Size(1160, 273);
-            this.topMenuBox.TabIndex = 2;
-            this.topMenuBox.TabStop = false;
-            // 
             // MenuScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackgroundImage = global::BrickBreaker.Properties.Resources.menuScreen;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Controls.Add(this.exitBarrelBox);
-            this.Controls.Add(this.ladder3Box);
-            this.Controls.Add(this.ladder2Box);
-            this.Controls.Add(this.ladder1Box);
-            this.Controls.Add(this.titleBox);
-            this.Controls.Add(this.topMenuBox);
-            this.Controls.Add(this.playBox);
-            this.Controls.Add(this.howToBox);
-            this.Controls.Add(this.exitBox);
-            this.Controls.Add(this.bottomBarBox);
-            this.Controls.Add(this.barBox2);
-            this.Controls.Add(this.barBox1);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "MenuScreen";
             this.Size = new System.Drawing.Size(1200, 700);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuScreen_Paint);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MenuScreen_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MenuScreen_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.exitBarrelBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exitBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.howToBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.titleBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ladder3Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ladder2Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ladder1Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bottomBarBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topMenuBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox topMenuBox;
-        private System.Windows.Forms.PictureBox barBox1;
-        private System.Windows.Forms.PictureBox barBox2;
-        private System.Windows.Forms.PictureBox bottomBarBox;
-        private System.Windows.Forms.PictureBox ladder1Box;
-        private System.Windows.Forms.PictureBox ladder2Box;
-        private System.Windows.Forms.PictureBox ladder3Box;
-        private System.Windows.Forms.PictureBox playBox;
-        private System.Windows.Forms.PictureBox titleBox;
-        private System.Windows.Forms.PictureBox howToBox;
-        private System.Windows.Forms.PictureBox exitBox;
         private System.Windows.Forms.Timer gameLoop;
         private System.Windows.Forms.PictureBox exitBarrelBox;
     }

@@ -139,6 +139,9 @@
   <data name="howToPlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\howToPlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="instructionScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\instructionScreen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="instructionsTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\instructionsTheme.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -153,6 +156,9 @@
   </data>
   <data name="MenuBeep" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MenuBeep.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="menuScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menuScreen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MenuTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MenuTheme.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

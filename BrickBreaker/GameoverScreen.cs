@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BrickBreaker
 {
-    public partial class InstructionsScreen : UserControl
+    public partial class GameoverScreen : UserControl
     {
-        public InstructionsScreen()
+        public GameoverScreen()
         {
             InitializeComponent();
         }

@@ -71,6 +71,82 @@ namespace BrickBreaker.Properties {
         internal static string HighScores {
             get {
                 return ResourceManager.GetString("HighScores", resourceCulture);
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap barrel {
+            get {
+                object obj = ResourceManager.GetObject("barrel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Congratulations {
+            get {
+                object obj = ResourceManager.GetObject("Congratulations", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap instructionScreen {
+            get {
+                object obj = ResourceManager.GetObject("instructionScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] instructionsTheme {
+            get {
+                object obj = ResourceManager.GetObject("instructionsTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LozHeart {
+            get {
+                object obj = ResourceManager.GetObject("LozHeart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MenuBeep {
+            get {
+                object obj = ResourceManager.GetObject("MenuBeep", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menuScreen {
+            get {
+                object obj = ResourceManager.GetObject("menuScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MenuTheme {
+            get {
+                object obj = ResourceManager.GetObject("MenuTheme", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

@@ -1,6 +1,7 @@
-﻿namespace BrickBreaker
+﻿
+namespace BrickBreaker
 {
-    partial class MenuScreen
+    partial class InstructionsScreen
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,8 +31,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gameLoop = new System.Windows.Forms.Timer(this.components);
-            this.exitBarrelBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.exitBarrelBox)).BeginInit();
             this.SuspendLayout();
             // 
             // gameLoop
@@ -40,36 +39,24 @@
             this.gameLoop.Interval = 20;
             this.gameLoop.Tick += new System.EventHandler(this.gameLoop_Tick);
             // 
-            // exitBarrelBox
-            // 
-            this.exitBarrelBox.Location = new System.Drawing.Point(724, 578);
-            this.exitBarrelBox.Margin = new System.Windows.Forms.Padding(1);
-            this.exitBarrelBox.Name = "exitBarrelBox";
-            this.exitBarrelBox.Size = new System.Drawing.Size(84, 60);
-            this.exitBarrelBox.TabIndex = 13;
-            this.exitBarrelBox.TabStop = false;
-            // 
-            // MenuScreen
+            // InstructionsScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BackgroundImage = global::BrickBreaker.Properties.Resources.menuScreen;
+            this.BackgroundImage = global::BrickBreaker.Properties.Resources.instructionScreen;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.exitBarrelBox);
-            this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.Name = "MenuScreen";
+            this.Name = "InstructionsScreen";
             this.Size = new System.Drawing.Size(1200, 700);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuScreen_Paint);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MenuScreen_KeyUp);
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MenuScreen_PreviewKeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.exitBarrelBox)).EndInit();
+            this.Load += new System.EventHandler(this.InstructionsScreen_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.InstructionsScreen_KeyUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.InstructionsScreen_PreviewKeyDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
         private System.Windows.Forms.Timer gameLoop;
-        private System.Windows.Forms.PictureBox exitBarrelBox;
+        private System.Windows.Forms.PictureBox engeryTankBox;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace BrickBreaker
 {
@@ -31,7 +32,7 @@ namespace BrickBreaker
             menuBeep.Open(new Uri(Application.StartupPath + "/Resources/MenuBeep.mp3"));
         }
 
-        private void MenuScreen_KeyUp(object sender, KeyEventArgs e)
+        private void MenuScreen_KeyUp(object sender, KeyEventArgs e)    //Keys being unpressed
         {
             switch (e.KeyCode)
             {
@@ -47,7 +48,7 @@ namespace BrickBreaker
             }
         }
 
-        private void MenuScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void MenuScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)    //Keys being pressed
         {
             switch (e.KeyCode)
             {
@@ -63,7 +64,12 @@ namespace BrickBreaker
             }
         }
 
-        private void gameLoop_Tick(object sender, EventArgs e)
+        private void MenuScreen_Load(object sender, EventArgs e)
+        {
+            gameLoop.Enabled = true;
+        }
+
+        private void gameLoop_Tick(object sender, EventArgs e)  //Loop to check for key presses
         {
             if (musicCounter >= 405)
             {
@@ -154,7 +160,7 @@ namespace BrickBreaker
             Refresh();
         }
 
-        private void MenuScreen_Paint(object sender, PaintEventArgs e)
+        private void MenuScreen_Paint(object sender, PaintEventArgs e)      //Painting and placing the barrel on selection
         {
             switch (state)
             {

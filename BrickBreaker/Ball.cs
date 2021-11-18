@@ -108,8 +108,8 @@ namespace BrickBreaker
                 DifferentAngles();
                 xSpeed *= -1;
             }
-             //Collision with top wall
-            if (y <= 10)
+            // Collision with top wall
+            if (y <= 70)
             {
                 y = yOld + 5;
                 DifferentAngles();

@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 
 namespace BrickBreaker
 {
@@ -23,6 +24,8 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown, spaceBarDown;
 
         // Game values
+        int score;
+        int currentLevel;
         public static int lives;
 
         // p and Ball objects
@@ -40,6 +43,8 @@ namespace BrickBreaker
         SolidBrush pBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+        SolidBrush blackBrush = new SolidBrush(Color.Black);
+
         #endregion
 
         public GameScreen()
@@ -53,6 +58,12 @@ namespace BrickBreaker
         {
             //set life counter
             lives = 3;
+
+            //reset score
+            score = 0;
+
+            //reset level counter
+            currentLevel = 1;
 
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
@@ -81,9 +92,9 @@ namespace BrickBreaker
             //set up powerups (temperary)
             powerUps = new PowerUp(100, 200, "star");
 
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
+            #region Creates blocks for generic level. No longer in use. 
 
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
+            ////TODO - replace all the code in this region eventually with code that loads levels from xml files
 
             blocks.Clear();
             int x = 10;
@@ -91,16 +102,60 @@ namespace BrickBreaker
             while (blocks.Count < 12)
             {
                 x += 57;
-                Block b1 = new Block(x, 10, 1, Color.White);
+                Block b1 = new Block(x, 78, 1, Color.White);
                 blocks.Add(b1);
             }
 
             #endregion
 
+            //LoadLevel();
+
             // start the game engine loop
             gameTimer.Enabled = true;
         }
 
+        public void LoadLevel()
+        {
+            blocks.Clear();
+
+            string level = $"level0{currentLevel}.xml";
+
+            try
+            {
+                XmlReader reader = XmlReader.Create(level);
+
+                int newX, newY, newHp;
+                Color newColour;
+
+                while (reader.Read())
+                {
+                    if (reader.NodeType == XmlNodeType.Text)
+                    {
+                        newX = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("y");
+                        newY = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("hp");
+                        newHp = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("colour");
+                        newColour = Color.FromName(reader.ReadString());
+
+                        Block b = new Block(newX, newY, newHp, newColour);
+                        blocks.Add(b);
+                    }
+                }
+
+                reader.Close();
+            }
+            catch //if requested level doesn't exist, quit menu
+            {
+                OnEnd();
+                return;
+            }
+        }
+        
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             //player 1 button presses
@@ -184,7 +239,6 @@ namespace BrickBreaker
 
                 if (lives == 0)
                 {
-                    gameTimer.Enabled = false;
                     OnEnd();
                 }
             }
@@ -198,11 +252,13 @@ namespace BrickBreaker
                 if (ball.BlockCollision(b))
                 {
                     blocks.Remove(b);
-
+                    
+                    score++;
+                    
                     if (blocks.Count == 0)
                     {
-                        gameTimer.Enabled = false;
-                        OnEnd();
+                        currentLevel++;
+                        LoadLevel();
                     }
 
                     break;
@@ -215,6 +271,13 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            //halt game engine
+            gameTimer.Enabled = false;
+
+            // add score to scorelist and refresh scorelist
+            Form1.scoreList.Add(score);
+            Form1.scoreList.Sort();
+            
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
@@ -248,12 +311,13 @@ namespace BrickBreaker
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
 
+            JustinMethod(lives, e);
+           
             // Draws powerup
             if (powerUps.state != "wait")
             {
                 e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
             }
-
         }
 
         public void SamMethod()
@@ -280,6 +344,41 @@ namespace BrickBreaker
                 case "power":
                     powerUps.UsingPowerUp();
                     break;
+            }
+        }
+        
+        public void JustinMethod(int lives, PaintEventArgs g) //Lives Counter Method
+        {
+            g.Graphics.FillRectangle(blackBrush, 0, 0, this.Width, 78);
+
+            if (lives > 0)
+            {
+                g.Graphics.DrawImage(Properties.Resources.LozHeart, 10, 10);
+
+                if (lives > 1)
+                {
+                    g.Graphics.DrawImage(Properties.Resources.LozHeart, 68, 10);
+
+                    if (lives > 2)
+                    {
+                        g.Graphics.DrawImage(Properties.Resources.LozHeart, 126, 10);
+
+                        if (lives > 3)
+                        {
+                            g.Graphics.DrawImage(Properties.Resources.LozHeart, 184, 10);
+
+                            if (lives > 4)
+                            {
+                                g.Graphics.DrawImage(Properties.Resources.LozHeart, 242, 10);
+
+                                if (lives > 5)
+                                {
+                                    g.Graphics.DrawImage(Properties.Resources.LozHeart, 300, 10);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

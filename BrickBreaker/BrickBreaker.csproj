@@ -256,9 +256,6 @@
     <None Include="Resources\LozHeart.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Congratulations.png" />
-   </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\powerupsInstruct2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -287,6 +284,15 @@
     <None Include="Resources\Triforce.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menuScreen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\instructionScreen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Congratulations.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

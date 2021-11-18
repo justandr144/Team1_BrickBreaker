@@ -101,7 +101,7 @@ namespace BrickBreaker
             //set up powerups (temperary)
             powerUps = new PowerUp(100,200, "condor");
             //create koopa
-            koopa = new Ball(-20, -20, 0, 0, 20);
+            koopa = new Ball(-20, -20, 0, 0, 20, 0, 0, false);
             // create condor
             condor = new Paddle(-80,-20,80,20,2,Color.Orange);
 
@@ -350,9 +350,9 @@ namespace BrickBreaker
             switch (powerUps.state)
             {
                 case "wait":
-                    if (powerUps.check == true)
+                    if (powerUps.created == true)
                     {
-                        powerUps.check = false;
+                        powerUps.created = false;
                     }
                     break;
                 case "fall":

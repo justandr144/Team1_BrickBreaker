@@ -29,8 +29,15 @@ namespace BrickBreaker
         public static Paddle p;
         public static Ball ball;
 
+        //koopa 
+        public static Ball koopa;
+        public static Boolean koopaLive = false;
+        //condor 
+        public static Paddle condor;
+        public static Boolean condorLive = false;
+
         // list of all blocks for current level
-        List<Block> blocks = new List<Block>();
+        public static List<Block> blocks = new List<Block>();
 
         // powerup object
         PowerUp powerUps;
@@ -39,6 +46,8 @@ namespace BrickBreaker
         SolidBrush pBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+        SolidBrush koopaBrush = new SolidBrush(Color.Green);
+        SolidBrush condorBrush = new SolidBrush(Color.Orange);
         #endregion
 
         public GameScreen()
@@ -75,7 +84,11 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize);
 
             //set up powerups (temperary)
-            powerUps = new PowerUp(100,200, "star");
+            powerUps = new PowerUp(100,200, "condor");
+            //create koopa
+            koopa = new Ball(-20, -20, 0, 0, 20);
+            // create condor
+            condor = new Paddle(-80,-20,80,20,2,Color.Orange);
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
             
@@ -234,6 +247,17 @@ namespace BrickBreaker
             {
                 e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
             }
+            // draw koopa
+            if (koopaLive)
+            {
+                e.Graphics.FillRectangle(koopaBrush, koopa.x, koopa.y, koopa.size, koopa.size);
+            }
+            // draw condor
+            if (condorLive)
+            {
+                e.Graphics.FillRectangle(condorBrush, condor.x, condor.y, condor.width, condor.height);
+            }
+                    
             
         }
 
@@ -263,6 +287,163 @@ namespace BrickBreaker
                 case "power":
                     powerUps.UsingPowerUp();
                     break;
+            }
+
+            //koopa logic
+            if (koopaLive)
+            {
+                // Move koopa
+                koopa.Move();
+
+                // Check for collision with top and side walls
+                koopa.WallCollision(this);
+
+                // Check for koopa hitting bottom of screen
+                if (koopa.BottomCollision(this))
+                {
+                    koopaLive = false;
+                    koopa.xSpeed = 0;
+                    koopa.ySpeed = 0;
+                    koopa.x = -koopa.size;
+                    koopa.y = -koopa.size;
+
+                }
+
+                // Check for collision of koopa with p, (incl. p movement)
+                koopa.PaddleCollision(p, koopa);
+
+                // Check if koopa has collided with any blocks
+                foreach (Block b in blocks)
+                {
+                    if (koopa.BlockCollision(b))
+                    {
+                        blocks.Remove(b);
+
+                        if (blocks.Count == 0)
+                        {
+                            gameTimer.Enabled = false;
+                            OnEnd();
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            //condor logic
+            if (condorLive)
+            {
+                condor.speed = 2;
+                condor.Move("right");
+                ball.PaddleCollision(condor, ball);
+                if (koopaLive)
+                {
+                    koopa.PaddleCollision(condor, koopa);
+                }
+                if (condor.x >= this.Width)
+                {
+                    condorLive = false;
+                    condor.x = -80;
+                    condor.y = -20;
+                }
+            }
+
+            //arrow logic
+            if (powerUps.projectile == "arrow")
+            {
+                powerUps.Move();
+                powerUps.WallCollision(this);
+                foreach (Block b in blocks)
+                {
+
+                    if (powerUps.BlockCollision(b))
+                    {
+                        powerUps.projectile = "done";
+                        blocks.Remove(b);
+
+                        break;
+                    }
+                }
+            }
+
+            //fire flower logic
+            if (powerUps.projectile == "fireFlower")
+            {
+                powerUps.Move();
+                powerUps.WallCollision(this);
+                foreach (Block b in blocks)
+                {
+
+                    if (powerUps.BlockCollision(b))
+                    {
+                        powerUps.projectile = "done";
+                        blocks.Remove(b);
+
+                        break;
+                    }
+                }
+            }
+
+            //missile logic
+            if (powerUps.projectile == "missile")
+            {
+                powerUps.Move();
+                powerUps.WallCollision(this);
+
+                foreach (Block b in blocks)
+                {
+                    if (powerUps.BlockCollision(b))
+                    {
+                        powerUps.projectile = "done";
+                        powerUps.explode();
+                        break;
+                    }
+                }
+
+            }
+
+            //boomerang logic
+            if (powerUps.projectile == "boomerang")
+            {
+                powerUps.Move();
+                powerUps.projectile = "turn";
+                powerUps.WallCollision(this);
+                powerUps.projectile = "boomerang";
+
+                foreach (Block b in blocks)
+                {
+                    if (powerUps.BlockCollision(b))
+                    {
+                        
+                        b.hp--;
+                        if (b.hp <= 0)
+                        {
+                            GameScreen.blocks.Remove(b);
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            //fire ball logic
+            if (powerUps.projectile == "fireBall")
+            {
+                powerUps.Move();
+                powerUps.projectile = "turn";
+                powerUps.WallCollision(this);
+                powerUps.projectile = "fireBall";
+
+                foreach (Block b in blocks)
+                {
+                    if (powerUps.BlockCollision(b))
+                    {
+                        powerUps.projectile = "done";
+                        powerUps.explode();
+                        break;
+                    }
+                }
+
             }
         }
     }

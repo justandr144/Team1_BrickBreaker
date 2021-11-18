@@ -177,7 +177,7 @@ namespace BrickBreaker
                         }
                         else GameScreen.ball.ySpeed = 16;
                         GameScreen.ball.strength = 999;
-                        GameScreen.ball.bounce = 1;
+                        GameScreen.ball.bounce = true;
 
                     }
                     else
@@ -193,7 +193,7 @@ namespace BrickBreaker
                         }
                         else GameScreen.ball.ySpeed = 13;
                         GameScreen.ball.strength = 1;
-                        GameScreen.ball.bounce = 0;
+                        GameScreen.ball.bounce = false;
                         state = "wait";
                         timer = 250;
                     }

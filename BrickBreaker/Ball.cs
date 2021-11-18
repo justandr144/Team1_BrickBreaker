@@ -8,7 +8,7 @@ namespace BrickBreaker
     {
         public int tempX, tempY, x, y, xSpeed, ySpeed, size, strength, defaultSpeed;
         public Color colour;
-        bool bounce = true;
+        public bool bounce = true;
         public static Random rand = new Random();
 
         public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize, int _defaultSpeed, int _strength, bool _bounce)
@@ -23,7 +23,6 @@ namespace BrickBreaker
             defaultSpeed = _defaultSpeed;
             bounce = _bounce;
             strength = _strength;
-
         }
 
         public void Move()

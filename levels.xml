@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<level>
+  <brick>
+    <x></x>
+    <y></y>
+    <hp>1</hp>
+    <colour>Red</colour>
+  </brick>
+  
+</level>

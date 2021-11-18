@@ -19,18 +19,22 @@ namespace BrickBreaker
 
         /// Types of power ups and sorting powerups
         /// "mushroom", "cherry", "fireFlower"
-        //Star(one shot everything for short amount of time, doesn't bounce off blocks)    
-            //1-up mushroom(1 life increase)                        
+            //Star(one shot everything for short amount of time, doesn't bounce off blocks)    
+            //1-up (genaric) (1 life increase)                        
         //Pac man cherry(score increase)                        
-            //Tanooki suit(mario tail) (slows the ball speed)       
+            //Balloon (balloon fight)(slows the ball speed)       
             //Mushroom(increases paddle size)
             //Megaman buzzsaw (increases the strenth of ball to 2)
         //
-        //Fire flower(Shoot projectile on an angle, break block and self on contact)          
-        //Zelda  bow and arrow(Shoot projectile, break block and break self onb contact)               
-        //Koopa shell(shells that act like ball but won't count towards lives)   
-        //Metroid bomb (explodes in an area if doesn't hit any bricks falls back down)  
+            //Fire flower(Shoot projectile on an angle, break block and self on contact)          
+            //Zelda  bow and arrow(Shoot projectile, break block and break self onb contact)               
+            //Koopa shell(shells that act like ball but won't count towards lives)   
+            //Metroid bomb (explodes in an area if doesn't hit any bricks falls back down)
+            //Boomerang (from castlevania) 
         //Dk barrel (??) 
+            //condor evil paddle
+            //launch a fire ball up that explodes or falls to the ground.
+        
 
         /// method is call three places
         /// 1. in ball colistion, create a powerup in "wait" state
@@ -44,14 +48,18 @@ namespace BrickBreaker
         /// activate is waiting for the powerup to get activated
         /// power is what the powerup does
         public string type;
-        public int Speed = 1;
+        public int speedY = 3;
+        public int speedX = 0;
         public string state = "fall";
         public int x, y;
-        public int size = 10;
-        public int timer = 500;
+        public int size = 20;
+        public int timer = 250;
+        //a variable that will know what type of projetile that the powerup need to turn into
+        public string projectile = "";
         //check variable will check for the creation of a powerUp.
-        public Boolean check;
-        
+        public Boolean created = false;
+
+
         public PowerUp(int _x, int _y, string _type)
         {
             x = _x;
@@ -61,12 +69,15 @@ namespace BrickBreaker
 
         public void Move()
         {
-            y += Speed;
+            y += speedY;
+            x += speedX;
         }
 
         public void Active()
         {
             state = "power";
+            x = -size;
+            y = -size;
         }
 
         public void Collision(int _paddleX, int _paddleY, int _paddleH, int _PaddleW)
@@ -86,18 +97,14 @@ namespace BrickBreaker
 
         public void UsingPowerUp()
         {
+            //determine what type of power up it is and then give that power
             switch (type)
             {
                 case "1-up":
-                    x = -size;
-                    y = -size;
                     GameScreen.lives++;
                     state = "wait";
                     break;
                 case "mushroom":
-                    //add an indicator to show when it is over (standard for all power ups)
-                    x = -size;
-                    y = -size;
                     timer--;
                     if (timer > 0)
                     {
@@ -107,28 +114,12 @@ namespace BrickBreaker
                     {
                         GameScreen.p.width = 80;
                         state = "wait";
-                        timer = 500;
+                        timer = 250;
                     }
                     break;
-                case "tanooki":
-                    x = -size;
-                    y = -size;
+                case "balloon":
                     timer--;
-                    if (timer > 0)
-                    {
-                        if (GameScreen.ball.xSpeed < 0)
-                        {
-                            GameScreen.ball.xSpeed = -3;
-                        }
-                        else GameScreen.ball.xSpeed = 3;
-                        if (GameScreen.ball.ySpeed < 0)
-                        {
-                            GameScreen.ball.ySpeed = -3;
-                        }
-                        else GameScreen.ball.ySpeed = 3;
-                        
-                    }
-                    else
+                    if (timer >= 0)
                     {
                         if (GameScreen.ball.xSpeed < 0)
                         {
@@ -140,13 +131,25 @@ namespace BrickBreaker
                             GameScreen.ball.ySpeed = -6;
                         }
                         else GameScreen.ball.ySpeed = 6;
+
+                    }
+                    else
+                    {
+                        if (GameScreen.ball.xSpeed < 0)
+                        {
+                            GameScreen.ball.xSpeed = -13;
+                        }
+                        else GameScreen.ball.xSpeed = 13;
+                        if (GameScreen.ball.ySpeed < 0)
+                        {
+                            GameScreen.ball.ySpeed = -13;
+                        }
+                        else GameScreen.ball.ySpeed = 13;
                         state = "wait";
-                        timer = 500;
+                        timer = 250;
                     }
                     break;
                 case "buzzsaw":
-                    x = -size;
-                    y = -size;
                     timer--;
                     if (timer > 0)
                     {
@@ -156,53 +159,210 @@ namespace BrickBreaker
                     {
                         GameScreen.ball.strength = 1;
                         state = "wait";
-                        timer = 500;
+                        timer = 250;
                     }
                     break;
                 case "star":
-                    //add an indicator to show when it is over (standard for all power ups)
-                    x = -size;
-                    y = -size;
                     timer--;
                     if (timer > 0)
                     {
                         if (GameScreen.ball.xSpeed < 0)
                         {
-                            GameScreen.ball.xSpeed = -9;
+                            GameScreen.ball.xSpeed = -16;
                         }
-                        else GameScreen.ball.xSpeed = 9;
+                        else GameScreen.ball.xSpeed = 16;
                         if (GameScreen.ball.ySpeed < 0)
                         {
-                            GameScreen.ball.ySpeed = -9;
+                            GameScreen.ball.ySpeed = -16;
                         }
-                        else GameScreen.ball.ySpeed = 9;
+                        else GameScreen.ball.ySpeed = 16;
                         GameScreen.ball.strength = 999;
+                        GameScreen.ball.bounce = 1;
 
                     }
                     else
                     {
                         if (GameScreen.ball.xSpeed < 0)
                         {
-                            GameScreen.ball.xSpeed = -6;
+                            GameScreen.ball.xSpeed = -13;
                         }
-                        else GameScreen.ball.xSpeed = 6;
+                        else GameScreen.ball.xSpeed = 13;
                         if (GameScreen.ball.ySpeed < 0)
                         {
-                            GameScreen.ball.ySpeed = -6;
+                            GameScreen.ball.ySpeed = -13;
                         }
-                        else GameScreen.ball.ySpeed = 6;
+                        else GameScreen.ball.ySpeed = 13;
                         GameScreen.ball.strength = 1;
+                        GameScreen.ball.bounce = 0;
                         state = "wait";
-                        timer = 500;
+                        timer = 250;
                     }
                     break;
+                case "koopa":
+                    GameScreen.koopaLive = true;
+                    GameScreen.koopa.xSpeed = -13;
+                    GameScreen.koopa.ySpeed = -13;
+                    GameScreen.koopa.x = ((GameScreen.p.x - (GameScreen.koopa.size / 2)) + (GameScreen.p.width / 2));
+                    GameScreen.koopa.y = GameScreen.p.y - 70;
+                    state = "wait";
+                    break;
+                case "arrow":
+                    if (projectile == "")
+                    {
+                        x = ((GameScreen.p.x - (size / 2)) + (GameScreen.p.width / 2));
+                        y = GameScreen.p.y - 70;
+                        speedX = 0;
+                        speedY = -15;
+                        projectile = "arrow";
+                    }
+                    if (projectile == "done")
+                    {
+                        state = "wait";
+                        projectile = "";
+                    }
+                    break;
+                case "fireFlower":
+                    if (projectile == "")
+                    {
+                        x = ((GameScreen.p.x - (size / 2)) + (GameScreen.p.width / 2));
+                        y = GameScreen.p.y - 70;
+                        speedX = -10;
+                        speedY = -10;
+                        projectile = "fireFlower";
+                    }
 
+                    if (projectile == "done")
+                    {
+                        state = "wait";
+                        projectile = "";
+                    }
+                    break;
+                case "missile":
+                    if (projectile == "")
+                    {
+                        x = ((GameScreen.p.x - (size / 2)) + (GameScreen.p.width / 2));
+                        y = GameScreen.p.y - 70;
+                        speedX = 0;
+                        speedY = -26;
+                        projectile = "missile";
+                    }
+
+                    if (projectile == "done")
+                    {
+                        state = "wait";
+                        projectile = "";
+                    }
+                    break;
+                case "boomerang":
+                    if (projectile == "")
+                    {
+                        x = ((GameScreen.p.x - (size / 2)) + (GameScreen.p.width / 2));
+                        y = GameScreen.p.y - 70;
+                        speedX = 0;
+                        speedY = -18;
+                        projectile = "boomerang";
+                    }
+                    if (projectile == "done")
+                    {
+                        state = "wait";
+                        projectile = "";
+                    }
+                    break;
+                case "fireBall":
+                    if (projectile == "")
+                    {
+                        x = ((GameScreen.p.x - (size / 2)) + (GameScreen.p.width / 2));
+                        y = GameScreen.p.y - 70;
+                        speedX = 0;
+                        speedY = -10;
+                        projectile = "fireBall";
+                    }
+
+                    if (projectile == "done")
+                    {
+                        state = "wait";
+                        projectile = "";
+                    }
+                    break;
+                case "condor":
+                    GameScreen.condorLive = true;
+                    GameScreen.condor.speed = 15;
+                    GameScreen.condor.x = 0;
+                    GameScreen.condor.y = 200;
+                    state = "wait";
+                    break;
             }
+        }
+
+        public void WallCollision(UserControl UC)
+        {
+            // Collision with left wall
+            if (x <= 0)
+            {
+                speedX *= -1;
+            }
+            // Collision with right wall
+            if (x >= (UC.Width - size))
+            {
+                speedX *= -1;
+            }
+            // Collision with top wall
+            if (y <= 2)
+            {
+                if (projectile == "missile") explode();
+                if (projectile == "turn") speedY = 15;
+                if (projectile != "turn") projectile = "done";
+            }
+        }
+
+        public bool BlockCollision(Block b)
+        {
+            Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
+            Rectangle PowerUpRec = new Rectangle(x, y, size, size);
+
+            if (PowerUpRec.IntersectsWith(blockRec))
+            {
+                if (projectile != "boomerang" ) projectile = "done";
+            }
+
+            return blockRec.IntersectsWith(PowerUpRec);
+
+
+        }
+
+        public void explode()
+        {
+            size = 100;
+            y = y - 50;
+            x = x - 50;
+            for (int i = 1; i <= 10; i++)
+            {
+                foreach (Block d in GameScreen.blocks)
+                {
+                    if (BlockCollision(d))
+                    {
+                        d.hp--;
+                        if (d.hp <= 0)
+                        {
+                            GameScreen.blocks.Remove(d);
+                        }
+                        break;
+                    }
+                }
+            }
+            size = 20;
+            y = -size;
+            x = -size;
         }
 
         public void TimerEnd()
         {
             //an indicator to show when a powerUp is close to ending the timer
+        }
+
+        public void Stun()
+        {
+            //stop the paddle from moving for a breif period of time
         }
     }
 }

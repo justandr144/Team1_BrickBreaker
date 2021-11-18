@@ -297,10 +297,10 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(pBrush, p.x, p.y, p.width, p.height);
 
             //hut booxes
-            e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y - 2, 85, 1);
-            e.Graphics.FillRectangle(blockBrush, p.x - 4, p.y - 2, 1, p.height + 4);
-            e.Graphics.FillRectangle(blockBrush, p.x + 84, p.y - 2, 1, p.height + 4);
-            e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y + 22, 85, 1);
+            //e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y - 2, 85, 1);
+            //e.Graphics.FillRectangle(blockBrush, p.x - 4, p.y - 2, 1, p.height + 4);
+            //e.Graphics.FillRectangle(blockBrush, p.x + 84, p.y - 2, 1, p.height + 4);
+            //e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y + 22, 85, 1);
 
             // Draws blocks
             foreach (Block b in blocks)

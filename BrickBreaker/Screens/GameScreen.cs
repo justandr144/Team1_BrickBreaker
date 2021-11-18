@@ -1,7 +1,7 @@
 ﻿/*  Created by: Maeve, Justin, Sam, Hunter
  *  Project: Brick Breaker
  *  Date: 
- */ 
+ */
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +28,7 @@ namespace BrickBreaker
         // p and Ball objects
         public static Paddle p;
         public static Ball ball;
+        public static bool ballStart = false;
 
         // list of all blocks for current level
         List<Block> blocks = new List<Block>();
@@ -69,20 +70,21 @@ namespace BrickBreaker
             int ballY = this.Height - p.height - 85;
 
             // Creates a new ball
-            int xSpeed = 13;
-            int ySpeed = -13;
+            int xSpeed = 10;
+            int ySpeed = -10;
+            int defaultSpeed = 10;
             int ballStrength = 1;
-            bool ballBounce = true;
             int ballSize = 15;
-            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, 13, ballStrength, ballBounce);
+            bool ballBounce = true;
+            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, defaultSpeed, ballStrength, ballBounce);
 
             //set up powerups (temperary)
-            powerUps = new PowerUp(100,200, "star");
+            powerUps = new PowerUp(100, 200, "star");
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
-            
+
             //TODO - replace all the code in this region eventually with code that loads levels from xml files
-            
+
             blocks.Clear();
             int x = 10;
 
@@ -113,6 +115,9 @@ namespace BrickBreaker
                 case Keys.Space:
                     spaceBarDown = true;
                     break;
+                case Keys.X:
+                    ballStart = true;
+                    break;
                 default:
                     break;
             }
@@ -130,7 +135,7 @@ namespace BrickBreaker
                     rightArrowDown = false;
                     break;
                 case Keys.Space:
-                    spaceBarDown = false;
+                    spaceBarDown = true;
                     break;
                 default:
                     break;
@@ -139,6 +144,8 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+
+
             // Move the p
             if (leftArrowDown && p.x > 0)
             {
@@ -150,7 +157,15 @@ namespace BrickBreaker
             }
 
             // Move ball
-            ball.Move();
+            if (ballStart)
+            {
+                ball.Move();
+            }
+            else
+            {
+                ball.x = p.x + 30;
+                ball.y = p.y - 25;
+            }
 
             // PowerUps
             SamMethod();
@@ -162,10 +177,10 @@ namespace BrickBreaker
             if (ball.BottomCollision(this))
             {
                 lives--;
-
+                ballStart = false;
                 // Moves the ball back to origin
-                ball.x = ((p.x - (ball.size / 2)) + (p.width / 2));
-                ball.y = (this.Height - p.height) - 85;
+                ball.x = p.x + 30;
+                ball.y = p.y - 25;
 
                 if (lives == 0)
                 {
@@ -203,11 +218,13 @@ namespace BrickBreaker
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
-            
+
             ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
 
             form.Controls.Add(ps);
             form.Controls.Remove(this);
+
+            ballStart = false;
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -230,13 +247,13 @@ namespace BrickBreaker
 
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
-            
+
             // Draws powerup
             if (powerUps.state != "wait")
             {
                 e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
             }
-            
+
         }
 
         public void SamMethod()

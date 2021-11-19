@@ -16,6 +16,7 @@ namespace BrickBreaker
         public int y; 
         public int hp;
         public Color colour;
+        public SolidBrush brush;
 
         public static Random rand = new Random();
 
@@ -25,6 +26,7 @@ namespace BrickBreaker
             y = _y;
             hp = _hp;
             colour = _colour;
+            brush = new SolidBrush(colour);
         }
     }
 }

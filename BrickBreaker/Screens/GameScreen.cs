@@ -99,7 +99,7 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, defaultSpeed, ballStrength, ballBounce);
 
             //set up powerups (temperary)
-            powerUps = new PowerUp(100,200, "condor");
+            powerUps = new PowerUp(100,200, "missile");
             //create koopa
             koopa = new Ball(-20, -20, 0, 0, 20, 0, 0, false);
             // create condor
@@ -109,19 +109,19 @@ namespace BrickBreaker
 
             ////TODO - replace all the code in this region eventually with code that loads levels from xml file
 
-            blocks.Clear();
-            int x = 10;
+            //blocks.Clear();
+            //int x = 10;
 
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 78, 1, Color.White);
-                blocks.Add(b1);
-            }
+            //while (blocks.Count < 12)
+            //{
+            //    x += 57;
+            //    Block b1 = new Block(x, 78, 1, Color.White);
+            //    blocks.Add(b1);
+            //}
 
             #endregion
 
-            //LoadLevel();
+            LoadLevel();
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -131,7 +131,7 @@ namespace BrickBreaker
         {
             blocks.Clear();
 
-            string level = $"level0{currentLevel}.xml";
+            string level = $"level06.xml";
 
             try
             {
@@ -318,7 +318,7 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in blocks)
             {
-                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                e.Graphics.FillRectangle(b.brush, b.x, b.y, b.width, b.height);
             }
 
             // Draws ball

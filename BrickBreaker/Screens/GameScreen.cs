@@ -149,7 +149,7 @@ namespace BrickBreaker
             }
             catch //if requested level doesn't exist, quit menu
             {
-                OnEnd();
+                OnVictory();
                 return;
             }
         }

@@ -68,9 +68,13 @@ namespace BrickBreaker.Properties {
         ///  &lt;/score&gt;
         ///&lt;/highScore&gt;.
         /// </summary>
-        internal static string HighScores {
-            get {
+        internal static string HighScores
+        {
+            get
+            {
                 return ResourceManager.GetString("HighScores", resourceCulture);
+            }
+        }
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap barrel {

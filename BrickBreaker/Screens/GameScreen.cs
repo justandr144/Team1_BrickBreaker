@@ -273,6 +273,25 @@ namespace BrickBreaker
             form.Controls.Remove(this);
         }
 
+        public void OnVictory() //Replaces game screen with victory screen and adds score to scorelist. 
+        {
+            //halt game engine
+            gameTimer.Enabled = false;
+
+            //add score to scorelist and refresh scorelist
+            Form1.scoreList.Add(score);
+            Form1.scoreList.Sort();
+
+            //goes to victory screen
+            Form form = this.FindForm();
+            VictoryScreen vs = new VictoryScreen();
+
+            vs.Location = new Point((form.Width - vs.Width) / 2, (form.Height - vs.Height) / 2);
+
+            form.Controls.Add(vs);
+            form.Controls.Remove(this);
+        }
+
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws p

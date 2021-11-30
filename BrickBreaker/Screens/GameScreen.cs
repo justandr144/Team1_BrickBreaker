@@ -326,7 +326,7 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in blocks)
             {
-                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                e.Graphics.FillRectangle(new SolidBrush(b.colour), b.x, b.y, b.width, b.height);
             }
 
             // Draws ball

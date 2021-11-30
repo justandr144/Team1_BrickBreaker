@@ -295,6 +295,54 @@
     <None Include="Resources\Congratulations.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ZeldaTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PaddleBeep.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WallBounce.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameOverScreen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MetroidTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KirbyTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TetrisTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PacManTheme.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MarioTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DonkeyKongTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameOverSound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GOSelect.png" />
     <Content Include="..\HighScores.xml">
       <Link>HighScores.xml</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -305,7 +353,6 @@
     <Content Include="level06.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-   
     <Content Include="level05.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

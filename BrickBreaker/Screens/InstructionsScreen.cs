@@ -21,7 +21,6 @@ namespace BrickBreaker
         public InstructionsScreen()
         {
             InitializeComponent();
-            this.Focus();
 
             instructionsMusic = new System.Windows.Media.MediaPlayer();
             instructionsMusic.Open(new Uri(Application.StartupPath + "/Resources/InstructionsTheme.mp3"));
@@ -48,7 +47,7 @@ namespace BrickBreaker
 
         private void gameLoop_Tick(object sender, EventArgs e)
         {
-            if (musicCounter >= 500)
+            if (musicCounter >= 590)
             {
                 instructionsMusic.Stop();
                 instructionsMusic.Play();

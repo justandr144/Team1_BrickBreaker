@@ -81,6 +81,46 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DonkeyKongTheme {
+            get {
+                object obj = ResourceManager.GetObject("DonkeyKongTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GameOverScreen {
+            get {
+                object obj = ResourceManager.GetObject("GameOverScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] GameOverSound {
+            get {
+                object obj = ResourceManager.GetObject("GameOverSound", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GOSelect {
+            get {
+                object obj = ResourceManager.GetObject("GOSelect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;highScore&gt;
         ///  &lt;score&gt;
@@ -115,12 +155,32 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] KirbyTheme {
+            get {
+                object obj = ResourceManager.GetObject("KirbyTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap LozHeart {
             get {
                 object obj = ResourceManager.GetObject("LozHeart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MarioTheme {
+            get {
+                object obj = ResourceManager.GetObject("MarioTheme", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -150,6 +210,66 @@ namespace BrickBreaker.Properties {
         internal static byte[] MenuTheme {
             get {
                 object obj = ResourceManager.GetObject("MenuTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MetroidTheme {
+            get {
+                object obj = ResourceManager.GetObject("MetroidTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PacManTheme {
+            get {
+                object obj = ResourceManager.GetObject("PacManTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PaddleBeep {
+            get {
+                object obj = ResourceManager.GetObject("PaddleBeep", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TetrisTheme {
+            get {
+                object obj = ResourceManager.GetObject("TetrisTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] WallBounce {
+            get {
+                object obj = ResourceManager.GetObject("WallBounce", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZeldaTheme {
+            get {
+                object obj = ResourceManager.GetObject("ZeldaTheme", resourceCulture);
                 return ((byte[])(obj));
             }
         }

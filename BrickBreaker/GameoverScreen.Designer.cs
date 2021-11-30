@@ -29,7 +29,13 @@ namespace BrickBreaker
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.gameLoop = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // gameLoop
+            // 
+            this.gameLoop.Tick += new System.EventHandler(this.gameLoop_Tick);
             // 
             // GameoverScreen
             // 
@@ -38,10 +44,14 @@ namespace BrickBreaker
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Name = "GameoverScreen";
             this.Size = new System.Drawing.Size(1200, 700);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameoverScreen_KeyUp);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GameoverScreen_PreviewKeyDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer gameLoop;
     }
 }

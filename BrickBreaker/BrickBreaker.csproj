@@ -295,10 +295,6 @@
     <None Include="Resources\Congratulations.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\HighScores.xml">
-      <Link>HighScores.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="level01.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

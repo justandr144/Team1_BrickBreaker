@@ -25,6 +25,7 @@ namespace BrickBreaker
             // Start the program centred on the Menu Screen
             MenuScreen ms = new MenuScreen();
             this.Controls.Add(ms);
+            LoadScore();
 
             ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
         }
@@ -55,7 +56,7 @@ namespace BrickBreaker
             {
                 xmlWriter.WriteStartElement("highScore");
 
-                xmlWriter.WriteAttributeString("score", Convert.ToString(s));
+                xmlWriter.WriteElementString("score", Convert.ToString(s));
 
                 xmlWriter.WriteEndElement();
             }

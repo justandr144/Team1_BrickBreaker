@@ -262,6 +262,7 @@ namespace BrickBreaker
             // add score to scorelist and refresh scorelist
             Form1.scoreList.Add(score);
             Form1.scoreList.Sort();
+            Form1.scoreList.Reverse();
             
             // Goes to the game over screen
             Form form = this.FindForm();
@@ -281,6 +282,7 @@ namespace BrickBreaker
             //add score to scorelist and refresh scorelist
             Form1.scoreList.Add(score);
             Form1.scoreList.Sort();
+            Form1.scoreList.Reverse();
 
             //goes to victory screen
             Form form = this.FindForm();

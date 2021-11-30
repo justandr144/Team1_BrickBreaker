@@ -267,8 +267,6 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
-                    //blocks.Remove(b);
-
                     score++;
                     
                     if (blocks.Count == 0)

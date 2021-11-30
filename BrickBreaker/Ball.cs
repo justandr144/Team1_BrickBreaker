@@ -27,8 +27,6 @@ namespace BrickBreaker
 
         public void Move()
         {
-            Console.WriteLine("x:" + xSpeed);
-            Console.WriteLine("y:" + ySpeed);
             x += xSpeed;
             y += ySpeed;
         }
@@ -36,22 +34,11 @@ namespace BrickBreaker
         public bool BlockCollision(Block b)
         {
             Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
-            Rectangle topBlockRec = new Rectangle(b.x - 2, b.y - 2, 85, 1);
-            Rectangle leftBlockRec = new Rectangle(b.x - 4, b.y - 2, 1, b.height + 4);
-            Rectangle rightBlockRec = new Rectangle(b.x + 84, b.y - 2, 1, b.height + 4);
-            Rectangle bottomBlockRec = new Rectangle(b.x - 2, b.y + 22, 85, 1);
+            Rectangle topBlockRec = new Rectangle(b.x, b.y , b.width, 1);
+            Rectangle leftBlockRec = new Rectangle(b.x, b.y , 1, b.height );
+            Rectangle rightBlockRec = new Rectangle(b.x, b.y, 1, b.height);
+            Rectangle bottomBlockRec = new Rectangle(b.x, b.y + 22, b.width, 1);
             Rectangle ballRec = new Rectangle(x, y, size, size);
-
-
-            if (ballRec.IntersectsWith(blockRec) && bounce)
-            {
-                b.hp -= strength;
-
-                if (b.hp <= 0)
-                {
-                    GameScreen.blocks.Remove(b);
-                }
-            }
 
             if (ballRec.IntersectsWith(topBlockRec) && bounce || ballRec.IntersectsWith(bottomBlockRec) && bounce)
             {
@@ -62,6 +49,16 @@ namespace BrickBreaker
             {
                 DifferentAngles();
                 xSpeed *= -1;
+            }
+
+            if (ballRec.IntersectsWith(blockRec) && bounce)
+            {
+                b.hp -= strength;
+
+                if (b.hp <= 0)
+                {
+                    GameScreen.blocks.Remove(b);
+                }
             }
 
 

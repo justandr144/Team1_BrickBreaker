@@ -99,7 +99,7 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, defaultSpeed, ballStrength, ballBounce);
 
             //set up powerups (temperary)
-            powerUps = new PowerUp(100,200, "condor");
+            powerUps = new PowerUp(100,200, "missile");
             //create koopa
             koopa = new Ball(-20, -20, 0, 0, 20, 0, 0, false);
             // create condor

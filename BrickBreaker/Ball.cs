@@ -27,14 +27,16 @@ namespace BrickBreaker
 
         public void Move()
         {
-            Console.WriteLine("x:" + xSpeed);
-            Console.WriteLine("y:" + ySpeed);
             x += xSpeed;
             y += ySpeed;
         }
 
         public bool BlockCollision(Block b)
         {
+            Rectangle topBlock = new Rectangle(b.x + 2, b.y, b.width - 4, 1);
+            Rectangle leftBlock = new Rectangle(b.x, b.y - 2, 1, b.height - 4);
+            Rectangle rightBlock = new Rectangle(b.x + b.width, b.y - 2, 1, b.height - 4);
+            Rectangle bottomBlock = new Rectangle(b.x + 2, b.y + b.height, b.width - 4, 1);
             Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
@@ -55,7 +57,10 @@ namespace BrickBreaker
 
         public void PaddleCollision(Paddle p, Ball ball)
         {
+            //ball rectangle
             Rectangle ballRec = new Rectangle(x + xSpeed, y + ySpeed, size, size);
+
+            //temporary rectangles of sides of paddle for collisions
             Rectangle topPaddleRec = new Rectangle(p.x - 2, p.y - 2, 85, 1);
             Rectangle leftPaddleRec = new Rectangle(p.x - 4, p.y - 2, 1, p.height + 4);
             Rectangle rightPaddleRec = new Rectangle(p.x + 84, p.y - 2, 1, p.height + 4);
@@ -97,7 +102,6 @@ namespace BrickBreaker
                 x = xOld + 5;
                 DifferentAngles();
                 xSpeed *= -1;
-
             }
 
              //Collision with right wall
@@ -111,6 +115,32 @@ namespace BrickBreaker
             if (y <= 70 + 5)
             {
                 y = yOld + 5;
+                DifferentAngles();
+                ySpeed *= -1;
+            }
+        }
+
+        public void WallCollision(UserControl UC, int lastBallX, int lastBallY)
+        {
+            //Collision with left wall
+            if (x <= 0)
+            {
+                x = lastBallX;
+                DifferentAngles();
+                xSpeed *= -1;
+            }
+
+            //Collision with right wall
+            if (x >= (UC.Width - size - 1))
+            {
+                x = lastBallX;
+                DifferentAngles();
+                xSpeed *= -1;
+            }
+            // Collision with top wall
+            if (y <= 70)
+            {
+                y = lastBallY;
                 DifferentAngles();
                 ySpeed *= -1;
             }

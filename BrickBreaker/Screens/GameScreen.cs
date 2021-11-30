@@ -151,9 +151,6 @@ namespace BrickBreaker
                 case Keys.Space:
                     spaceBarDown = false;
                     break;
-                case Keys.N:
-                    nDown = false;
-                    break;
                 default:
                     break;
             }

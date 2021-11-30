@@ -21,6 +21,7 @@ namespace BrickBreaker
 
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, rightArrowDown, spaceBarDown;
+        bool nDown;
 
         // Game values
         public static int lives;
@@ -45,6 +46,7 @@ namespace BrickBreaker
         System.Windows.Media.MediaPlayer music;
         System.Windows.Media.MediaPlayer paddleBeep;
         System.Windows.Media.MediaPlayer wallBounce;
+
 
         #endregion
 
@@ -127,6 +129,9 @@ namespace BrickBreaker
                 case Keys.Space:
                     spaceBarDown = true;
                     break;
+                case Keys.N:
+                    nDown = true;
+                    break;
                 default:
                     break;
             }
@@ -145,6 +150,9 @@ namespace BrickBreaker
                     break;
                 case Keys.Space:
                     spaceBarDown = false;
+                    break;
+                case Keys.N:
+                    nDown = false;
                     break;
                 default:
                     break;
@@ -209,8 +217,21 @@ namespace BrickBreaker
             }
 
             JustinMusicMethod();
+            PauseMethod();
 
             //redraw the screen
+            Refresh();
+        }
+
+        private void pauseTimer_Tick(object sender, EventArgs e)
+        {
+            if (nDown)
+            {
+                nDown = false;
+                pauseTimer.Enabled = false;
+                gameTimer.Enabled = true;
+                music.Play();
+            }
             Refresh();
         }
 
@@ -256,6 +277,12 @@ namespace BrickBreaker
             if (powerUps.state != "wait")
             {
                 e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
+            }
+
+            // Pause Image
+            if (pauseTimer.Enabled)
+            {
+                e.Graphics.DrawImage(Properties.Resources.Pause, 467, 310);
             }
         }
 
@@ -317,6 +344,17 @@ namespace BrickBreaker
         public void JustinEndMethod()
         {
             music.Stop();       
+        }
+
+        public void PauseMethod()
+        {
+            if (nDown)
+            {
+                nDown = false;
+                gameTimer.Enabled = false;
+                pauseTimer.Enabled = true;
+                music.Pause();
+            }
         }
     }
 }

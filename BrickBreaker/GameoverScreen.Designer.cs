@@ -45,9 +45,11 @@ namespace BrickBreaker
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::BrickBreaker.Properties.Resources.GameOverScreen;
+            this.DoubleBuffered = true;
             this.Name = "GameoverScreen";
             this.Size = new System.Drawing.Size(1200, 700);
             this.Load += new System.EventHandler(this.GameoverScreen_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameoverScreen_Paint);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameoverScreen_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GameoverScreen_PreviewKeyDown);
             this.ResumeLayout(false);

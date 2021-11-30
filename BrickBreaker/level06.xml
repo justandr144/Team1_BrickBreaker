@@ -124,161 +124,215 @@
 		<x>1039</x>
 		<y>131</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>1077</x>
 		<y>131</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>488</x>
 		<y>240</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>526</x>
 		<y>240</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>640</x>
 		<y>240</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>678</x>
 		<y>240</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>526</x>
 		<y>278</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>640</x>
 		<y>277</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>412</x>
 		<y>315</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>678</x>
 		<y>316</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>450</x>
 		<y>353</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>488</x>
 		<y>353</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>602</x>
 		<y>353</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>488</x>
 		<y>391</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>640</x>
 		<y>391</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>716</x>
 		<y>391</y>
 		<hp>2</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>GreenYellow</colour>
 	</brick>
 	<brick>
 		<x>191</x>
 		<y>301</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>153</x>
 		<y>263</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>153</x>
 		<y>301</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>229</x>
 		<y>301</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>716</x>
 		<y>240</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>450</x>
 		<y>278</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>488</x>
 		<y>278</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>488</x>
 		<y>315</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>564</x>
 		<y>315</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>640</x>
 		<y>315</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>564</x>
 		<y>353</y>
+		<width>30</width>
+		<height>30</height>
 		<hp>3</hp>
 		<colour>DarkViolet</colour>
 	</brick>
@@ -286,78 +340,104 @@
 		<x>678</x>
 		<y>391</y>
 		<hp>3</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>DarkViolet</colour>
 	</brick>
 	<brick>
 		<x>899</x>
 		<y>212</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>899</x>
 		<y>250</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>899</x>
 		<y>288</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>861</x>
 		<y>288</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>678</x>
 		<y>278</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>716</x>
 		<y>278</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>450</x>
 		<y>315</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>716</x>
 		<y>315</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>716</x>
 		<y>353</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>412</x>
 		<y>391</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>526</x>
 		<y>391</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 	<brick>
 		<x>564</x>
 		<y>391</y>
 		<hp>4</hp>
+		<width>30</width>
+		<height>30</height>
 		<colour>Red</colour>
 	</brick>
 </level>

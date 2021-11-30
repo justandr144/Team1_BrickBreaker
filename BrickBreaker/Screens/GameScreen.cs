@@ -116,7 +116,7 @@ namespace BrickBreaker
         {
             blocks.Clear();
 
-            string level = $"level0{currentLevel}.xml";
+            string level = $"level05.xml";
 
             try
             {
@@ -255,8 +255,8 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
-                    blocks.Remove(b);
-                    
+                    //blocks.Remove(b);
+
                     score++;
                     
                     if (blocks.Count == 0)

@@ -1,7 +1,7 @@
 ﻿/*  Created by: Maeve, Justin, Sam, Hunter
  *  Project: Brick Breaker
  *  Date: 
- */ 
+ */
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 
 namespace BrickBreaker
 {
@@ -23,15 +24,25 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown, spaceBarDown;
 
         // Game values
+        int score;
+        int currentLevel;
         public static int lives;
         int musicCounter = 10000;
 
         // p and Ball objects
         public static Paddle p;
         public static Ball ball;
+        public static bool ballStart = false;
+
+        //koopa 
+        public static Ball koopa;
+        public static Boolean koopaLive = false;
+        //condor 
+        public static Paddle condor;
+        public static Boolean condorLive = false;
 
         // list of all blocks for current level
-        List<Block> blocks = new List<Block>();
+        public static List<Block> blocks = new List<Block>();
 
         // powerup object
         PowerUp powerUps;
@@ -40,6 +51,8 @@ namespace BrickBreaker
         SolidBrush pBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+        SolidBrush koopaBrush = new SolidBrush(Color.Green);
+        SolidBrush condorBrush = new SolidBrush(Color.Orange);
         SolidBrush blackBrush = new SolidBrush(Color.Black);
 
         System.Windows.Media.MediaPlayer music;
@@ -60,6 +73,12 @@ namespace BrickBreaker
             //set life counter
             lives = 3;
 
+            //reset score
+            score = 0;
+
+            //reset level counter
+            currentLevel = 1;
+
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
 
@@ -76,15 +95,20 @@ namespace BrickBreaker
             int ballY = this.Height - p.height - 85;
 
             // Creates a new ball
-            int xSpeed = 13;
-            int ySpeed = -13;
+            int xSpeed = 10;
+            int ySpeed = -10;
+            int defaultSpeed = 10;
             int ballStrength = 1;
-            bool ballBounce = true;
             int ballSize = 15;
-            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, 13, ballStrength, ballBounce);
+            bool ballBounce = true;
+            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, defaultSpeed, ballStrength, ballBounce);
 
             //set up powerups (temperary)
-            powerUps = new PowerUp(100,200, "star");
+            powerUps = new PowerUp(100,200, "missile");
+            //create koopa
+            koopa = new Ball(-20, -20, 0, 0, 20, 0, 0, false);
+            // create condor
+            condor = new Paddle(-80,-20,80,20,2,Color.Orange);
 
             music = new System.Windows.Media.MediaPlayer();
             music.Open(new Uri(Application.StartupPath + "/Resources/ZeldaTheme.mp3"));
@@ -93,26 +117,61 @@ namespace BrickBreaker
             wallBounce = new System.Windows.Media.MediaPlayer();
             wallBounce.Open(new Uri(Application.StartupPath + "/Resources/WallBounce.mp3"));
 
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
-
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
-
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 78, 1, Color.White);
-                blocks.Add(b1);
-            }
-
-            #endregion
+            //load level
+            LoadLevel();
 
             // start the game engine loop
             gameTimer.Enabled = true;
         }
 
+        public void LoadLevel()
+        {
+            blocks.Clear();
+
+            string level = $"level0{currentLevel}.xml";
+
+            try
+            {
+                XmlReader reader = XmlReader.Create(level);
+
+                int newX, newY, newHp, newWidth, newHeight;
+                Color newColour;
+
+                while (reader.Read())
+                {
+                    if (reader.NodeType == XmlNodeType.Text)
+                    {
+                        newX = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("y");
+                        newY = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("hp");
+                        newHp = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("width");
+                        newWidth = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("height");
+                        newHeight = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("colour");
+                        newColour = Color.FromName(reader.ReadString());
+
+                        Block b = new Block(newX, newY, newHp, newWidth, newHeight, newColour);
+                        blocks.Add(b);
+                    }
+                }
+
+                reader.Close();
+            }
+            catch //if requested level doesn't exist, quit menu
+            {
+                OnEnd();
+                return;
+            }
+        }
+        
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             //player 1 button presses
@@ -126,6 +185,9 @@ namespace BrickBreaker
                     break;
                 case Keys.Space:
                     spaceBarDown = true;
+                    break;
+                case Keys.X:
+                    ballStart = true;
                     break;
                 default:
                     break;
@@ -144,7 +206,7 @@ namespace BrickBreaker
                     rightArrowDown = false;
                     break;
                 case Keys.Space:
-                    spaceBarDown = false;
+                    spaceBarDown = true;
                     break;
                 default:
                     break;
@@ -153,6 +215,8 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+
+
             // Move the p
             if (leftArrowDown && p.x > 0)
             {
@@ -164,7 +228,15 @@ namespace BrickBreaker
             }
 
             // Move ball
-            ball.Move();
+            if (ballStart)
+            {
+                ball.Move();
+            }
+            else
+            {
+                ball.x = p.x + 30;
+                ball.y = p.y - 25;
+            }
 
             // PowerUps
             SamMethod();
@@ -176,14 +248,13 @@ namespace BrickBreaker
             if (ball.BottomCollision(this))
             {
                 lives--;
-
+                ballStart = false;
                 // Moves the ball back to origin
-                ball.x = ((p.x - (ball.size / 2)) + (p.width / 2));
-                ball.y = (this.Height - p.height) - 85;
+                ball.x = p.x + 30;
+                ball.y = p.y - 25;
 
                 if (lives == 0)
                 {
-                    gameTimer.Enabled = false;
                     OnEnd();
                 }
             }
@@ -197,11 +268,13 @@ namespace BrickBreaker
                 if (ball.BlockCollision(b))
                 {
                     blocks.Remove(b);
-
+                    
+                    score++;
+                    
                     if (blocks.Count == 0)
                     {
-                        gameTimer.Enabled = false;
-                        OnEnd();
+                        currentLevel++;
+                        LoadLevel();
                     }
 
                     break;
@@ -216,6 +289,13 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            //halt game engine
+            gameTimer.Enabled = false;
+
+            // add score to scorelist and refresh scorelist
+            Form1.scoreList.Add(score);
+            Form1.scoreList.Sort();
+            
             // Goes to the game over screen
             JustinEndMethod();
 
@@ -227,6 +307,8 @@ namespace BrickBreaker
 
             form.Controls.Add(gos);
             form.Controls.Remove(this);
+
+            ballStart = false;
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -236,10 +318,10 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(pBrush, p.x, p.y, p.width, p.height);
 
             //hut booxes
-            e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y - 2, 85, 1);
-            e.Graphics.FillRectangle(blockBrush, p.x - 4, p.y - 2, 1, p.height + 4);
-            e.Graphics.FillRectangle(blockBrush, p.x + 84, p.y - 2, 1, p.height + 4);
-            e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y + 22, 85, 1);
+            //e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y - 2, 85, 1);
+            //e.Graphics.FillRectangle(blockBrush, p.x - 4, p.y - 2, 1, p.height + 4);
+            //e.Graphics.FillRectangle(blockBrush, p.x + 84, p.y - 2, 1, p.height + 4);
+            //e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y + 22, 85, 1);
 
             // Draws blocks
             foreach (Block b in blocks)
@@ -257,6 +339,18 @@ namespace BrickBreaker
             {
                 e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
             }
+
+            // draw koopa
+            if (koopaLive)
+            {
+                e.Graphics.FillRectangle(koopaBrush, koopa.x, koopa.y, koopa.size, koopa.size);
+            }
+            // draw condor
+            if (condorLive)
+            {
+                e.Graphics.FillRectangle(condorBrush, condor.x, condor.y, condor.width, condor.height);
+            }
+           
         }
 
         public void SamMethod()
@@ -264,9 +358,9 @@ namespace BrickBreaker
             switch (powerUps.state)
             {
                 case "wait":
-                    if (powerUps.check == true)
+                    if (powerUps.created == true)
                     {
-                        powerUps.check = false;
+                        powerUps.created = false;
                     }
                     break;
                 case "fall":
@@ -283,6 +377,163 @@ namespace BrickBreaker
                 case "power":
                     powerUps.UsingPowerUp();
                     break;
+            }
+
+            //koopa logic
+            if (koopaLive)
+            {
+                // Move koopa
+                koopa.Move();
+
+                // Check for collision with top and side walls
+                koopa.WallCollision(this);
+
+                // Check for koopa hitting bottom of screen
+                if (koopa.BottomCollision(this))
+                {
+                    koopaLive = false;
+                    koopa.xSpeed = 0;
+                    koopa.ySpeed = 0;
+                    koopa.x = -koopa.size;
+                    koopa.y = -koopa.size;
+
+                }
+
+                // Check for collision of koopa with p, (incl. p movement)
+                koopa.PaddleCollision(p, koopa);
+
+                // Check if koopa has collided with any blocks
+                foreach (Block b in blocks)
+                {
+                    if (koopa.BlockCollision(b))
+                    {
+                        blocks.Remove(b);
+
+                        if (blocks.Count == 0)
+                        {
+                            gameTimer.Enabled = false;
+                            OnEnd();
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            //condor logic
+            if (condorLive)
+            {
+                condor.speed = 2;
+                condor.Move("right");
+                ball.PaddleCollision(condor, ball);
+                if (koopaLive)
+                {
+                    koopa.PaddleCollision(condor, koopa);
+                }
+                if (condor.x >= this.Width)
+                {
+                    condorLive = false;
+                    condor.x = -80;
+                    condor.y = -20;
+                }
+            }
+
+            //arrow logic
+            if (powerUps.projectile == "arrow")
+            {
+                powerUps.Move();
+                powerUps.WallCollision(this);
+                foreach (Block b in blocks)
+                {
+
+                    if (powerUps.BlockCollision(b))
+                    {
+                        powerUps.projectile = "done";
+                        blocks.Remove(b);
+
+                        break;
+                    }
+                }
+            }
+
+            //fire flower logic
+            if (powerUps.projectile == "fireFlower")
+            {
+                powerUps.Move();
+                powerUps.WallCollision(this);
+                foreach (Block b in blocks)
+                {
+
+                    if (powerUps.BlockCollision(b))
+                    {
+                        powerUps.projectile = "done";
+                        blocks.Remove(b);
+
+                        break;
+                    }
+                }
+            }
+
+            //missile logic
+            if (powerUps.projectile == "missile")
+            {
+                powerUps.Move();
+                powerUps.WallCollision(this);
+
+                foreach (Block b in blocks)
+                {
+                    if (powerUps.BlockCollision(b))
+                    {
+                        powerUps.projectile = "done";
+                        powerUps.explode();
+                        break;
+                    }
+                }
+
+            }
+
+            //boomerang logic
+            if (powerUps.projectile == "boomerang")
+            {
+                powerUps.Move();
+                powerUps.projectile = "turn";
+                powerUps.WallCollision(this);
+                powerUps.projectile = "boomerang";
+
+                foreach (Block b in blocks)
+                {
+                    if (powerUps.BlockCollision(b))
+                    {
+                        
+                        b.hp--;
+                        if (b.hp <= 0)
+                        {
+                            GameScreen.blocks.Remove(b);
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            //fire ball logic
+            if (powerUps.projectile == "fireBall")
+            {
+                powerUps.Move();
+                powerUps.projectile = "turn";
+                powerUps.WallCollision(this);
+                powerUps.projectile = "fireBall";
+
+                foreach (Block b in blocks)
+                {
+                    if (powerUps.BlockCollision(b))
+                    {
+                        powerUps.projectile = "done";
+                        powerUps.explode();
+                        break;
+                    }
+                }
+
             }
         }
         

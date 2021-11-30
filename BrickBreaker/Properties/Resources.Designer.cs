@@ -117,6 +117,18 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("GOSelect", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+              
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;highScore&gt;
+        ///  &lt;score&gt;
+        ///    617
+        ///  &lt;/score&gt;
+        ///&lt;/highScore&gt;.
+        /// </summary>
+        internal static string HighScores {
+            get {
+                return ResourceManager.GetString("HighScores", resourceCulture);
             }
         }
         

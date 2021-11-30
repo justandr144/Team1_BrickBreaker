@@ -346,7 +346,7 @@ namespace BrickBreaker
             music.Stop();       
         }
 
-        public void PauseMethod()
+        public void PauseMethod() // Pausing
         {
             if (nDown)
             {

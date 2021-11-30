@@ -27,6 +27,7 @@ namespace BrickBreaker
         int score;
         int currentLevel;
         public static int lives;
+        int musicCounter = 10000;
 
         // p and Ball objects
         public static Paddle p;
@@ -53,6 +54,10 @@ namespace BrickBreaker
         SolidBrush koopaBrush = new SolidBrush(Color.Green);
         SolidBrush condorBrush = new SolidBrush(Color.Orange);
         SolidBrush blackBrush = new SolidBrush(Color.Black);
+
+        System.Windows.Media.MediaPlayer music;
+        System.Windows.Media.MediaPlayer paddleBeep;
+        System.Windows.Media.MediaPlayer wallBounce;
 
         #endregion
 
@@ -104,6 +109,13 @@ namespace BrickBreaker
             koopa = new Ball(-20, -20, 0, 0, 20, 0, 0, false);
             // create condor
             condor = new Paddle(-80,-20,80,20,2,Color.Orange);
+
+            music = new System.Windows.Media.MediaPlayer();
+            music.Open(new Uri(Application.StartupPath + "/Resources/ZeldaTheme.mp3"));
+            paddleBeep = new System.Windows.Media.MediaPlayer();
+            paddleBeep.Open(new Uri(Application.StartupPath + "/Resources/PaddleBeep.mp3"));
+            wallBounce = new System.Windows.Media.MediaPlayer();
+            wallBounce.Open(new Uri(Application.StartupPath + "/Resources/WallBounce.mp3"));
 
             //load level
             LoadLevel();
@@ -269,6 +281,8 @@ namespace BrickBreaker
                 }
             }
 
+            JustinMusicMethod();
+
             //redraw the screen
             Refresh();
         }
@@ -283,12 +297,15 @@ namespace BrickBreaker
             Form1.scoreList.Sort();
             
             // Goes to the game over screen
+            JustinEndMethod();
+
             Form form = this.FindForm();
-            MenuScreen ps = new MenuScreen();
+            GameoverScreen gos = new GameoverScreen();
+            
+            gos.Location = new Point((form.Width - gos.Width) / 2, (form.Height - gos.Height) / 2);
+            gos.Focus();
 
-            ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
-
-            form.Controls.Add(ps);
+            form.Controls.Add(gos);
             form.Controls.Remove(this);
 
             ballStart = false;
@@ -315,8 +332,8 @@ namespace BrickBreaker
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
 
-            JustinMethod(lives, e);
-           
+            JustinLivesMethod(lives, e);
+            
             // Draws powerup
             if (powerUps.state != "wait")
             {
@@ -520,39 +537,37 @@ namespace BrickBreaker
             }
         }
         
-        public void JustinMethod(int lives, PaintEventArgs g) //Lives Counter Method
+        public void JustinLivesMethod(int lives, PaintEventArgs g) //Lives Counter Method
         {
-            g.Graphics.FillRectangle(blackBrush, 0, 0, this.Width, 78);
+            g.Graphics.FillRectangle(blackBrush, 0, 0, this.Width, 68);
+            g.Graphics.FillRectangle(pBrush, 0, 65, this.Width, 4);
+            int livesAdd = 58;
 
-            if (lives > 0)
+            for (int i = 0; i < 6; i++)
             {
-                g.Graphics.DrawImage(Properties.Resources.LozHeart, 10, 10);
-
-                if (lives > 1)
+                if (lives > i)
                 {
-                    g.Graphics.DrawImage(Properties.Resources.LozHeart, 68, 10);
-
-                    if (lives > 2)
-                    {
-                        g.Graphics.DrawImage(Properties.Resources.LozHeart, 126, 10);
-
-                        if (lives > 3)
-                        {
-                            g.Graphics.DrawImage(Properties.Resources.LozHeart, 184, 10);
-
-                            if (lives > 4)
-                            {
-                                g.Graphics.DrawImage(Properties.Resources.LozHeart, 242, 10);
-
-                                if (lives > 5)
-                                {
-                                    g.Graphics.DrawImage(Properties.Resources.LozHeart, 300, 10);
-                                }
-                            }
-                        }
-                    }
+                    g.Graphics.DrawImage(Properties.Resources.LozHeart, 10 + (i * livesAdd), 8);
                 }
             }
+            
+        }
+
+        public void JustinMusicMethod()
+        {
+            musicCounter++;
+
+            if (musicCounter > 2500)
+            {
+                music.Stop();
+                music.Play();
+                musicCounter = 0;
+            }
+        }
+
+        public void JustinEndMethod()
+        {
+            music.Stop();       
         }
     }
 }

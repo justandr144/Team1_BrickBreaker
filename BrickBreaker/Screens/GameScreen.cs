@@ -1,6 +1,6 @@
-﻿/*  Created by: Maeve, Justin, Sam, Hunter, Cait
+﻿/*  Created by: Maeve, Justin, Sam, Hunter
  *  Project: Brick Breaker
- *  Date: November 2021
+ *  Date: 
  */
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace BrickBreaker
 
         // Game values
         int score;
-        int currentLevel = 1;
+        int currentLevel;
         public static int lives;
 
         // p and Ball objects
@@ -105,7 +105,7 @@ namespace BrickBreaker
             // create condor
             condor = new Paddle(-80,-20,80,20,2,Color.Orange);
 
-            //load first level
+            //load level
             LoadLevel();
 
             // start the game engine loop
@@ -114,25 +114,21 @@ namespace BrickBreaker
 
         public void LoadLevel()
         {
-            //clear blocks
             blocks.Clear();
 
-            //set next level
             string level = $"level0{currentLevel}.xml";
 
             try
             {
                 XmlReader reader = XmlReader.Create(level);
 
-                //create temp variables
-                int newX, newY, newHp, newHeight, newWidth;
+                int newX, newY, newHp, newWidth, newHeight;
                 Color newColour;
 
                 while (reader.Read())
                 {
-                    if (reader.NodeType == XmlNodeType.Text) 
+                    if (reader.NodeType == XmlNodeType.Text)
                     {
-                        //read values, save to variables
                         newX = Convert.ToInt32(reader.ReadString());
 
                         reader.ReadToNextSibling("y");
@@ -150,11 +146,11 @@ namespace BrickBreaker
                         reader.ReadToNextSibling("colour");
                         newColour = Color.FromName(reader.ReadString());
 
-                        //create block and add to list
                         Block b = new Block(newX, newY, newHp, newWidth, newHeight, newColour);
                         blocks.Add(b);
                     }
                 }
+
                 reader.Close();
             }
             catch //if requested level doesn't exist, quit menu
@@ -207,11 +203,9 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            //set last ball position
-            int lastBallX = ball.x;
-            int lastBallY = ball.y;
 
-            // Move the paddle
+
+            // Move the p
             if (leftArrowDown && p.x > 0)
             {
                 p.Move("left");
@@ -236,7 +230,7 @@ namespace BrickBreaker
             SamMethod();
 
             // Check for collision with top and side walls
-            ball.WallCollision(this, lastBallX, lastBallY);
+            ball.WallCollision(this);
 
             // Check for ball hitting bottom of screen
             if (ball.BottomCollision(this))
@@ -253,7 +247,7 @@ namespace BrickBreaker
                 }
             }
 
-            // Check for collision of ball with paddle, (incl. paddle movement)
+            // Check for collision of ball with p, (incl. p movement)
             ball.PaddleCollision(p, ball);
 
             // Check if ball has collided with any blocks
@@ -261,18 +255,11 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
-                    if(b.hp > 0)
-                    {
-                        b.hp -= 1;
-                    }
-                    else
-                    {
-                        blocks.Remove(b);
-                    }
+                    blocks.Remove(b);
                     
                     score++;
                     
-                    if (blocks.Count == 0 && currentLevel <= 6)
+                    if (blocks.Count == 0)
                     {
                         currentLevel++;
                         LoadLevel();
@@ -313,7 +300,7 @@ namespace BrickBreaker
             pBrush.Color = p.colour;
             e.Graphics.FillRectangle(pBrush, p.x, p.y, p.width, p.height);
 
-            //hit boxes
+            //hut booxes
             //e.Graphics.FillRectangle(blockBrush, p.x - 2, p.y - 2, 85, 1);
             //e.Graphics.FillRectangle(blockBrush, p.x - 4, p.y - 2, 1, p.height + 4);
             //e.Graphics.FillRectangle(blockBrush, p.x + 84, p.y - 2, 1, p.height + 4);
@@ -322,7 +309,7 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in blocks)
             {
-                e.Graphics.FillRectangle(new SolidBrush(b.colour), b.x, b.y, b.width, b.height);
+                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
             }
 
             // Draws ball
@@ -341,7 +328,6 @@ namespace BrickBreaker
             {
                 e.Graphics.FillRectangle(koopaBrush, koopa.x, koopa.y, koopa.size, koopa.size);
             }
-
             // draw condor
             if (condorLive)
             {

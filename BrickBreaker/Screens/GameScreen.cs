@@ -105,23 +105,8 @@ namespace BrickBreaker
             // create condor
             condor = new Paddle(-80,-20,80,20,2,Color.Orange);
 
-            #region Creates blocks for generic level. No longer in use. 
-
-            ////TODO - replace all the code in this region eventually with code that loads levels from xml file
-
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 78, 1, Color.White);
-                blocks.Add(b1);
-            }
-
-            #endregion
-
-            //LoadLevel();
+            //load level
+            LoadLevel();
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -137,7 +122,7 @@ namespace BrickBreaker
             {
                 XmlReader reader = XmlReader.Create(level);
 
-                int newX, newY, newHp;
+                int newX, newY, newHp, newWidth, newHeight;
                 Color newColour;
 
                 while (reader.Read())
@@ -152,10 +137,16 @@ namespace BrickBreaker
                         reader.ReadToNextSibling("hp");
                         newHp = Convert.ToInt32(reader.ReadString());
 
+                        reader.ReadToNextSibling("width");
+                        newWidth = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("height");
+                        newHeight = Convert.ToInt32(reader.ReadString());
+
                         reader.ReadToNextSibling("colour");
                         newColour = Color.FromName(reader.ReadString());
 
-                        Block b = new Block(newX, newY, newHp, newColour);
+                        Block b = new Block(newX, newY, newHp, newWidth, newHeight, newColour);
                         blocks.Add(b);
                     }
                 }

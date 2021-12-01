@@ -263,7 +263,13 @@ namespace BrickBreaker
             Form1.scoreList.Add(score);
             Form1.scoreList.Sort();
             Form1.scoreList.Reverse();
-            
+
+            //if scorelist is longer than five scores, get rid of lowest scores
+            if (Form1.scoreList.Count() > 5)
+            {
+                Form1.scoreList.RemoveRange(5, (Form1.scoreList.Count() - 5));
+            }
+
             // Goes to the game over screen
             Form form = this.FindForm();
             MenuScreen ps = new MenuScreen();
@@ -283,6 +289,12 @@ namespace BrickBreaker
             Form1.scoreList.Add(score);
             Form1.scoreList.Sort();
             Form1.scoreList.Reverse();
+
+            //if scorelist is longer than five scores, get rid of lowest scores
+            if (Form1.scoreList.Count() > 5)
+            {
+                Form1.scoreList.RemoveRange(5, (Form1.scoreList.Count() - 5));
+            }
 
             //goes to victory screen
             Form form = this.FindForm();

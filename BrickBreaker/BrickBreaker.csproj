@@ -350,7 +350,7 @@
     <Content Include="level01.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="level02.xml">
+    <Content Include="level08.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="level06.xml">

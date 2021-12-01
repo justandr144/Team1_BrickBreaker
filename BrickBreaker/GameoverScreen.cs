@@ -14,8 +14,7 @@ namespace BrickBreaker
 {
     public partial class GameoverScreen : UserControl
     {
-        bool bDown, mDown = false;
-        bool upArrowDown, downArrowDown, bDown = false;
+        bool upArrowDown, downArrowDown, bDown, mDown = false;
         bool firstRun = true;
 
         System.Windows.Media.MediaPlayer gameOverSound;
@@ -49,6 +48,11 @@ namespace BrickBreaker
                 case (Keys.B):
                     bDown = true;
                     break;
+                case (Keys.M):
+                    mDown = true;
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -65,6 +69,11 @@ namespace BrickBreaker
                 case (Keys.B):
                     bDown = false;
                     break;
+                case Keys.M:
+                    mDown = false;
+                    break;
+                default:
+                    break;
             }
         }
         private void gameLoop_Tick(object sender, EventArgs e)
@@ -76,40 +85,7 @@ namespace BrickBreaker
                 this.BackgroundImage = Properties.Resources.GOSelect;
                 firstRun = false;
             }
-        }
 
-        private void GameoverScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.B:
-                    bDown = true;
-                    break;
-                case Keys.M:
-                    mDown = true;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void GameoverScreen_KeyUp(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.B:
-                    bDown = false;
-                    break;
-                case Keys.M:
-                    mDown = false;
-                    break;
-                default:
-                    break;
-            }
-        }
-        
-        private void gameLoop_Tick(object sender, EventArgs e)
-        {
             if (bDown)
             {
                 gameLoop.Enabled = false;

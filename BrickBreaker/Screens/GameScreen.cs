@@ -105,11 +105,12 @@ namespace BrickBreaker
             bool ballBounce = true;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, defaultSpeed, ballStrength, ballBounce);
 
+            int musicLoop = 0;
             //set up powerups (temperary)
             powerUps = new PowerUp(100,200, "star");
 
             music = new System.Windows.Media.MediaPlayer();
-            music.Open(new Uri(Application.StartupPath + "/Resources/ZeldaTheme.mp3"));
+            music.Open(new Uri(Application.StartupPath + "/Resources/TetrisTheme.mp3"));
             paddleBeep = new System.Windows.Media.MediaPlayer();
             paddleBeep.Open(new Uri(Application.StartupPath + "/Resources/PaddleBeep.mp3"));
             wallBounce = new System.Windows.Media.MediaPlayer();
@@ -239,7 +240,7 @@ namespace BrickBreaker
                 }
             }
 
-            JustinMusicMethod();
+            JustinMusicPlayMethod();
             PauseMethod();
 
             //redraw the screen
@@ -351,15 +352,42 @@ namespace BrickBreaker
             
         }
 
-        public void JustinMusicMethod()
+        public void JustinMusicPlayMethod() //Zelda 2500, DK 53, Kirby 2250, Mario 270, Metroid 4375, PacMan 164, Tetris 1125 (Late start)
         {
             musicCounter++;
 
-            if (musicCounter > 2500)
+            if (musicCounter > 1125)
             {
                 music.Stop();
                 music.Play();
                 musicCounter = 0;
+            }
+        }
+        public void JustinMusicChangeMethod()
+        {
+            switch (currentLevel)
+            {
+                case 0:
+
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
             }
         }
 

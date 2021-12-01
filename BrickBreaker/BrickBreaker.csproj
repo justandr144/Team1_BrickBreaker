@@ -309,22 +309,9 @@
     <None Include="Resources\GameOverScreen.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MetroidTheme.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\KirbyTheme.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TetrisTheme.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PacManTheme.mp3" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MarioTheme.mp3">
@@ -342,6 +329,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TetrisTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PacManTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\MetroidTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\GOSelect.png" />
     <Content Include="..\HighScores.xml">
       <Link>HighScores.xml</Link>

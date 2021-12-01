@@ -43,6 +43,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.Color.SlateBlue;
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(1200, 700);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);

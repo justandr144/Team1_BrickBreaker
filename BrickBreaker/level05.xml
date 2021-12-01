@@ -243,7 +243,7 @@
 	<block>
 		<x>605</x>
 		<y>121</y>
-		<hp>1</hp>
+		<hp>2</hp>
 		<width>30</width>
 		<height>30</height>
 		<colour>Pink</colour>
@@ -283,7 +283,7 @@
 	<block>
 		<x>465</x>
 		<y>156</y>
-		<hp>1</hp>
+		<hp>2</hp>
 		<width>30</width>
 		<height>30</height>
 		<colour>Pink</colour>

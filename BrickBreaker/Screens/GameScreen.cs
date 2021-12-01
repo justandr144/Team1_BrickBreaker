@@ -1,7 +1,7 @@
 ﻿/*  Created by: Maeve, Justin, Sam, Hunter
  *  Project: Brick Breaker
  *  Date: 
- */ 
+ */
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Xml;
 
 namespace BrickBreaker
 {
@@ -24,15 +25,25 @@ namespace BrickBreaker
         bool nDown;
 
         // Game values
+        int score;
+        int currentLevel;
         public static int lives;
         int musicCounter = 10000;
 
         // p and Ball objects
         public static Paddle p;
         public static Ball ball;
+        public static bool ballStart = false;
+
+        //koopa 
+        public static Ball koopa;
+        public static Boolean koopaLive = false;
+        //condor 
+        public static Paddle condor;
+        public static Boolean condorLive = false;
 
         // list of all blocks for current level
-        List<Block> blocks = new List<Block>();
+        public static List<Block> blocks = new List<Block>();
 
         // powerup object
         PowerUp powerUps;
@@ -41,6 +52,8 @@ namespace BrickBreaker
         SolidBrush pBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
+        SolidBrush koopaBrush = new SolidBrush(Color.Green);
+        SolidBrush condorBrush = new SolidBrush(Color.Orange);
         SolidBrush blackBrush = new SolidBrush(Color.Black);
 
         System.Windows.Media.MediaPlayer music;
@@ -62,6 +75,12 @@ namespace BrickBreaker
             //set life counter
             lives = 3;
 
+            //reset score
+            score = 0;
+
+            //reset level counter
+            currentLevel = 1;
+
             //set all button presses to false.
             leftArrowDown = rightArrowDown = false;
 
@@ -78,12 +97,13 @@ namespace BrickBreaker
             int ballY = this.Height - p.height - 85;
 
             // Creates a new ball
-            int xSpeed = 13;
-            int ySpeed = -13;
+            int xSpeed = 10;
+            int ySpeed = -10;
+            int defaultSpeed = 10;
             int ballStrength = 1;
-            bool ballBounce = true;
             int ballSize = 15;
-            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, 13, ballStrength, ballBounce);
+            bool ballBounce = true;
+            ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, defaultSpeed, ballStrength, ballBounce);
 
             //set up powerups (temperary)
             powerUps = new PowerUp(100,200, "star");
@@ -97,10 +117,13 @@ namespace BrickBreaker
 
             #region Creates blocks for generic level. Need to replace with code that loads levels.
 
-            //TODO - replace all the code in this region eventually with code that loads levels from xml files
+            // start the game engine loop
+            gameTimer.Enabled = true;
+        }
 
+        public void LoadLevel()
+        {
             blocks.Clear();
-            int x = 10;
 
             while (blocks.Count < 12)
             {
@@ -129,9 +152,6 @@ namespace BrickBreaker
                 case Keys.Space:
                     spaceBarDown = true;
                     break;
-                case Keys.N:
-                    nDown = true;
-                    break;
                 default:
                     break;
             }
@@ -149,10 +169,7 @@ namespace BrickBreaker
                     rightArrowDown = false;
                     break;
                 case Keys.Space:
-                    spaceBarDown = false;
-                    break;
-                case Keys.N:
-                    nDown = false;
+                    spaceBarDown = true;
                     break;
                 default:
                     break;
@@ -191,7 +208,6 @@ namespace BrickBreaker
 
                 if (lives == 0)
                 {
-                    gameTimer.Enabled = false;
                     OnEnd();
                 }
             }
@@ -220,18 +236,6 @@ namespace BrickBreaker
             PauseMethod();
 
             //redraw the screen
-            Refresh();
-        }
-
-        private void pauseTimer_Tick(object sender, EventArgs e)
-        {
-            if (nDown)
-            {
-                nDown = false;
-                pauseTimer.Enabled = false;
-                gameTimer.Enabled = true;
-                music.Play();
-            }
             Refresh();
         }
 
@@ -277,12 +281,6 @@ namespace BrickBreaker
             if (powerUps.state != "wait")
             {
                 e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
-            }
-
-            // Pause Image
-            if (pauseTimer.Enabled)
-            {
-                e.Graphics.DrawImage(Properties.Resources.Pause, 467, 310);
             }
         }
 
@@ -344,17 +342,6 @@ namespace BrickBreaker
         public void JustinEndMethod()
         {
             music.Stop();       
-        }
-
-        public void PauseMethod() // Pausing
-        {
-            if (nDown)
-            {
-                nDown = false;
-                gameTimer.Enabled = false;
-                pauseTimer.Enabled = true;
-                music.Pause();
-            }
         }
     }
 }

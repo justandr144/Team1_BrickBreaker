@@ -656,7 +656,7 @@
 	</brick>
 	<brick>
 		<x>239</x>
-		<y>219+</y>
+		<y>219</y>
 		<hp>1</hp>
 		<colour>Goldenrod</colour>
 	</brick>
@@ -674,7 +674,7 @@
 	</brick>
 	<brick>
 		<x>519</x>
-		<y>219+</y>
+		<y>219</y>
 		<hp>1</hp>
 		<colour>Goldenrod</colour>
 	</brick>
@@ -692,7 +692,7 @@
 	</brick>
 	<brick>
 		<x>799</x>
-		<y>219+</y>
+		<y>219</y>
 		<hp>1</hp>
 		<colour>Goldenrod</colour>
 	</brick>

@@ -88,7 +88,7 @@ namespace BrickBreaker
             if (paddleRec.IntersectsWith(powerUpRec))
             {
                 //prepare for new state
-                x = 0;
+                x = 1200-2*size;
                 y = 0;
                 state = "activate";
             }
@@ -286,8 +286,8 @@ namespace BrickBreaker
                     break;
                 case "condor":
                     GameScreen.condorLive = true;
-                    GameScreen.condor.speed = 15;
-                    GameScreen.condor.x = 0;
+                    GameScreen.condor.speed = -15;
+                    GameScreen.condor.x = 1200;
                     GameScreen.condor.y = 200;
                     state = "wait";
                     break;

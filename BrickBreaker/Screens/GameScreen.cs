@@ -115,7 +115,7 @@ namespace BrickBreaker
             wallBounce = new System.Windows.Media.MediaPlayer();
             wallBounce.Open(new Uri(Application.StartupPath + "/Resources/WallBounce.mp3"));
 
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
+            LoadLevel();
 
             // start the game engine loop
             gameTimer.Enabled = true;
@@ -124,11 +124,12 @@ namespace BrickBreaker
         public void LoadLevel()
         {
             blocks.Clear();
-
+            int x = 0;
+            #region Creates blocks for generic level. Need to replace with code that loads levels.
             while (blocks.Count < 12)
             {
                 x += 57;
-                Block b1 = new Block(x, 78, 1, Color.White);
+                Block b1 = new Block(x, 78, 1, 50, 25, Color.White);
                 blocks.Add(b1);
             }
 
@@ -152,6 +153,9 @@ namespace BrickBreaker
                 case Keys.Space:
                     spaceBarDown = true;
                     break;
+                case Keys.N:
+                    nDown = true;
+                    break;
                 default:
                     break;
             }
@@ -170,6 +174,9 @@ namespace BrickBreaker
                     break;
                 case Keys.Space:
                     spaceBarDown = true;
+                    break;
+                case Keys.N:
+                    nDown = false;
                     break;
                 default:
                     break;
@@ -239,6 +246,18 @@ namespace BrickBreaker
             Refresh();
         }
 
+        private void pauseTimer_Tick(object sender, EventArgs e)
+        {
+            if (nDown)
+            {
+                nDown = false;
+                pauseTimer.Enabled = false;
+                gameTimer.Enabled = true;
+                music.Play();
+            }
+            Refresh();
+        }
+
         public void OnEnd()
         {
             // Goes to the game over screen
@@ -282,6 +301,11 @@ namespace BrickBreaker
             {
                 e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
             }
+
+            if (pauseTimer.Enabled)
+            {
+                e.Graphics.DrawImage(Properties.Resources.Pause, 467, 310);
+            }
         }
 
         public void SamMethod()
@@ -289,9 +313,9 @@ namespace BrickBreaker
             switch (powerUps.state)
             {
                 case "wait":
-                    if (powerUps.check == true)
+                    if (powerUps.created == true)
                     {
-                        powerUps.check = false;
+                        powerUps.created = false;
                     }
                     break;
                 case "fall":
@@ -341,7 +365,18 @@ namespace BrickBreaker
 
         public void JustinEndMethod()
         {
-            music.Stop();       
+            music.Stop();
         }
-    }
+
+        public void PauseMethod()
+        {
+            if (nDown)
+            {
+                nDown = false;
+                gameTimer.Enabled = false;
+                pauseTimer.Enabled = true;
+                music.Pause();
+            }
+        }
+}
 }

@@ -97,7 +97,7 @@ namespace BrickBreaker
                         Form f = this.FindForm();
                         f.Controls.Remove(this);
 
-                        VictoryScreen gs = new VictoryScreen();
+                        GameScreen gs = new GameScreen();
                         gs.Location = new Point((f.Width - gs.Width) / 2, (f.Height - gs.Height) / 2);
                         f.Controls.Add(gs);
 

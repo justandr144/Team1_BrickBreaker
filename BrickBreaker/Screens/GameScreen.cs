@@ -27,6 +27,7 @@ namespace BrickBreaker
         int score;
         int currentLevel;
         public static int lives;
+        int musicCounter = 10000;
 
         // p and Ball objects
         public static Paddle p;
@@ -53,6 +54,10 @@ namespace BrickBreaker
         SolidBrush koopaBrush = new SolidBrush(Color.Green);
         SolidBrush condorBrush = new SolidBrush(Color.Orange);
         SolidBrush blackBrush = new SolidBrush(Color.Black);
+
+        System.Windows.Media.MediaPlayer music;
+        System.Windows.Media.MediaPlayer paddleBeep;
+        System.Windows.Media.MediaPlayer wallBounce;
 
         #endregion
 
@@ -100,27 +105,20 @@ namespace BrickBreaker
 
             //set up powerups (temperary)
             powerUps = new PowerUp(100, 200, "koopa");
+
             //create koopa
             koopa = new Ball(-20, -20, 0, 0, 20, 13, 2, true);
             // create condor
             condor = new Paddle(-80, -20, 80, 20, 2, Color.Orange);
 
-            #region Creates blocks for generic level. No longer in use. 
+            music = new System.Windows.Media.MediaPlayer();
+            music.Open(new Uri(Application.StartupPath + "/Resources/ZeldaTheme.mp3"));
+            paddleBeep = new System.Windows.Media.MediaPlayer();
+            paddleBeep.Open(new Uri(Application.StartupPath + "/Resources/PaddleBeep.mp3"));
+            wallBounce = new System.Windows.Media.MediaPlayer();
+            wallBounce.Open(new Uri(Application.StartupPath + "/Resources/WallBounce.mp3"));
 
-            ////TODO - replace all the code in this region eventually with code that loads levels from xml file
-
-            blocks.Clear();
-            int x = 10;
-
-            while (blocks.Count < 12)
-            {
-                x += 57;
-                Block b1 = new Block(x, 78, 1, Color.White);
-                blocks.Add(b1);
-            }
-
-            #endregion
-
+            //load level
             LoadLevel();
 
             // start the game engine loop
@@ -137,7 +135,7 @@ namespace BrickBreaker
             {
                 XmlReader reader = XmlReader.Create(level);
 
-                int newX, newY, newHp;
+                int newX, newY, newHp, newWidth, newHeight;
                 Color newColour;
 
                 while (reader.Read())
@@ -152,10 +150,16 @@ namespace BrickBreaker
                         reader.ReadToNextSibling("hp");
                         newHp = Convert.ToInt32(reader.ReadString());
 
+                        reader.ReadToNextSibling("width");
+                        newWidth = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("height");
+                        newHeight = Convert.ToInt32(reader.ReadString());
+
                         reader.ReadToNextSibling("colour");
                         newColour = Color.FromName(reader.ReadString());
 
-                        Block b = new Block(newX, newY, newHp, newColour);
+                        Block b = new Block(newX, newY, newHp, newWidth, newHeight, newColour);
                         blocks.Add(b);
                     }
                 }
@@ -164,7 +168,7 @@ namespace BrickBreaker
             }
             catch //if requested level doesn't exist, quit menu
             {
-                OnEnd();
+                OnVictory();
                 return;
             }
         }
@@ -264,8 +268,6 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
-                    blocks.Remove(b);
-
                     score++;
 
                     if (blocks.Count == 0)
@@ -277,6 +279,8 @@ namespace BrickBreaker
                     break;
                 }
             }
+
+            JustinMusicMethod();
 
             //redraw the screen
             Refresh();
@@ -290,17 +294,41 @@ namespace BrickBreaker
             // add score to scorelist and refresh scorelist
             Form1.scoreList.Add(score);
             Form1.scoreList.Sort();
+            Form1.scoreList.Reverse();
 
             // Goes to the game over screen
+            JustinEndMethod();
+
             Form form = this.FindForm();
-            MenuScreen ps = new MenuScreen();
+            GameoverScreen gos = new GameoverScreen();
+            
+            gos.Location = new Point((form.Width - gos.Width) / 2, (form.Height - gos.Height) / 2);
+            gos.Focus();
 
-            ps.Location = new Point((form.Width - ps.Width) / 2, (form.Height - ps.Height) / 2);
-
-            form.Controls.Add(ps);
+            form.Controls.Add(gos);
             form.Controls.Remove(this);
 
             ballStart = false;
+        }
+
+        public void OnVictory() //Replaces game screen with victory screen and adds score to scorelist. 
+        {
+            //halt game engine
+            gameTimer.Enabled = false;
+
+            //add score to scorelist and refresh scorelist
+            Form1.scoreList.Add(score);
+            Form1.scoreList.Sort();
+            Form1.scoreList.Reverse();
+
+            //goes to victory screen
+            Form form = this.FindForm();
+            VictoryScreen vs = new VictoryScreen();
+
+            vs.Location = new Point((form.Width - vs.Width) / 2, (form.Height - vs.Height) / 2);
+
+            form.Controls.Add(vs);
+            form.Controls.Remove(this);
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -318,13 +346,13 @@ namespace BrickBreaker
             // Draws blocks
             foreach (Block b in blocks)
             {
-                e.Graphics.FillRectangle(blockBrush, b.x, b.y, b.width, b.height);
+                e.Graphics.FillRectangle(new SolidBrush(b.colour), b.x, b.y, b.width, b.height);
             }
 
             // Draws ball
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
 
-            JustinMethod(lives, e);
+            JustinLivesMethod(lives, e);
 
             // Draws powerup
             if (powerUps.state == "fall") e.Graphics.DrawImage(Properties.Resources.QuestionBlockSprite, powerUps.x, powerUps.y);
@@ -593,39 +621,37 @@ namespace BrickBreaker
             }
         }
 
-        public void JustinMethod(int lives, PaintEventArgs g) //Lives Counter Method
+        public void JustinLivesMethod(int lives, PaintEventArgs g) //Lives Counter Method
         {
-            g.Graphics.FillRectangle(blackBrush, 0, 0, this.Width, 78);
+            g.Graphics.FillRectangle(blackBrush, 0, 0, this.Width, 68);
+            g.Graphics.FillRectangle(pBrush, 0, 65, this.Width, 4);
+            int livesAdd = 58;
 
-            if (lives > 0)
+            for (int i = 0; i < 6; i++)
             {
-                g.Graphics.DrawImage(Properties.Resources.LozHeart, 10, 10);
-
-                if (lives > 1)
+                if (lives > i)
                 {
-                    g.Graphics.DrawImage(Properties.Resources.LozHeart, 68, 10);
-
-                    if (lives > 2)
-                    {
-                        g.Graphics.DrawImage(Properties.Resources.LozHeart, 126, 10);
-
-                        if (lives > 3)
-                        {
-                            g.Graphics.DrawImage(Properties.Resources.LozHeart, 184, 10);
-
-                            if (lives > 4)
-                            {
-                                g.Graphics.DrawImage(Properties.Resources.LozHeart, 242, 10);
-
-                                if (lives > 5)
-                                {
-                                    g.Graphics.DrawImage(Properties.Resources.LozHeart, 300, 10);
-                                }
-                            }
-                        }
-                    }
+                    g.Graphics.DrawImage(Properties.Resources.LozHeart, 10 + (i * livesAdd), 8);
                 }
             }
+            
+        }
+
+        public void JustinMusicMethod()
+        {
+            musicCounter++;
+
+            if (musicCounter > 2500)
+            {
+                music.Stop();
+                music.Play();
+                musicCounter = 0;
+            }
+        }
+
+        public void JustinEndMethod()
+        {
+            music.Stop();       
         }
     }
 }

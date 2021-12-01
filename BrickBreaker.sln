@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.31702.278
+VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrickBreaker", "BrickBreaker\BrickBreaker.csproj", "{95CFF757-56C0-4D64-B8BA-EFFAC697148B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B4945A71-2B6A-4921-8ABA-0356BF473948}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B3BB680A-904C-4D29-AD58-A866ECEBBEE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +22,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F1C3A410-2F75-400D-8590-837CC8C79DCF}
+		SolutionGuid = {D6D8C580-1FB3-4D9B-AD64-51AC22A1A6E3}
 	EndGlobalSection
 EndGlobal

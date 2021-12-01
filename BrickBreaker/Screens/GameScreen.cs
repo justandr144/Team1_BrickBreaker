@@ -168,7 +168,7 @@ namespace BrickBreaker
             }
             catch //if requested level doesn't exist, quit menu
             {
-                OnVictory();
+                OnEnd();
                 return;
             }
         }

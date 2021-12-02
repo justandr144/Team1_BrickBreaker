@@ -13,18 +13,20 @@ namespace BrickBreaker
 {
     public partial class InstructionsScreen : UserControl
     {
-        bool mDown = false;
+        bool mDown, downArrowDown, upArrowDown = false;
         int musicCounter = 10000;
+        int state = 0;
 
         System.Windows.Media.MediaPlayer instructionsMusic;
 
         public InstructionsScreen()
         {
             InitializeComponent();
-
-            instructionsMusic = new System.Windows.Media.MediaPlayer();
-            instructionsMusic.Open(new Uri(Application.StartupPath + "/Resources/InstructionsTheme.mp3"));
+            gameTimer.Enabled = true;
+            //instructionsMusic = new System.Windows.Media.MediaPlayer();
+            //instructionsMusic.Open(new Uri(Application.StartupPath + "/Resources/instructionsTheme.mp3"));
         }
+
         private void InstructionsScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
@@ -32,6 +34,12 @@ namespace BrickBreaker
                 case (Keys.M):
                     mDown = true;
                 break;
+                case Keys.Down:
+                    downArrowDown = true;
+                    break;
+                case Keys.Up:
+                    upArrowDown = true;
+                    break;
             }
         }
 
@@ -42,10 +50,26 @@ namespace BrickBreaker
                 case (Keys.M):
                     mDown = false;
                     break;
+                case Keys.Down:
+                    downArrowDown = false;
+                    break;
+                case Keys.Up:
+                    upArrowDown = false;
+                    break;
             }
         }
 
-        private void gameLoop_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (musicCounter >= 590)
+            {
+                instructionsMusic.Stop();
+                instructionsMusic.Play();
+                musicCounter = 0;
+            }
+        }
+
+        private void gameTimer_Tick(object sender, EventArgs e)
         {
             if (musicCounter >= 590)
             {
@@ -71,12 +95,38 @@ namespace BrickBreaker
                 ms.Focus();
             }
 
+            switch (state)
+            {
+                case (0):
+                    if (downArrowDown)
+                    {
+                        state = 1;
+                    }
+                    break;
+                case (1):
+                    if (upArrowDown)
+                    {
+                        state = 0;
+                    }
+                    break;
+            }
+
             musicCounter++;
+
+            Refresh();
         }
 
-        private void InstructionsScreen_Load(object sender, EventArgs e)
+        private void InstructionsScreen_Paint(object sender, PaintEventArgs e)
         {
-            gameLoop.Enabled = true;
+            switch (state)
+            {
+                case (0):
+                    this.BackgroundImage = Properties.Resources.instructionScreen;
+                    break;
+                case (1):
+                    this.BackgroundImage = Properties.Resources.InstructionScreen2;
+                    break;
+            }
         }
     }
 }

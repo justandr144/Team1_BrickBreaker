@@ -289,9 +289,6 @@
     <None Include="Resources\menuScreen.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\instructionScreen.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Congratulations.png" />
   </ItemGroup>
   <ItemGroup>
@@ -329,6 +326,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\InstructionScreen2.png" />
+    <None Include="Resources\instructionScreen.jpeg" />
     <None Include="Resources\TetrisTheme.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

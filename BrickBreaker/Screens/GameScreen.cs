@@ -105,7 +105,6 @@ namespace BrickBreaker
             bool ballBounce = true;
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, defaultSpeed, ballStrength, ballBounce);
 
-            int musicLoop = 0;
             //set up powerups (temperary)
             powerUps = new PowerUp(100,200, "star");
 

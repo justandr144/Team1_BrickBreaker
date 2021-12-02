@@ -30,24 +30,29 @@ namespace BrickBreaker
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.gameLoop = new System.Windows.Forms.Timer(this.components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstructionsScreen));
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // gameLoop
+            // gameTimer
             // 
-            this.gameLoop.Enabled = true;
-            this.gameLoop.Interval = 20;
-            this.gameLoop.Tick += new System.EventHandler(this.gameLoop_Tick);
+            this.gameTimer.Interval = 20;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 20;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // InstructionsScreen
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BackgroundImage = global::BrickBreaker.Properties.Resources.instructionScreen;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.DoubleBuffered = true;
             this.Name = "InstructionsScreen";
             this.Size = new System.Drawing.Size(1200, 700);
-            this.Load += new System.EventHandler(this.InstructionsScreen_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.InstructionsScreen_Paint);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.InstructionsScreen_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.InstructionsScreen_PreviewKeyDown);
             this.ResumeLayout(false);
@@ -58,5 +63,7 @@ namespace BrickBreaker
 
         private System.Windows.Forms.Timer gameLoop;
         private System.Windows.Forms.PictureBox engeryTankBox;
+        private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Timer timer1;
     }
 }

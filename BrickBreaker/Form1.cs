@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*  Created by: Maeve, Justin, Hunter, Sam, Cait
+ *  Project: Brick Breaker
+ *  Date: December 3rd, 2021
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

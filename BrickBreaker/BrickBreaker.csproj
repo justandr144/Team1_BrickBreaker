@@ -342,6 +342,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\CrossIcon.png" />
     <None Include="Resources\GOSelect.png" />
     <Content Include="..\HighScores.xml">
       <Link>HighScores.xml</Link>
@@ -354,6 +355,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="level03.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="level04.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="level08.xml">

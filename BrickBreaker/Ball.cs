@@ -10,6 +10,7 @@ namespace BrickBreaker
         public Color colour;
         public bool bounce = true;
         public static Random rand = new Random();
+        int temp;
 
         public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize, int _defaultSpeed, int _strength, bool _bounce)
         {
@@ -34,8 +35,8 @@ namespace BrickBreaker
         public bool BlockCollision(Block b)
         {
             Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
-            Rectangle topBlockRec = new Rectangle(b.x + 2, b.y , b.width - 4, 1);
-            Rectangle leftBlockRec = new Rectangle(b.x, b.y , 1, b.height );
+            Rectangle topBlockRec = new Rectangle(b.x + 2, b.y, b.width - 4, 1);
+            Rectangle leftBlockRec = new Rectangle(b.x, b.y, 1, b.height);
             Rectangle rightBlockRec = new Rectangle(b.x + b.width, b.y, 1, b.height);
             Rectangle bottomBlockRec = new Rectangle(b.x + 2, b.y + b.height, b.width - 4, 1);
             Rectangle ballRec = new Rectangle(x, y, size, size);
@@ -54,7 +55,7 @@ namespace BrickBreaker
                 b.hp -= strength;
 
                 if (b.hp <= 0)
-                {
+                {                   
                     GameScreen.blocks.Remove(b);
                 }
             }

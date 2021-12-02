@@ -122,9 +122,10 @@ namespace BrickBreaker
             wallBounce = new System.Windows.Media.MediaPlayer();
             wallBounce.Open(new Uri(Application.StartupPath + "/Resources/WallBounce.mp3"));
 
+            //load level
             LoadLevel();
 
-            // start the game engine loop
+            //start the game engine loop
             gameTimer.Enabled = true;
         }
 
@@ -193,6 +194,9 @@ namespace BrickBreaker
                 case Keys.N:
                     nDown = true;
                     break;
+                case Keys.X:
+                    ballStart = true;
+                    break;
                 default:
                     break;
             }
@@ -233,7 +237,15 @@ namespace BrickBreaker
             }
 
             // Move ball
-            ball.Move();
+            if (ballStart)
+            {
+                ball.Move();
+            }
+            else
+            {
+                ball.x = p.x + 30;
+                ball.y = p.y - 25;
+            }
 
             // PowerUps
             SamMethod();
@@ -245,10 +257,11 @@ namespace BrickBreaker
             if (ball.BottomCollision(this))
             {
                 lives--;
+                ballStart = false;
 
                 // Moves the ball back to origin
-                ball.x = ((p.x - (ball.size / 2)) + (p.width / 2));
-                ball.y = (this.Height - p.height) - 85;
+                ball.x = p.x + 30;
+                ball.y = p.y - 25;
 
                 if (lives == 0)
                 {
@@ -266,8 +279,8 @@ namespace BrickBreaker
                 {
                     if (blocks.Count == 0)
                     {
-                        gameTimer.Enabled = false;
-                        OnEnd();
+                        currentLevel++;
+                        LoadLevel();
                     }
 
                     break;
@@ -296,6 +309,9 @@ namespace BrickBreaker
 
         public void OnEnd()
         {
+            //halt game engine
+            gameTimer.Enabled = false;
+
             // add score to scorelist and refresh scorelist
             Form1.scoreList.Add(score);
             Form1.scoreList.Sort();
@@ -312,6 +328,8 @@ namespace BrickBreaker
 
             form.Controls.Add(gos);
             form.Controls.Remove(this);
+
+            ballStart = false;
         }
 
         public void OnVictory() //Replaces game screen with victory screen and adds score to scorelist. 

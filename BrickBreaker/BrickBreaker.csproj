@@ -80,16 +80,16 @@
     <Compile Include="GameoverScreen.Designer.cs">
       <DependentUpon>GameoverScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="InstructScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InstructScreen.Designer.cs">
+      <DependentUpon>InstructScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\InstructionsScreen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Screens\InstructionsScreen.Designer.cs">
-      <DependentUpon>InstructionsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Paddle.cs" />
     <Compile Include="PowerUp.cs" />
@@ -119,8 +119,8 @@
     <EmbeddedResource Include="GameoverScreen.resx">
       <DependentUpon>GameoverScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\InstructionsScreen.resx">
-      <DependentUpon>InstructionsScreen.cs</DependentUpon>
+    <EmbeddedResource Include="InstructScreen.resx">
+      <DependentUpon>InstructScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

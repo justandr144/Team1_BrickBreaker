@@ -129,7 +129,7 @@ namespace BrickBreaker
         {
             blocks.Clear();
 
-            string level = $"level0{3}.xml";
+            string level = $"level0{currentLevel}.xml";
 
             try
             {

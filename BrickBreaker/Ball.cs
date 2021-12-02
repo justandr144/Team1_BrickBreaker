@@ -68,10 +68,10 @@ namespace BrickBreaker
         public void PaddleCollision(Paddle p, Ball ball)
         {
             Rectangle ballRec = new Rectangle(x + xSpeed, y + ySpeed, size, size);
-            Rectangle topPaddleRec = new Rectangle(p.x - 2, p.y - 2, 85, 1);
+            Rectangle topPaddleRec = new Rectangle(p.x - 2, p.y - 2, p.width, 1);
             Rectangle leftPaddleRec = new Rectangle(p.x - 4, p.y - 2, 1, p.height + 4);
             Rectangle rightPaddleRec = new Rectangle(p.x + 84, p.y - 2, 1, p.height + 4);
-            Rectangle bottomPaddleRec = new Rectangle(p.x - 2, p.y + 22, 85, 1);
+            Rectangle bottomPaddleRec = new Rectangle(p.x - 2, p.y + 22, p.width, 1);
 
             if (ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(leftPaddleRec) ||
                 ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(rightPaddleRec))

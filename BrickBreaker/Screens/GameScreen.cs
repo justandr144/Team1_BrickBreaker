@@ -24,7 +24,7 @@ namespace BrickBreaker
         Boolean leftArrowDown, rightArrowDown, spaceBarDown;
 
         // Game values
-        int score;
+        public static int score;
         int currentLevel;
         public static int lives;
         int musicCounter = 10000;
@@ -33,6 +33,7 @@ namespace BrickBreaker
         public static Paddle p;
         public static Ball ball;
         public static bool ballStart = false;
+        public static int ballBlockBouceTimer = 2;
 
         //koopa 
         public static Ball koopa;
@@ -215,8 +216,6 @@ namespace BrickBreaker
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-
-
             // Move the p
             if (leftArrowDown && p.x > 0)
             {
@@ -266,9 +265,7 @@ namespace BrickBreaker
             foreach (Block b in blocks)
             {
                 if (ball.BlockCollision(b))
-                {
-                    score++;
-                    
+                {  
                     if (blocks.Count == 0)
                     {
                         currentLevel++;
@@ -280,7 +277,7 @@ namespace BrickBreaker
             }
 
             JustinMusicMethod();
-
+            ballBlockBouceTimer--;
             //redraw the screen
             Refresh();
         }

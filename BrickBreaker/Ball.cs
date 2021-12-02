@@ -34,8 +34,8 @@ namespace BrickBreaker
         public bool BlockCollision(Block b)
         {
             Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
-            Rectangle topBlockRec = new Rectangle(b.x, b.y , b.width, 1);
-            Rectangle leftBlockRec = new Rectangle(b.x, b.y , 1, b.height );
+            Rectangle topBlockRec = new Rectangle(b.x, b.y, b.width, 1);
+            Rectangle leftBlockRec = new Rectangle(b.x, b.y, 1, b.height);
             Rectangle rightBlockRec = new Rectangle(b.x, b.y, 1, b.height);
             Rectangle bottomBlockRec = new Rectangle(b.x, b.y + 22, b.width, 1);
             Rectangle ballRec = new Rectangle(x, y, size, size);
@@ -45,22 +45,24 @@ namespace BrickBreaker
                 DifferentAngles();
                 ySpeed *= -1;
             }
-            else if (ballRec.IntersectsWith(leftBlockRec) && bounce || ballRec.IntersectsWith(rightBlockRec) && bounce)
+
+            if (ballRec.IntersectsWith(leftBlockRec) && bounce || ballRec.IntersectsWith(rightBlockRec) && bounce)
             {
                 DifferentAngles();
                 xSpeed *= -1;
             }
 
-            if (ballRec.IntersectsWith(blockRec) && bounce)
+            if (ballRec.IntersectsWith(blockRec) && bounce && GameScreen.ballBlockBouceTimer <= 0)
             {
                 b.hp -= strength;
 
                 if (b.hp <= 0)
                 {
                     GameScreen.blocks.Remove(b);
+                    GameScreen.score++;
                 }
+                GameScreen.ballBlockBouceTimer = 2;
             }
-
 
             return blockRec.IntersectsWith(ballRec);
         }
@@ -87,12 +89,12 @@ namespace BrickBreaker
                     xSpeed *= -1;
                 }
             }
-            else if (ballRec.IntersectsWith(topPaddleRec) || ballRec.IntersectsWith(bottomPaddleRec))
+            if (ballRec.IntersectsWith(topPaddleRec) || ballRec.IntersectsWith(bottomPaddleRec))
             {
                 DifferentAngles();
                 ySpeed *= -1;
             }
-            else if (ballRec.IntersectsWith(leftPaddleRec) || ballRec.IntersectsWith(rightPaddleRec))
+            if (ballRec.IntersectsWith(leftPaddleRec) || ballRec.IntersectsWith(rightPaddleRec))
             {
                 DifferentAngles();
                 xSpeed *= -1;
@@ -142,8 +144,8 @@ namespace BrickBreaker
 
         public void DifferentAngles()
         {
-            int xDifAngle = rand.Next(-2, 2);
-            int yDifAngle = rand.Next(-2, 2);
+            int xDifAngle = rand.Next(0, 2);
+            int yDifAngle = rand.Next(0, 2);
 
             if (xSpeed > 0)
             {

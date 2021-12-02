@@ -128,7 +128,7 @@ namespace BrickBreaker
         {
             blocks.Clear();
 
-            //DO NOT TOUCH THIS
+            //IF YOU TOUCH THIS LINE OF CODE, CHANGE IT BACK BEFORE YOU PUSH IT. 
             string level = $"level0{currentLevel}.xml";
 
             try

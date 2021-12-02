@@ -110,7 +110,7 @@ namespace BrickBreaker
             powerUps = new PowerUp(100,200, "star");
 
             music = new System.Windows.Media.MediaPlayer();
-            music.Open(new Uri(Application.StartupPath + "/Resources/TetrisTheme.mp3"));
+            music.Open(new Uri(Application.StartupPath + "/Resources/ZeldaTheme.mp3"));
             paddleBeep = new System.Windows.Media.MediaPlayer();
             paddleBeep.Open(new Uri(Application.StartupPath + "/Resources/PaddleBeep.mp3"));
             wallBounce = new System.Windows.Media.MediaPlayer();
@@ -356,7 +356,7 @@ namespace BrickBreaker
         {
             musicCounter++;
 
-            if (musicCounter > 1125)
+            if (musicCounter > 2500)
             {
                 music.Stop();
                 music.Play();

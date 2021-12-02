@@ -261,7 +261,7 @@ namespace BrickBreaker
         public void OnEnd()
         {
             // Goes to the game over screen
-            JustinEndMethod();
+            music.Stop();
 
             Form form = this.FindForm();
             GameoverScreen gos = new GameoverScreen();
@@ -388,11 +388,6 @@ namespace BrickBreaker
 
                     break;
             }
-        }
-
-        public void JustinEndMethod()
-        {
-            music.Stop();
         }
 
         public void PauseMethod()

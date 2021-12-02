@@ -131,19 +131,49 @@ namespace BrickBreaker
         public void LoadLevel()
         {
             blocks.Clear();
-            int x = 0;
-            #region Creates blocks for generic level. Need to replace with code that loads levels.
-            while (blocks.Count < 12)
+
+            string level = $"level0{currentLevel}.xml";
+
+            try
             {
-                x += 57;
-                Block b1 = new Block(x, 78, 1, 50, 25, Color.White);
-                blocks.Add(b1);
+                XmlReader reader = XmlReader.Create(level);
+
+                int newX, newY, newHp, newWidth, newHeight;
+                Color newColour;
+
+                while (reader.Read())
+                {
+                    if (reader.NodeType == XmlNodeType.Text)
+                    {
+                        newX = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("y");
+                        newY = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("hp");
+                        newHp = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("width");
+                        newWidth = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("height");
+                        newHeight = Convert.ToInt32(reader.ReadString());
+
+                        reader.ReadToNextSibling("colour");
+                        newColour = Color.FromName(reader.ReadString());
+
+                        Block b = new Block(newX, newY, newHp, newWidth, newHeight, newColour);
+                        blocks.Add(b);
+                    }
+                }
+
+                reader.Close();
             }
-
-            #endregion
-
-            // start the game engine loop
-            gameTimer.Enabled = true;
+            catch //if requested level doesn't exist, quit menu
+            {
+                OnEnd();
+                return;
+            }
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -233,7 +263,7 @@ namespace BrickBreaker
             foreach (Block b in blocks)
             {
                 if (ball.BlockCollision(b))
-                {  
+                {
                     if (blocks.Count == 0)
                     {
                         gameTimer.Enabled = false;
@@ -276,7 +306,7 @@ namespace BrickBreaker
 
             Form form = this.FindForm();
             GameoverScreen gos = new GameoverScreen();
-            
+
             gos.Location = new Point((form.Width - gos.Width) / 2, (form.Height - gos.Height) / 2);
             gos.Focus();
 
@@ -608,7 +638,7 @@ namespace BrickBreaker
                     g.Graphics.DrawImage(Properties.Resources.LozHeart, 10 + (i * livesAdd), 8);
                 }
             }
-            
+
         }
 
         public void JustinMusicPlayMethod() //Zelda 2500, DK 53, Kirby 2250, Mario 270, Metroid 4375, PacMan 164, Tetris 1125 (Late start)
@@ -660,6 +690,6 @@ namespace BrickBreaker
                 music.Pause();
             }
         }
-}
+    }
 }
 

@@ -296,20 +296,6 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;highScore&gt;
-        ///  &lt;score&gt;
-        ///    617
-        ///  &lt;/score&gt;
-        ///&lt;/highScore&gt;.
-        /// </summary>
-        internal static string HighScores {
-            get {
-                return ResourceManager.GetString("HighScores", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap instructionScreen {

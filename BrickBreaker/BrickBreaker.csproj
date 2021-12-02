@@ -346,6 +346,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Crack3.png" />
+    <None Include="Resources\Crack2.png" />
+    <None Include="Resources\Crack1.png" />
     <None Include="Resources\InstructionScreen2.png" />
     <None Include="Resources\instructionScreen.jpeg" />
     <None Include="Resources\TetrisTheme.mp3">

@@ -42,13 +42,11 @@ namespace BrickBreaker
 
             if (ballRec.IntersectsWith(topBlockRec) && bounce || ballRec.IntersectsWith(bottomBlockRec) && bounce)
             {
-                DifferentAngles();
                 ySpeed *= -1;
             }
 
             if (ballRec.IntersectsWith(leftBlockRec) && bounce || ballRec.IntersectsWith(rightBlockRec) && bounce)
             {
-                DifferentAngles();
                 xSpeed *= -1;
             }
 

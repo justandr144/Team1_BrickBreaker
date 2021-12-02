@@ -14,7 +14,7 @@ namespace BrickBreaker
 {
     public partial class GameoverScreen : UserControl
     {
-        bool upArrowDown, downArrowDown, bDown = false;
+        bool upArrowDown, downArrowDown, bDown, mDown = false;
         bool firstRun = true;
 
         System.Windows.Media.MediaPlayer gameOverSound;
@@ -48,6 +48,11 @@ namespace BrickBreaker
                 case (Keys.B):
                     bDown = true;
                     break;
+                case (Keys.M):
+                    mDown = true;
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -64,6 +69,11 @@ namespace BrickBreaker
                 case (Keys.B):
                     bDown = false;
                     break;
+                case Keys.M:
+                    mDown = false;
+                    break;
+                default:
+                    break;
             }
         }
         private void gameLoop_Tick(object sender, EventArgs e)
@@ -74,6 +84,26 @@ namespace BrickBreaker
                 Thread.Sleep(3100);
                 this.BackgroundImage = Properties.Resources.GOSelect;
                 firstRun = false;
+            }
+
+            if (bDown)
+            {
+                gameLoop.Enabled = false;
+
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+
+                MenuScreen ms = new MenuScreen();
+                f.Controls.Add(ms);
+
+                ms.Location = new Point((f.Width - ms.Width) / 2, (f.Height - ms.Height) / 2);
+                bDown = false;
+
+                ms.Focus();
+            }
+            else if (mDown)
+            {
+                Application.Exit();
             }
         }
     }

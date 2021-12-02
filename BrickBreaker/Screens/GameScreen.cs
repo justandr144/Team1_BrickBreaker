@@ -105,11 +105,12 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, defaultSpeed, ballStrength, ballBounce);
 
             //set up powerups (temperary)
-            powerUps = new PowerUp(100,200, "missile");
+            powerUps = new PowerUp(100, 200, "koopa");
+
             //create koopa
-            koopa = new Ball(-20, -20, 0, 0, 20, 0, 0, false);
+            koopa = new Ball(-20, -20, 0, 0, 20, 13, 2, true);
             // create condor
-            condor = new Paddle(-80,-20,80,20,2,Color.Orange);
+            condor = new Paddle(-80, -20, 80, 20, 2, Color.Orange);
 
             music = new System.Windows.Media.MediaPlayer();
             music.Open(new Uri(Application.StartupPath + "/Resources/ZeldaTheme.mp3"));
@@ -129,7 +130,7 @@ namespace BrickBreaker
         {
             blocks.Clear();
 
-            string level = $"level05.xml";
+            string level = $"level0{currentLevel}.xml";
 
             try
             {
@@ -172,7 +173,7 @@ namespace BrickBreaker
                 return;
             }
         }
-        
+
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             //player 1 button presses
@@ -290,7 +291,8 @@ namespace BrickBreaker
             // add score to scorelist and refresh scorelist
             Form1.scoreList.Add(score);
             Form1.scoreList.Sort();
-            
+            Form1.scoreList.Reverse();
+
             // Goes to the game over screen
             JustinEndMethod();
 
@@ -304,6 +306,26 @@ namespace BrickBreaker
             form.Controls.Remove(this);
 
             ballStart = false;
+        }
+
+        public void OnVictory() //Replaces game screen with victory screen and adds score to scorelist. 
+        {
+            //halt game engine
+            gameTimer.Enabled = false;
+
+            //add score to scorelist and refresh scorelist
+            Form1.scoreList.Add(score);
+            Form1.scoreList.Sort();
+            Form1.scoreList.Reverse();
+
+            //goes to victory screen
+            Form form = this.FindForm();
+            VictoryScreen vs = new VictoryScreen();
+
+            vs.Location = new Point((form.Width - vs.Width) / 2, (form.Height - vs.Height) / 2);
+
+            form.Controls.Add(vs);
+            form.Controls.Remove(this);
         }
 
         public void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -328,24 +350,88 @@ namespace BrickBreaker
             e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
 
             JustinLivesMethod(lives, e);
-            
+
             // Draws powerup
-            if (powerUps.state != "wait")
+            if (powerUps.state == "fall") e.Graphics.DrawImage(Properties.Resources.QuestionBlockSprite, powerUps.x, powerUps.y);
+            if (powerUps.state == "activate")
             {
-                e.Graphics.FillRectangle(ballBrush, powerUps.x, powerUps.y, powerUps.size, powerUps.size);
+                switch (powerUps.type)
+                {
+                    case "1-up":
+                        e.Graphics.DrawImage(Properties.Resources._1UpIcon, powerUps.x, powerUps.y);
+                        break;
+                    case "mushroom":
+                        e.Graphics.DrawImage(Properties.Resources.MushroomIcon, powerUps.x, powerUps.y);
+                        break;
+                    case "balloon":
+                        e.Graphics.DrawImage(Properties.Resources.BalloonIcon, powerUps.x, powerUps.y);
+                        break;
+                    case "buzzsaw":
+                        e.Graphics.DrawImage(Properties.Resources.BuzzsawIcon, powerUps.x, powerUps.y);
+                        break;
+                    case "star":
+                        e.Graphics.DrawImage(Properties.Resources.SuperStarIcon, powerUps.x, powerUps.y);
+                        break;
+                    case "koopa":
+                        e.Graphics.DrawImage(Properties.Resources.KoopaIcon, powerUps.x, powerUps.y);
+                        break;
+                    case "arrow":
+                        e.Graphics.DrawImage(Properties.Resources.BowIcon, powerUps.x, powerUps.y);
+                        break;
+                    case "fireFlower":
+                        e.Graphics.DrawImage(Properties.Resources.FireFlowerIcon, powerUps.x, powerUps.y);
+                        break;
+                    case "missile":
+                        e.Graphics.DrawImage(Properties.Resources.MissileIcon, powerUps.x, powerUps.y);
+                        break;
+                    case "boomerang":
+                        e.Graphics.DrawImage(Properties.Resources.CrossSprite, powerUps.x, powerUps.y);
+                        break;
+                    case "fireBall":
+                        e.Graphics.DrawImage(Properties.Resources.BowserFireIcon, powerUps.x, powerUps.y);
+                        break;
+                    case "condor":
+                        e.Graphics.DrawImage(Properties.Resources.CondorIcon, powerUps.x, powerUps.y);
+                        break;
+                }
+            }
+            if (powerUps.state == "power")
+            {
+                switch (powerUps.type)
+                {
+                    case "buzzsaw":
+                        e.Graphics.DrawImage(Properties.Resources.BuzzsawSprite, ball.x, ball.y);
+                        break;
+                    case "arrow":
+                        e.Graphics.DrawImage(Properties.Resources.ArrowSprite, powerUps.x, powerUps.y);
+                        break;
+                    case "fireFlower":
+                        e.Graphics.DrawImage(Properties.Resources.FireBallSprite, powerUps.x, powerUps.y);
+                        break;
+                    case "missile":
+                        e.Graphics.DrawImage(Properties.Resources.MissileSprite, powerUps.x, powerUps.y);
+                        break;
+                    case "boomerang":
+                        e.Graphics.DrawImage(Properties.Resources.CrossSprite, powerUps.x, powerUps.y);
+                        break;
+                    case "fireBall":
+                        e.Graphics.DrawImage(Properties.Resources.BowserFireSprite, powerUps.x, powerUps.y);
+                        break;
+                }
             }
 
             // draw koopa
             if (koopaLive)
             {
-                e.Graphics.FillRectangle(koopaBrush, koopa.x, koopa.y, koopa.size, koopa.size);
+                e.Graphics.DrawImage(Properties.Resources.KoopaSprite, koopa.x, koopa.y);
             }
             // draw condor
             if (condorLive)
             {
-                e.Graphics.FillRectangle(condorBrush, condor.x, condor.y, condor.width, condor.height);
+                e.Graphics.DrawImage(Properties.Resources.CondorSprite, condor.x, condor.y);
             }
-           
+
+
         }
 
         public void SamMethod()
@@ -419,13 +505,13 @@ namespace BrickBreaker
             if (condorLive)
             {
                 condor.speed = 2;
-                condor.Move("right");
+                condor.Move("left");
                 ball.PaddleCollision(condor, ball);
                 if (koopaLive)
                 {
                     koopa.PaddleCollision(condor, koopa);
                 }
-                if (condor.x >= this.Width)
+                if (condor.x <= 0 - condor.width)
                 {
                     condorLive = false;
                     condor.x = -80;
@@ -499,7 +585,7 @@ namespace BrickBreaker
                 {
                     if (powerUps.BlockCollision(b))
                     {
-                        
+
                         b.hp--;
                         if (b.hp <= 0)
                         {
@@ -531,7 +617,7 @@ namespace BrickBreaker
 
             }
         }
-        
+
         public void JustinLivesMethod(int lives, PaintEventArgs g) //Lives Counter Method
         {
             g.Graphics.FillRectangle(blackBrush, 0, 0, this.Width, 68);
@@ -566,3 +652,4 @@ namespace BrickBreaker
         }
     }
 }
+

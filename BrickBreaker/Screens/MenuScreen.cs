@@ -136,13 +136,14 @@ namespace BrickBreaker
                         Form f = this.FindForm();
                         f.Controls.Remove(this);
 
-                        InstructionsScreen ins = new InstructionsScreen();
+                        InstructScreen ins = new InstructScreen();
                         ins.Location = new Point((f.Width - ins.Width) / 2, (f.Height - ins.Height) / 2);
                         f.Controls.Add(ins);
 
                         bDown = false;
 
                         ins.Focus();
+                        return;
                     }
                     break;
                 case (2):

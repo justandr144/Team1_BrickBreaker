@@ -23,6 +23,7 @@ namespace BrickBreaker
 
         //player1 button control keys - DO NOT CHANGE
         Boolean leftArrowDown, rightArrowDown, spaceBarDown;
+        bool nDown;
 
         // Game values
         public static int score;
@@ -60,6 +61,7 @@ namespace BrickBreaker
         System.Windows.Media.MediaPlayer music;
         System.Windows.Media.MediaPlayer paddleBeep;
         System.Windows.Media.MediaPlayer wallBounce;
+
 
         #endregion
 
@@ -120,7 +122,6 @@ namespace BrickBreaker
             wallBounce = new System.Windows.Media.MediaPlayer();
             wallBounce.Open(new Uri(Application.StartupPath + "/Resources/WallBounce.mp3"));
 
-            //load level
             LoadLevel();
 
             // start the game engine loop
@@ -130,49 +131,19 @@ namespace BrickBreaker
         public void LoadLevel()
         {
             blocks.Clear();
-
-            string level = $"level0{currentLevel}.xml";
-
-            try
+            int x = 0;
+            #region Creates blocks for generic level. Need to replace with code that loads levels.
+            while (blocks.Count < 12)
             {
-                XmlReader reader = XmlReader.Create(level);
-
-                int newX, newY, newHp, newWidth, newHeight;
-                Color newColour;
-
-                while (reader.Read())
-                {
-                    if (reader.NodeType == XmlNodeType.Text)
-                    {
-                        newX = Convert.ToInt32(reader.ReadString());
-
-                        reader.ReadToNextSibling("y");
-                        newY = Convert.ToInt32(reader.ReadString());
-
-                        reader.ReadToNextSibling("hp");
-                        newHp = Convert.ToInt32(reader.ReadString());
-
-                        reader.ReadToNextSibling("width");
-                        newWidth = Convert.ToInt32(reader.ReadString());
-
-                        reader.ReadToNextSibling("height");
-                        newHeight = Convert.ToInt32(reader.ReadString());
-
-                        reader.ReadToNextSibling("colour");
-                        newColour = Color.FromName(reader.ReadString());
-
-                        Block b = new Block(newX, newY, newHp, newWidth, newHeight, newColour);
-                        blocks.Add(b);
-                    }
-                }
-
-                reader.Close();
+                x += 57;
+                Block b1 = new Block(x, 78, 1, 50, 25, Color.White);
+                blocks.Add(b1);
             }
-            catch //if requested level doesn't exist, quit menu
-            {
-                OnEnd();
-                return;
-            }
+
+            #endregion
+
+            // start the game engine loop
+            gameTimer.Enabled = true;
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -189,8 +160,8 @@ namespace BrickBreaker
                 case Keys.Space:
                     spaceBarDown = true;
                     break;
-                case Keys.X:
-                    ballStart = true;
+                case Keys.N:
+                    nDown = true;
                     break;
                 default:
                     break;
@@ -211,6 +182,9 @@ namespace BrickBreaker
                 case Keys.Space:
                     spaceBarDown = true;
                     break;
+                case Keys.N:
+                    nDown = false;
+                    break;
                 default:
                     break;
             }
@@ -229,15 +203,7 @@ namespace BrickBreaker
             }
 
             // Move ball
-            if (ballStart)
-            {
-                ball.Move();
-            }
-            else
-            {
-                ball.x = p.x + 30;
-                ball.y = p.y - 25;
-            }
+            ball.Move();
 
             // PowerUps
             SamMethod();
@@ -249,10 +215,10 @@ namespace BrickBreaker
             if (ball.BottomCollision(this))
             {
                 lives--;
-                ballStart = false;
+
                 // Moves the ball back to origin
-                ball.x = p.x + 30;
-                ball.y = p.y - 25;
+                ball.x = ((p.x - (ball.size / 2)) + (p.width / 2));
+                ball.y = (this.Height - p.height) - 85;
 
                 if (lives == 0)
                 {
@@ -270,32 +236,43 @@ namespace BrickBreaker
                 {  
                     if (blocks.Count == 0)
                     {
-                        currentLevel++;
-                        LoadLevel();
+                        gameTimer.Enabled = false;
+                        OnEnd();
                     }
 
                     break;
                 }
             }
 
-            JustinMusicMethod();
+            JustinMusicPlayMethod();
+            PauseMethod();
             ballBlockBouceTimer--;
+
             //redraw the screen
+            Refresh();
+        }
+
+        private void pauseTimer_Tick(object sender, EventArgs e)
+        {
+            if (nDown)
+            {
+                nDown = false;
+                pauseTimer.Enabled = false;
+                gameTimer.Enabled = true;
+                music.Play();
+            }
             Refresh();
         }
 
         public void OnEnd()
         {
-            //halt game engine
-            gameTimer.Enabled = false;
-
             // add score to scorelist and refresh scorelist
             Form1.scoreList.Add(score);
             Form1.scoreList.Sort();
             Form1.scoreList.Reverse();
 
             // Goes to the game over screen
-            JustinEndMethod();
+            music.Stop();
 
             Form form = this.FindForm();
             GameoverScreen gos = new GameoverScreen();
@@ -305,8 +282,6 @@ namespace BrickBreaker
 
             form.Controls.Add(gos);
             form.Controls.Remove(this);
-
-            ballStart = false;
         }
 
         public void OnVictory() //Replaces game screen with victory screen and adds score to scorelist. 
@@ -414,6 +389,11 @@ namespace BrickBreaker
                         e.Graphics.DrawImage(Properties.Resources.BowserFireSprite, powerUps.x, powerUps.y);
                         break;
                 }
+            }
+
+            if (pauseTimer.Enabled)
+            {
+                e.Graphics.DrawImage(Properties.Resources.Pause, 467, 310);
             }
 
             // draw koopa
@@ -631,7 +611,7 @@ namespace BrickBreaker
             
         }
 
-        public void JustinMusicMethod()
+        public void JustinMusicPlayMethod() //Zelda 2500, DK 53, Kirby 2250, Mario 270, Metroid 4375, PacMan 164, Tetris 1125 (Late start)
         {
             musicCounter++;
 
@@ -642,11 +622,44 @@ namespace BrickBreaker
                 musicCounter = 0;
             }
         }
-
-        public void JustinEndMethod()
+        public void JustinMusicChangeMethod()
         {
-            music.Stop();       
+            switch (currentLevel)
+            {
+                case 0:
+
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
+            }
         }
-    }
+
+        public void PauseMethod()
+        {
+            if (nDown)
+            {
+                nDown = false;
+                gameTimer.Enabled = false;
+                pauseTimer.Enabled = true;
+                music.Pause();
+            }
+        }
+}
 }
 

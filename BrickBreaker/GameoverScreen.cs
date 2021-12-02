@@ -16,6 +16,8 @@ namespace BrickBreaker
     {
         bool upArrowDown, downArrowDown, bDown, mDown = false;
         bool firstRun = true;
+        bool pointer = false;
+        int state = 0;
 
         System.Windows.Media.MediaPlayer gameOverSound;
         System.Windows.Media.MediaPlayer menuBeep;
@@ -80,10 +82,71 @@ namespace BrickBreaker
         {
             if (firstRun)
             {
-                Refresh();
-                Thread.Sleep(3100);
+                this.Refresh();
+                Thread.Sleep(3200);
                 this.BackgroundImage = Properties.Resources.GOSelect;
                 firstRun = false;
+                pointer = true;
+            }
+
+            switch (state)
+            {
+                case (0):
+                    if (downArrowDown)
+                    {
+                        menuBeep.Stop();
+                        state = 1;
+                        downArrowDown = false;
+
+                        menuBeep.Play();
+                    }
+                    else if (bDown)
+                    {
+                        Form f = this.FindForm();
+                        f.Controls.Remove(this);
+
+                        MenuScreen ms = new MenuScreen();
+                        ms.Location = new Point((f.Width - ms.Width) / 2, (f.Height - ms.Height) / 2);
+                        f.Controls.Add(ms);
+
+                        bDown = false;
+
+                        ms.Focus();
+                    }
+                    break;
+                case (1):
+                    if (upArrowDown)
+                    {
+                        menuBeep.Stop();
+                        state = 0;
+                        upArrowDown = false;
+
+                        menuBeep.Play();
+                    }
+                    else if (bDown)
+                    {
+                        Application.Exit();
+                    }
+                    break;
+
+            }
+
+            Refresh();
+        }
+
+        private void GameoverScreen_Paint(object sender, PaintEventArgs e)
+        {
+            if (pointer)
+            {
+                switch (state)
+                {
+                    case (0):
+                        e.Graphics.DrawImage(Properties.Resources.Pointer, 380, 160);
+                        break;
+                    case (1):
+                        e.Graphics.DrawImage(Properties.Resources.Pointer, 380, 260);
+                        break;
+                }
             }
 
             if (bDown)

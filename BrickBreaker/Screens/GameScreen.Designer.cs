@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.pauseTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // gameTimer
@@ -37,6 +38,11 @@
             this.gameTimer.Enabled = true;
             this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            // 
+            // pauseTimer
+            // 
+            this.pauseTimer.Interval = 20;
+            this.pauseTimer.Tick += new System.EventHandler(this.pauseTimer_Tick);
             // 
             // GameScreen
             // 
@@ -56,5 +62,6 @@
         #endregion
 
         private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Timer pauseTimer;
     }
 }

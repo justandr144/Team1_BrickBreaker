@@ -100,16 +100,16 @@
     <Compile Include="GameoverScreen.Designer.cs">
       <DependentUpon>GameoverScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="InstructScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InstructScreen.Designer.cs">
+      <DependentUpon>InstructScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\InstructionsScreen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Screens\InstructionsScreen.Designer.cs">
-      <DependentUpon>InstructionsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Paddle.cs" />
     <Compile Include="PowerUp.cs" />
@@ -139,8 +139,8 @@
     <EmbeddedResource Include="GameoverScreen.resx">
       <DependentUpon>GameoverScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\InstructionsScreen.resx">
-      <DependentUpon>InstructionsScreen.cs</DependentUpon>
+    <EmbeddedResource Include="InstructScreen.resx">
+      <DependentUpon>InstructScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -309,9 +309,6 @@
     <None Include="Resources\menuScreen.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\instructionScreen.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Congratulations.png" />
   </ItemGroup>
   <ItemGroup>
@@ -329,22 +326,9 @@
     <None Include="Resources\GameOverScreen.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\MetroidTheme.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\KirbyTheme.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TetrisTheme.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PacManTheme.mp3" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MarioTheme.mp3">
@@ -362,6 +346,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\InstructionScreen2.png" />
+    <None Include="Resources\instructionScreen.jpeg" />
+    <None Include="Resources\TetrisTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\PacManTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\MetroidTheme.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\GOSelect.png" />
     <Content Include="..\HighScores.xml">
       <Link>HighScores.xml</Link>
@@ -407,6 +402,26 @@
     <None Include="Resources\MissileSprite.png" />
     <None Include="Resources\ExplosionSprite.png" />
     <None Include="Resources\QuestionBlockSprite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pointer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VictoryScreen.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayAgainSelect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExitSelect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VictorySound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

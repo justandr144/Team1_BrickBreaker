@@ -41,11 +41,11 @@ namespace BrickBreaker
             // 
             // VictoryScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::BrickBreaker.Properties.Resources.VictoryScreen;
             this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "VictoryScreen";
             this.Size = new System.Drawing.Size(1200, 700);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.VictoryScreen_Paint);

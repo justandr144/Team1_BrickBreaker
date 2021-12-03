@@ -135,7 +135,7 @@ namespace BrickBreaker
         {
             blocks.Clear();
 
-            string level = $"level0{5}.xml";
+            string level = $"level0{6}.xml";
 
             try
             {

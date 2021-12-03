@@ -193,40 +193,10 @@ namespace BrickBreaker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CrossIcon {
-            get {
-                object obj = ResourceManager.GetObject("CrossIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap CrossSprite {
-        get {
-                object obj = ResourceManager.GetObject("CrossSprite", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Crack1 {
             get {
                 object obj = ResourceManager.GetObject("Crack1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] DonkeyKongTheme {
-            get {
-                object obj = ResourceManager.GetObject("DonkeyKongTheme", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -247,6 +217,36 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("Crack3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CrossIcon {
+            get {
+                object obj = ResourceManager.GetObject("CrossIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CrossSprite {
+            get {
+                object obj = ResourceManager.GetObject("CrossSprite", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DonkeyKongTheme {
+            get {
+                object obj = ResourceManager.GetObject("DonkeyKongTheme", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -483,7 +483,17 @@ namespace BrickBreaker.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-               
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PacManTheme {
+            get {
+                object obj = ResourceManager.GetObject("PacManTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -501,16 +511,6 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("Pause", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[]
-        /// </summary>
-        internal static byte[] PacManTheme {
-            get {
-                object obj = ResourceManager.GetObject("PacManTheme", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -553,7 +553,7 @@ namespace BrickBreaker.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-                
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
@@ -563,7 +563,7 @@ namespace BrickBreaker.Properties {
                 return ((byte[])(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>

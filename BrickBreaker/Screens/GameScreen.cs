@@ -64,6 +64,8 @@ namespace BrickBreaker
         System.Windows.Media.MediaPlayer paddleBeep;
         System.Windows.Media.MediaPlayer wallBounce;
 
+        int musicLoop = 2500;
+
 
         #endregion
 
@@ -135,7 +137,7 @@ namespace BrickBreaker
         {
             blocks.Clear();
 
-            string level = $"level0{6}.xml";
+            string level = $"level0{currentLevel}.xml";
 
             try
             {
@@ -177,6 +179,8 @@ namespace BrickBreaker
                 OnEnd();
                 return;
             }
+
+            JustinMusicChangeMethod();
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -272,7 +276,7 @@ namespace BrickBreaker
             }
 
             // Check for collision of ball with p, (incl. p movement)
-            ball.PaddleCollision(p, ball);
+            ball.PaddleCollision(p);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
@@ -322,10 +326,12 @@ namespace BrickBreaker
             //halt game engine
             gameTimer.Enabled = false;
 
+            ScoreListUpdate();
+
             // add score to scorelist and refresh scorelist
-            Form1.scoreList.Add(score);
-            Form1.scoreList.Sort();
-            Form1.scoreList.Reverse();
+            //Form1.scoreList.Add(score);
+            //Form1.scoreList.Sort();
+            //Form1.scoreList.Reverse();
 
             // Goes to the game over screen
             music.Stop();
@@ -347,10 +353,7 @@ namespace BrickBreaker
             //halt game engine
             gameTimer.Enabled = false;
 
-            //add score to scorelist and refresh scorelist
-            Form1.scoreList.Add(score);
-            Form1.scoreList.Sort();
-            Form1.scoreList.Reverse();
+            ScoreListUpdate();
 
             //goes to victory screen
             Form form = this.FindForm();
@@ -362,6 +365,20 @@ namespace BrickBreaker
             form.Controls.Remove(this);
         }
 
+        public void ScoreListUpdate()
+        {
+            // add score to scorelist and refresh scorelist
+            Form1.scoreList.Add(score);
+            Form1.scoreList.Sort();
+            Form1.scoreList.Reverse();
+
+            //if scorelist is longer than five scores, get rid of lowest scores
+            if (Form1.scoreList.Count() > 5)
+            {
+                Form1.scoreList.RemoveRange(5, (Form1.scoreList.Count() - 5));
+            }
+        }
+        
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws p
@@ -524,7 +541,7 @@ namespace BrickBreaker
             }
 
             // Draws score
-            e.Graphics.DrawString("SCORE: " + Convert.ToString(score), DefaultFont, pBrush, 900, 20);
+            e.Graphics.DrawString("SCORE: " + Convert.ToString(score), new Font("Arial", 18), pBrush, 900, 20);
         }
 
         public void SamMethod()
@@ -573,7 +590,7 @@ namespace BrickBreaker
                 }
 
                 // Check for collision of koopa with p, (incl. p movement)
-                koopa.PaddleCollision(p, koopa);
+                koopa.PaddleCollision(p);
 
                 // Check if koopa has collided with any blocks
                 foreach (Block b in blocks)
@@ -598,10 +615,10 @@ namespace BrickBreaker
             {
                 condor.speed = 2;
                 condor.Move("left");
-                ball.PaddleCollision(condor, ball);
+                ball.PaddleCollision(condor);
                 if (koopaLive)
                 {
-                    koopa.PaddleCollision(condor, koopa);
+                    koopa.PaddleCollision(condor);
                 }
                 if (condor.x <= 0 - condor.width)
                 {
@@ -782,7 +799,7 @@ namespace BrickBreaker
         {
             musicCounter++;
 
-            if (musicCounter > 2500)
+            if (musicCounter > musicLoop)
             {
                 music.Stop();
                 music.Play();
@@ -793,26 +810,33 @@ namespace BrickBreaker
         {
             switch (currentLevel)
             {
-                case 0:
-
-                    break;
                 case 1:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/ZeldaTheme.mp3"));
+                    musicLoop = 2500;
                     break;
                 case 2:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/PacManTheme.mp3"));
+                    musicLoop = 164;
                     break;
                 case 3:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/TetrisTheme.mp3"));
+                    musicLoop = 1125;
                     break;
                 case 4:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/DonkeyKongTheme.mp3"));
+                    musicLoop = 53;
                     break;
                 case 5:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/KirbyTheme.mp3"));
+                    musicLoop = 2250;
                     break;
                 case 6:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/MetroidTheme.mp3"));
+                    musicLoop = 4375;
+                    break;
+                case 7:
+                    music.Open(new Uri(Application.StartupPath + "/Resources/MarioTheme.mp3"));
+                    musicLoop = 270;
                     break;
             }
         }

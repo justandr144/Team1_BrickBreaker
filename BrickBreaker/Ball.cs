@@ -53,6 +53,7 @@ namespace BrickBreaker
             if (ballRec.IntersectsWith(blockRec) && bounce && GameScreen.ballBlockBouceTimer <= 0)
             {
                 b.hp -= strength;
+                b.crackCount++;
 
                 if (b.hp <= 0)
                 {

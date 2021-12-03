@@ -11,7 +11,7 @@ namespace BrickBreaker
     {
         public int width;
         public int height;
-
+        public int crackCount = 0;
         public int x;
         public int y; 
         public int hp;

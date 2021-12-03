@@ -133,7 +133,7 @@ namespace BrickBreaker
         {
             blocks.Clear();
 
-            string level = $"level0{currentLevel}.xml";
+            string level = $"level0{5}.xml";
 
             try
             {
@@ -362,6 +362,21 @@ namespace BrickBreaker
             foreach (Block b in blocks)
             {
                 e.Graphics.FillRectangle(new SolidBrush(b.colour), b.x, b.y, b.width, b.height);
+
+                switch (b.crackCount)
+                {
+                    case 1:
+                        e.Graphics.DrawImage(Properties.Resources.Crack1, b.x, b.y);
+                        break;
+                    case 2:
+                        e.Graphics.DrawImage(Properties.Resources.Crack2, b.x, b.y);
+                        break;
+                    case 3:
+                        e.Graphics.DrawImage(Properties.Resources.Crack3, b.x, b.y);
+                        break;
+                    default:
+                        break;
+                }
             }
 
             // Draws ball

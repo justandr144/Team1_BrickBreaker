@@ -541,7 +541,7 @@ namespace BrickBreaker
             }
 
             // Draws score
-            e.Graphics.DrawString("SCORE: " + Convert.ToString(score), DefaultFont, pBrush, 900, 20);
+            e.Graphics.DrawString("SCORE: " + Convert.ToString(score), new Font("Arial", 18), pBrush, 900, 20);
         }
 
         public void SamMethod()

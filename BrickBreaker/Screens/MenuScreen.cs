@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*  Created by: Maeve, Justin, Hunter, Sam, Cait
+ *  Project: Brick Breaker
+ *  Date: December 3rd, 2021
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -131,13 +136,14 @@ namespace BrickBreaker
                         Form f = this.FindForm();
                         f.Controls.Remove(this);
 
-                        InstructionsScreen ins = new InstructionsScreen();
+                        InstructScreen ins = new InstructScreen();
                         ins.Location = new Point((f.Width - ins.Width) / 2, (f.Height - ins.Height) / 2);
                         f.Controls.Add(ins);
 
                         bDown = false;
 
                         ins.Focus();
+                        return;
                     }
                     break;
                 case (2):

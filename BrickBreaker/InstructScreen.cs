@@ -7,31 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace BrickBreaker
 {
-    public partial class InstructionsScreen : UserControl
+    public partial class InstructScreen : UserControl
     {
         bool mDown = false;
         int musicCounter = 10000;
 
         System.Windows.Media.MediaPlayer instructionsMusic;
 
-        public InstructionsScreen()
+        public InstructScreen()
         {
             InitializeComponent();
 
+            gameTimer.Enabled = true;
             instructionsMusic = new System.Windows.Media.MediaPlayer();
-            instructionsMusic.Open(new Uri(Application.StartupPath + "/Resources/InstructionsTheme.mp3"));
+            instructionsMusic.Open(new Uri(Application.StartupPath + "/Resources/instructionsTheme.mp3"));
         }
+
         private void InstructionsScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
             {
                 case (Keys.M):
                     mDown = true;
-                break;
+                    break;
+                case Keys.Down:
+                    this.BackgroundImage = Properties.Resources.InstructionScreen2;
+                    break;
+                case Keys.Up:
+                    this.BackgroundImage = Properties.Resources.instructionScreen;
+                    break;
             }
         }
 
@@ -45,7 +52,7 @@ namespace BrickBreaker
             }
         }
 
-        private void gameLoop_Tick(object sender, EventArgs e)
+        private void gameTimer_Tick(object sender, EventArgs e)
         {
             if (musicCounter >= 590)
             {
@@ -57,7 +64,7 @@ namespace BrickBreaker
             if (mDown)
             {
                 instructionsMusic.Stop();
-                gameLoop.Enabled = false;
+                gameTimer.Enabled = false;
 
                 Form f = this.FindForm();
                 f.Controls.Remove(this);
@@ -69,14 +76,10 @@ namespace BrickBreaker
                 mDown = false;
 
                 ms.Focus();
+                return;
             }
 
             musicCounter++;
-        }
-
-        private void InstructionsScreen_Load(object sender, EventArgs e)
-        {
-            gameLoop.Enabled = true;
         }
     }
 }

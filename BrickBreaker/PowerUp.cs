@@ -19,19 +19,19 @@ namespace BrickBreaker
 
         /// Types of power ups and sorting powerups
         /// "mushroom", "cherry", "fireFlower"
-            //Star(one shot everything for short amount of time, doesn't bounce off blocks)    
-            //1-up (genaric) (1 life increase)                        
-            //Pac man cherry(score increase)                        
-            //Balloon (balloon fight)(slows the ball speed)       
-            //Mushroom(increases paddle size)                         
-            //Megaman buzzsaw (increases the strenth of ball to 2)    
-            //Fire flower(Shoot projectile on an angle, break block and self on contact)           
-            //Zelda  bow and arrow(Shoot projectile, break block and break self on contact)               
-            //Koopa shell(shells that act like ball but won't count towards lives)          
-            //Metroid bomb (explodes in an area if doesn't hit any bricks falls back down)     
-            //Boomerang (from castlevania)      
-            //condor evil paddle            
-            //launch a fire ball up that explodes or falls to the ground.       
+        //Star(one shot everything for short amount of time, doesn't bounce off blocks)    
+        //1-up (genaric) (1 life increase)                        
+        //Pac man cherry(score increase)                        
+        //Balloon (balloon fight)(slows the ball speed)       
+        //Mushroom(increases paddle size)                         
+        //Megaman buzzsaw (increases the strenth of ball to 2)    
+        //Fire flower(Shoot projectile on an angle, break block and self on contact)           
+        //Zelda  bow and arrow(Shoot projectile, break block and break self on contact)               
+        //Koopa shell(shells that act like ball but won't count towards lives)          
+        //Metroid bomb (explodes in an area if doesn't hit any bricks falls back down)     
+        //Boomerang (from castlevania)      
+        //condor evil paddle            
+        //launch a fire ball up that explodes or falls to the ground.       
 
 
         /// States: wait, fall, activate, power.
@@ -40,7 +40,7 @@ namespace BrickBreaker
         /// activate is waiting for the powerup to get activated
         /// power is what the powerup does
         public string type;
-        public int speedY = 7;
+        public int speedY = 6;
         public int speedX = 0;
         public string state = "wait";
         public int x, y;
@@ -81,7 +81,7 @@ namespace BrickBreaker
             if (paddleRec.IntersectsWith(powerUpRec))
             {
                 //prepare for new state
-                x = 1200-2*size;
+                x = 1200 - 2 * size;
                 y = 0;
                 state = "activate";
             }
@@ -99,7 +99,7 @@ namespace BrickBreaker
                     GameScreen.ready = true;
                     break;
                 case "cherry":
-                    GameScreen.score += 25;
+                    GameScreen.score += 100;
                     state = "wait";
                     GameScreen.ready = true;
                     break;
@@ -107,7 +107,7 @@ namespace BrickBreaker
                     timer--;
                     if (timer > 0)
                     {
-                        GameScreen.p.width = 160;                      
+                        GameScreen.p.width = 160;
                     }
                     else
                     {
@@ -328,7 +328,7 @@ namespace BrickBreaker
             // Collision with top wall
             if (y <= 2)
             {
-                if (projectile == "missile") explode(1);
+                if (projectile == "missile") explode(4);
                 if (projectile == "turn") speedY = 15;
                 if (projectile != "turn") projectile = "done";
             }
@@ -341,7 +341,7 @@ namespace BrickBreaker
 
             if (PowerUpRec.IntersectsWith(blockRec))
             {
-                if (projectile != "boomerang" ) projectile = "done";
+                if (projectile != "boomerang") projectile = "done";
             }
 
             return blockRec.IntersectsWith(PowerUpRec);
@@ -354,14 +354,20 @@ namespace BrickBreaker
 
             if (y >= UC.Height)
             {
+
+
                 state = "wait";
+                GameScreen.ready = true;
+                speedX = 0;
+                speedY = 6;
+                projectile = "";
                 GameScreen.ready = true;
             }
 
-            
+
         }
 
-        public void explode( int _power)
+        public void explode(int _power)
         {
             projectile = "explotion";
             size = 100;

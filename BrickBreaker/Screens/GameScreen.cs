@@ -281,7 +281,7 @@ namespace BrickBreaker
                 {
                     score++;
 
-                    random = randGen.Next(1, 3);
+                    random = randGen.Next(1, 11);
                     if (random == 1)
                     {
                         SamCreate(b.x, b.y);
@@ -529,6 +529,7 @@ namespace BrickBreaker
 
         public void SamMethod()
         {
+            powerUps.BottomCollision(this);
             switch (powerUps.state)
             {
                 case "wait":
@@ -656,7 +657,7 @@ namespace BrickBreaker
                 {
                     if (powerUps.BlockCollision(b))
                     {
-                        powerUps.explode(1);
+                        powerUps.explode(4);
                         powerUps.projectile = "done";
                         break;
                     }
@@ -700,7 +701,7 @@ namespace BrickBreaker
                 {
                     if (powerUps.BlockCollision(b))
                     {
-                        powerUps.explode(3);
+                        powerUps.explode(4);
                         powerUps.projectile = "done";
                         break;
                     }

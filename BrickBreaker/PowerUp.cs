@@ -40,7 +40,7 @@ namespace BrickBreaker
         /// activate is waiting for the powerup to get activated
         /// power is what the powerup does
         public string type;
-        public int speedY = 7;
+        public int speedY = 6;
         public int speedX = 0;
         public string state = "wait";
         public int x, y;
@@ -99,7 +99,7 @@ namespace BrickBreaker
                     GameScreen.ready = true;
                     break;
                 case "cherry":
-                    GameScreen.score += 25;
+                    GameScreen.score += 100;
                     state = "wait";
                     GameScreen.ready = true;
                     break;
@@ -328,7 +328,7 @@ namespace BrickBreaker
             // Collision with top wall
             if (y <= 2)
             {
-                if (projectile == "missile") explode(1);
+                if (projectile == "missile") explode(4);
                 if (projectile == "turn") speedY = 15;
                 if (projectile != "turn") projectile = "done";
             }

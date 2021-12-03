@@ -173,14 +173,14 @@ namespace BrickBreaker
                 }
 
                 reader.Close();
+
+                JustinMusicChangeMethod();
             }
             catch //if requested level doesn't exist, quit menu
             {
                 OnEnd();
                 return;
             }
-
-            JustinMusicChangeMethod();
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)

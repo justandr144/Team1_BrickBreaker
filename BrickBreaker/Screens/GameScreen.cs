@@ -62,6 +62,8 @@ namespace BrickBreaker
         System.Windows.Media.MediaPlayer paddleBeep;
         System.Windows.Media.MediaPlayer wallBounce;
 
+        int musicLoop = 2500;
+
 
         #endregion
 
@@ -175,6 +177,8 @@ namespace BrickBreaker
                 OnEnd();
                 return;
             }
+
+            JustinMusicChangeMethod();
         }
 
         private void GameScreen_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -663,7 +667,7 @@ namespace BrickBreaker
         {
             musicCounter++;
 
-            if (musicCounter > 2500)
+            if (musicCounter > musicLoop)
             {
                 music.Stop();
                 music.Play();
@@ -674,26 +678,33 @@ namespace BrickBreaker
         {
             switch (currentLevel)
             {
-                case 0:
-
-                    break;
                 case 1:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/ZeldaTheme.mp3"));
+                    musicLoop = 2500;
                     break;
                 case 2:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/PacManTheme.mp3"));
+                    musicLoop = 164;
                     break;
                 case 3:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/TetrisTheme.mp3"));
+                    musicLoop = 1125;
                     break;
                 case 4:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/DonkeyKongTheme.mp3"));
+                    musicLoop = 53;
                     break;
                 case 5:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/KirbyTheme.mp3"));
+                    musicLoop = 2250;
                     break;
                 case 6:
-
+                    music.Open(new Uri(Application.StartupPath + "/Resources/MetroidTheme.mp3"));
+                    musicLoop = 4375;
+                    break;
+                case 7:
+                    music.Open(new Uri(Application.StartupPath + "/Resources/MarioTheme.mp3"));
+                    musicLoop = 270;
                     break;
             }
         }

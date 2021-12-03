@@ -19,7 +19,7 @@ namespace BrickBreaker.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,21 +61,6 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;highScore&gt;
-        ///  &lt;score&gt;
-        ///    617
-        ///  &lt;/score&gt;
-        ///&lt;/highScore&gt;.
-        /// </summary>
-        internal static string HighScores
-        {
-            get
-            {
-                return ResourceManager.GetString("HighScores", resourceCulture);
-            }
-        }
-
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap _1UpIcon {
@@ -216,6 +201,26 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DonkeyKongTheme {
+            get {
+                object obj = ResourceManager.GetObject("DonkeyKongTheme", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ExitSelect {
+            get {
+                object obj = ResourceManager.GetObject("ExitSelect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap ExplosionSprite {
@@ -241,26 +246,6 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap FireFlowerIcon {
             get {
                 object obj = ResourceManager.GetObject("FireFlowerIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] DonkeyKongTheme {
-            get {
-                object obj = ResourceManager.GetObject("DonkeyKongTheme", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ExitSelect {
-            get {
-                object obj = ResourceManager.GetObject("ExitSelect", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -292,6 +277,20 @@ namespace BrickBreaker.Properties {
             get {
                 object obj = ResourceManager.GetObject("GOSelect", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;highScore&gt;
+        ///  &lt;score&gt;
+        ///    617
+        ///  &lt;/score&gt;
+        ///&lt;/highScore&gt;.
+        /// </summary>
+        internal static string HighScores {
+            get {
+                return ResourceManager.GetString("HighScores", resourceCulture);
             }
         }
         
@@ -406,22 +405,22 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap MissileIcon {
-            get {
-                object obj = ResourceManager.GetObject("MissileIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] MetroidTheme {
             get {
                 object obj = ResourceManager.GetObject("MetroidTheme", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MissileIcon {
+            get {
+                object obj = ResourceManager.GetObject("MissileIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -436,22 +435,22 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] PacManTheme {
-            get {
-                object obj = ResourceManager.GetObject("PacManTheme", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap MushroomIcon {
             get {
                 object obj = ResourceManager.GetObject("MushroomIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] PacManTheme {
+            get {
+                object obj = ResourceManager.GetObject("PacManTheme", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -506,6 +505,16 @@ namespace BrickBreaker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SuperStarIcon {
+            get {
+                object obj = ResourceManager.GetObject("SuperStarIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] TetrisTheme {
@@ -521,16 +530,6 @@ namespace BrickBreaker.Properties {
         internal static System.Drawing.Bitmap VictoryScreen {
             get {
                 object obj = ResourceManager.GetObject("VictoryScreen", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SuperStarIcon {
-            get {
-                object obj = ResourceManager.GetObject("SuperStarIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

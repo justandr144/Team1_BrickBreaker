@@ -10,7 +10,6 @@ namespace BrickBreaker
         public Color colour;
         public bool bounce = true;
         public static Random rand = new Random();
-        int temp;
 
         public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize, int _defaultSpeed, int _strength, bool _bounce)
         {
@@ -34,6 +33,7 @@ namespace BrickBreaker
 
         public bool BlockCollision(Block b)
         {
+            //collision rectangles
             Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
             Rectangle topBlockRec = new Rectangle(b.x, b.y, b.width, 1);
             Rectangle leftBlockRec = new Rectangle(b.x, b.y, 1, b.height);
@@ -41,6 +41,7 @@ namespace BrickBreaker
             Rectangle bottomBlockRec = new Rectangle(b.x, b.y + 22, b.width, 1);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
+            //reverse x/y when collides with sides
             if (ballRec.IntersectsWith(topBlockRec) && bounce || ballRec.IntersectsWith(bottomBlockRec) && bounce)
             {
                 ySpeed *= -1;
@@ -51,6 +52,7 @@ namespace BrickBreaker
                 xSpeed *= -1;
             }
 
+            //general remove health/remove when collides
             if (ballRec.IntersectsWith(blockRec) && bounce && GameScreen.ballBlockBouceTimer <= 0)
             {
                 b.hp -= strength;
@@ -64,17 +66,20 @@ namespace BrickBreaker
                 GameScreen.ballBlockBouceTimer = 2;
             }
 
+            //return true/false collision
             return blockRec.IntersectsWith(ballRec);
         }
 
-        public void PaddleCollision(Paddle p, Ball ball)
+        public void PaddleCollision(Paddle p)
         {
+            //collision rectangles
             Rectangle ballRec = new Rectangle(x + xSpeed, y + ySpeed, size, size);
             Rectangle topPaddleRec = new Rectangle(p.x - 2, p.y - 2, p.width, 1);
             Rectangle leftPaddleRec = new Rectangle(p.x - 4, p.y - 2, 1, p.height + 4);
             Rectangle rightPaddleRec = new Rectangle(p.x + 84, p.y - 2, 1, p.height + 4);
             Rectangle bottomPaddleRec = new Rectangle(p.x - 2, p.y + 22, p.width, 1);
 
+            //change x/y and angle if collides with sides and/or top
             if (ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(leftPaddleRec) ||
                 ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(rightPaddleRec))
             {
@@ -134,6 +139,7 @@ namespace BrickBreaker
         {
             Boolean didCollide = false;
 
+            //change to true if hits bottom
             if (y >= UC.Height)
             {
                 didCollide = true;
@@ -144,9 +150,11 @@ namespace BrickBreaker
 
         public void DifferentAngles()
         {
+            //change angle
             int xDifAngle = rand.Next(0, 2);
             int yDifAngle = rand.Next(0, 2);
 
+            //change speed depending on origional direction
             if (xSpeed > 0)
             {
                 xSpeed = defaultSpeed;

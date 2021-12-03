@@ -276,7 +276,7 @@ namespace BrickBreaker
             }
 
             // Check for collision of ball with p, (incl. p movement)
-            ball.PaddleCollision(p, ball);
+            ball.PaddleCollision(p);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
@@ -590,7 +590,7 @@ namespace BrickBreaker
                 }
 
                 // Check for collision of koopa with p, (incl. p movement)
-                koopa.PaddleCollision(p, koopa);
+                koopa.PaddleCollision(p);
 
                 // Check if koopa has collided with any blocks
                 foreach (Block b in blocks)
@@ -615,10 +615,10 @@ namespace BrickBreaker
             {
                 condor.speed = 2;
                 condor.Move("left");
-                ball.PaddleCollision(condor, ball);
+                ball.PaddleCollision(condor);
                 if (koopaLive)
                 {
-                    koopa.PaddleCollision(condor, koopa);
+                    koopa.PaddleCollision(condor);
                 }
                 if (condor.x <= 0 - condor.width)
                 {

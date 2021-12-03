@@ -147,12 +147,12 @@ namespace BrickBreaker
                         break;
                 }
 
-                e.Graphics.DrawString("HIGHSCORE:", DefaultFont, new SolidBrush(Color.White), 380, 350);
+                e.Graphics.DrawString("HIGHSCORES:", DefaultFont, new SolidBrush(Color.White), 500, 340);
                 int y = 350;
                 foreach(int s in Form1.scoreList)
                 {
-                    y += 20;
-                    e.Graphics.DrawString(Convert.ToString(s), DefaultFont, new SolidBrush(Color.White), 380, y);
+                    y += 25;
+                    e.Graphics.DrawString(Convert.ToString(s), DefaultFont, new SolidBrush(Color.White), 560, y);
                 }
             }
 

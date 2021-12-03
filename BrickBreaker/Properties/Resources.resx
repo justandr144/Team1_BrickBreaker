@@ -130,6 +130,9 @@
   <data name="DonkeyKongTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DonkeyKongTheme.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ExitSelect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ExitSelect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="GameOverScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GameOverScreen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -138,9 +141,6 @@
   </data>
   <data name="GOSelect" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GOSelect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="instructionScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\instructionScreen.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="instructionsTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\instructionsTheme.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -163,6 +163,72 @@
   <data name="MenuTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MenuTheme.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ArrowSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BalloonIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BalloonIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BowIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BowIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BowserFireIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BowserFireIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BowserFireSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BowserFireSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BuzzsawIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BuzzsawIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BuzzsawSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BuzzsawSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CherryIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CherryIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CondorIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CondorIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CondorSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CondorSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CrossSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CrossSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ExplosionSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ExplosionSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FireBallSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FireBallSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FireFlowerIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FireFlowerIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KoopaIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KoopaIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="KoopaSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KoopaSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissileIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissileIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissileSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissileSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MushroomIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MushroomIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QuestionBlockSprite" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QuestionBlockSprite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SuperStarIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SuperStarIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1UpIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1UpIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="MetroidTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MetroidTheme.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -172,13 +238,46 @@
   <data name="PaddleBeep" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PaddleBeep.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayAgainSelect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayAgainSelect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pointer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pointer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="TetrisTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TetrisTheme.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VictoryScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VictoryScreen.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VictorySound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VictorySound.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="WallBounce" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WallBounce.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ZeldaTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZeldaTheme.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CrossIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CrossIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="instructionScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\instructionScreen.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InstructionScreen2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InstructionScreen2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Crack1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crack1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Crack2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crack2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Crack3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crack3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -10,6 +10,7 @@ namespace BrickBreaker
         public Color colour;
         public bool bounce = true;
         public static Random rand = new Random();
+        int temp;
 
         public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize, int _defaultSpeed, int _strength, bool _bounce)
         {
@@ -34,31 +35,34 @@ namespace BrickBreaker
         public bool BlockCollision(Block b)
         {
             Rectangle blockRec = new Rectangle(b.x, b.y, b.width, b.height);
-            Rectangle topBlockRec = new Rectangle(b.x + 2, b.y , b.width - 4, 1);
-            Rectangle leftBlockRec = new Rectangle(b.x, b.y , 1, b.height );
-            Rectangle rightBlockRec = new Rectangle(b.x + b.width, b.y, 1, b.height);
-            Rectangle bottomBlockRec = new Rectangle(b.x + 2, b.y + b.height, b.width - 4, 1);
+            Rectangle topBlockRec = new Rectangle(b.x, b.y, b.width, 1);
+            Rectangle leftBlockRec = new Rectangle(b.x, b.y, 1, b.height);
+            Rectangle rightBlockRec = new Rectangle(b.x, b.y, 1, b.height);
+            Rectangle bottomBlockRec = new Rectangle(b.x, b.y + 22, b.width, 1);
             Rectangle ballRec = new Rectangle(x, y, size, size);
 
             if (ballRec.IntersectsWith(topBlockRec) && bounce || ballRec.IntersectsWith(bottomBlockRec) && bounce)
             {
                 ySpeed *= -1;
             }
-            else if (ballRec.IntersectsWith(leftBlockRec) && bounce || ballRec.IntersectsWith(rightBlockRec) && bounce)
+
+            if (ballRec.IntersectsWith(leftBlockRec) && bounce || ballRec.IntersectsWith(rightBlockRec) && bounce)
             {
                 xSpeed *= -1;
             }
 
-            if (ballRec.IntersectsWith(blockRec) && bounce)
+            if (ballRec.IntersectsWith(blockRec) && bounce && GameScreen.ballBlockBouceTimer <= 0)
             {
                 b.hp -= strength;
+                b.crackCount++;
 
                 if (b.hp <= 0)
-                {
+                {                   
                     GameScreen.blocks.Remove(b);
+                    GameScreen.score++;
                 }
+                GameScreen.ballBlockBouceTimer = 2;
             }
-
 
             return blockRec.IntersectsWith(ballRec);
         }
@@ -66,10 +70,10 @@ namespace BrickBreaker
         public void PaddleCollision(Paddle p, Ball ball)
         {
             Rectangle ballRec = new Rectangle(x + xSpeed, y + ySpeed, size, size);
-            Rectangle topPaddleRec = new Rectangle(p.x - 2, p.y - 2, 85, 1);
+            Rectangle topPaddleRec = new Rectangle(p.x - 2, p.y - 2, p.width, 1);
             Rectangle leftPaddleRec = new Rectangle(p.x - 4, p.y - 2, 1, p.height + 4);
             Rectangle rightPaddleRec = new Rectangle(p.x + 84, p.y - 2, 1, p.height + 4);
-            Rectangle bottomPaddleRec = new Rectangle(p.x - 2, p.y + 22, 85, 1);
+            Rectangle bottomPaddleRec = new Rectangle(p.x - 2, p.y + 22, p.width, 1);
 
             if (ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(leftPaddleRec) ||
                 ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(rightPaddleRec))
@@ -85,12 +89,12 @@ namespace BrickBreaker
                     xSpeed *= -1;
                 }
             }
-            else if (ballRec.IntersectsWith(topPaddleRec) || ballRec.IntersectsWith(bottomPaddleRec))
+            if (ballRec.IntersectsWith(topPaddleRec) || ballRec.IntersectsWith(bottomPaddleRec))
             {
                 DifferentAngles();
                 ySpeed *= -1;
             }
-            else if (ballRec.IntersectsWith(leftPaddleRec) || ballRec.IntersectsWith(rightPaddleRec))
+            if (ballRec.IntersectsWith(leftPaddleRec) || ballRec.IntersectsWith(rightPaddleRec))
             {
                 DifferentAngles();
                 xSpeed *= -1;
@@ -140,8 +144,8 @@ namespace BrickBreaker
 
         public void DifferentAngles()
         {
-            int xDifAngle = rand.Next(-2, 2);
-            int yDifAngle = rand.Next(-2, 2);
+            int xDifAngle = rand.Next(0, 2);
+            int yDifAngle = rand.Next(0, 2);
 
             if (xSpeed > 0)
             {

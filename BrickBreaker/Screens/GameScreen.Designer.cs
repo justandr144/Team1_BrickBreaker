@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.pauseTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // gameTimer
@@ -38,11 +39,17 @@
             this.gameTimer.Interval = 20;
             this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
+            // pauseTimer
+            // 
+            this.pauseTimer.Interval = 20;
+            this.pauseTimer.Tick += new System.EventHandler(this.pauseTimer_Tick);
+            // 
             // GameScreen
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.Color.SlateBlue;
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(1200, 700);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
@@ -55,5 +62,6 @@
         #endregion
 
         private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.Timer pauseTimer;
     }
 }

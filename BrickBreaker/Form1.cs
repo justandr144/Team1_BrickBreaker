@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*  Created by: Maeve, Justin, Hunter, Sam, Cait
+ *  Project: Brick Breaker
+ *  Date: December 3rd, 2021
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,7 +30,6 @@ namespace BrickBreaker
             // Start the program centred on the Menu Screen
             MenuScreen ms = new MenuScreen();
             this.Controls.Add(ms);
-            LoadScore();
 
             ms.Location = new Point((this.Width - ms.Width) / 2, (this.Height - ms.Height) / 2);
         }
@@ -56,7 +60,7 @@ namespace BrickBreaker
             {
                 xmlWriter.WriteStartElement("highScore");
 
-                xmlWriter.WriteElementString("score", Convert.ToString(s));
+                xmlWriter.WriteAttributeString("score", Convert.ToString(s));
 
                 xmlWriter.WriteEndElement();
             }

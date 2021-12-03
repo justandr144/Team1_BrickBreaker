@@ -49,13 +49,15 @@ namespace BrickBreaker
 
         // powerup object
         PowerUp powerUps;
+        public static Random randGen = new Random();
+        public static int random;
+        public static string temp;
+        public static Boolean ready = false;
 
         // Brushes
         SolidBrush pBrush = new SolidBrush(Color.White);
         SolidBrush ballBrush = new SolidBrush(Color.White);
         SolidBrush blockBrush = new SolidBrush(Color.Red);
-        SolidBrush koopaBrush = new SolidBrush(Color.Green);
-        SolidBrush condorBrush = new SolidBrush(Color.Orange);
         SolidBrush blackBrush = new SolidBrush(Color.Black);
 
         System.Windows.Media.MediaPlayer music;
@@ -110,7 +112,7 @@ namespace BrickBreaker
             ball = new Ball(ballX, ballY, xSpeed, ySpeed, ballSize, defaultSpeed, ballStrength, ballBounce);
 
             //set up powerups (temperary)
-            powerUps = new PowerUp(100, 200, "koopa");
+            powerUps = new PowerUp(100, 200, "boomerang");
 
             //create koopa
             koopa = new Ball(-20, -20, 0, 0, 20, 13, 2, true);
@@ -218,7 +220,7 @@ namespace BrickBreaker
                     rightArrowDown = false;
                     break;
                 case Keys.Space:
-                    spaceBarDown = true;
+                    spaceBarDown = false;
                     break;
                 case Keys.N:
                     nDown = false;
@@ -281,6 +283,14 @@ namespace BrickBreaker
             {
                 if (ball.BlockCollision(b))
                 {
+                    score++;
+
+                    random = randGen.Next(1, 3);
+                    if (random == 1)
+                    {
+                        SamCreate(b.x, b.y);
+                    }
+
                     if (blocks.Count == 0)
                     {
                         currentLevel++;
@@ -316,10 +326,12 @@ namespace BrickBreaker
             //halt game engine
             gameTimer.Enabled = false;
 
+            ScoreListUpdate();
+
             // add score to scorelist and refresh scorelist
-            Form1.scoreList.Add(score);
-            Form1.scoreList.Sort();
-            Form1.scoreList.Reverse();
+            //Form1.scoreList.Add(score);
+            //Form1.scoreList.Sort();
+            //Form1.scoreList.Reverse();
 
             // Goes to the game over screen
             music.Stop();
@@ -341,10 +353,7 @@ namespace BrickBreaker
             //halt game engine
             gameTimer.Enabled = false;
 
-            //add score to scorelist and refresh scorelist
-            Form1.scoreList.Add(score);
-            Form1.scoreList.Sort();
-            Form1.scoreList.Reverse();
+            ScoreListUpdate();
 
             //goes to victory screen
             Form form = this.FindForm();
@@ -356,6 +365,20 @@ namespace BrickBreaker
             form.Controls.Remove(this);
         }
 
+        public void ScoreListUpdate()
+        {
+            // add score to scorelist and refresh scorelist
+            Form1.scoreList.Add(score);
+            Form1.scoreList.Sort();
+            Form1.scoreList.Reverse();
+
+            //if scorelist is longer than five scores, get rid of lowest scores
+            if (Form1.scoreList.Count() > 5)
+            {
+                Form1.scoreList.RemoveRange(5, (Form1.scoreList.Count() - 5));
+            }
+        }
+        
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws p
@@ -366,10 +389,65 @@ namespace BrickBreaker
             foreach (Block b in blocks)
             {
                 e.Graphics.FillRectangle(new SolidBrush(b.colour), b.x, b.y, b.width, b.height);
+
+                switch (b.crackCount)
+                {
+                    case 1:
+                        e.Graphics.DrawImage(Properties.Resources.Crack1, b.x, b.y);
+                        break;
+                    case 2:
+                        e.Graphics.DrawImage(Properties.Resources.Crack2, b.x, b.y);
+                        break;
+                    case 3:
+                        e.Graphics.DrawImage(Properties.Resources.Crack3, b.x, b.y);
+                        break;
+                    default:
+                        break;
+                }
             }
 
-            // Draws ball
-            e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            // Draws ball or certian power up
+            if (powerUps.state == "power")
+            {
+                if (powerUps.type == "star")
+                {
+                    random = randGen.Next(1, 8);
+                    switch (random)
+                    {
+                        case 1:
+                            ballBrush.Color = Color.Red;
+                            break;
+                        case 2:
+                            ballBrush.Color = Color.Orange;
+                            break;
+                        case 3:
+                            ballBrush.Color = Color.Yellow;
+                            break;
+                        case 4:
+                            ballBrush.Color = Color.Green;
+                            break;
+                        case 5:
+                            ballBrush.Color = Color.Blue;
+                            break;
+                        case 6:
+                            ballBrush.Color = Color.Violet;
+                            break;
+                        case 7:
+                            ballBrush.Color = Color.Magenta;
+                            break;
+                    }
+                    e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+                    ballBrush.Color = Color.White;
+                }
+                else if (powerUps.type == "buzzsaw")
+                {
+                    e.Graphics.DrawImage(Properties.Resources.BuzzsawSprite, ball.x, ball.y);
+                }
+                else e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+            }
+            else e.Graphics.FillRectangle(ballBrush, ball.x, ball.y, ball.size, ball.size);
+
+
 
             // Draws lives
             JustinLivesMethod(lives, e);
@@ -381,50 +459,50 @@ namespace BrickBreaker
                 switch (powerUps.type)
                 {
                     case "1-up":
-                        e.Graphics.DrawImage(Properties.Resources._1UpIcon, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources._1UpIcon, powerUps.x - 40, powerUps.y);
+                        break;
+                    case "cherry":
+                        e.Graphics.DrawImage(Properties.Resources.CherryIcon, powerUps.x - 12, powerUps.y);
                         break;
                     case "mushroom":
-                        e.Graphics.DrawImage(Properties.Resources.MushroomIcon, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources.MushroomIcon, powerUps.x - 12, powerUps.y + 5);
                         break;
                     case "balloon":
                         e.Graphics.DrawImage(Properties.Resources.BalloonIcon, powerUps.x, powerUps.y);
                         break;
                     case "buzzsaw":
-                        e.Graphics.DrawImage(Properties.Resources.BuzzsawIcon, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources.BuzzsawIcon, powerUps.x - 10, powerUps.y + 5);
                         break;
                     case "star":
-                        e.Graphics.DrawImage(Properties.Resources.SuperStarIcon, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources.SuperStarIcon, powerUps.x - 7, powerUps.y + 7);
                         break;
                     case "koopa":
-                        e.Graphics.DrawImage(Properties.Resources.KoopaIcon, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources.KoopaIcon, powerUps.x - 27, powerUps.y + 7);
                         break;
                     case "arrow":
-                        e.Graphics.DrawImage(Properties.Resources.BowIcon, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources.BowIcon, powerUps.x + 7, powerUps.y + 7);
                         break;
                     case "fireFlower":
-                        e.Graphics.DrawImage(Properties.Resources.FireFlowerIcon, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources.FireFlowerIcon, powerUps.x - 10, powerUps.y + 5);
                         break;
                     case "missile":
-                        e.Graphics.DrawImage(Properties.Resources.MissileIcon, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources.MissileIcon, powerUps.x + 5, powerUps.y + 5);
                         break;
                     case "boomerang":
-                        e.Graphics.DrawImage(Properties.Resources.CrossSprite, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources.CrossIcon, powerUps.x - 17, powerUps.y + 7);
                         break;
                     case "fireBall":
-                        e.Graphics.DrawImage(Properties.Resources.BowserFireIcon, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources.BowserFireIcon, powerUps.x - 30, powerUps.y + 5);
                         break;
                     case "condor":
-                        e.Graphics.DrawImage(Properties.Resources.CondorIcon, powerUps.x, powerUps.y);
+                        e.Graphics.DrawImage(Properties.Resources.CondorIcon, powerUps.x - 60, powerUps.y + 8);
                         break;
                 }
             }
-            if (powerUps.state == "power")
+            if (powerUps.projectile != "")
             {
-                switch (powerUps.type)
+                switch (powerUps.projectile)
                 {
-                    case "buzzsaw":
-                        e.Graphics.DrawImage(Properties.Resources.BuzzsawSprite, ball.x, ball.y);
-                        break;
                     case "arrow":
                         e.Graphics.DrawImage(Properties.Resources.ArrowSprite, powerUps.x, powerUps.y);
                         break;
@@ -438,6 +516,9 @@ namespace BrickBreaker
                         e.Graphics.DrawImage(Properties.Resources.CrossSprite, powerUps.x, powerUps.y);
                         break;
                     case "fireBall":
+                        e.Graphics.DrawImage(Properties.Resources.BowserFireSprite, powerUps.x, powerUps.y);
+                        break;
+                    case "explotion":
                         e.Graphics.DrawImage(Properties.Resources.BowserFireSprite, powerUps.x, powerUps.y);
                         break;
                 }
@@ -468,10 +549,7 @@ namespace BrickBreaker
             switch (powerUps.state)
             {
                 case "wait":
-                    if (powerUps.created == true)
-                    {
-                        powerUps.created = false;
-                    }
+                    ready = true;
                     break;
                 case "fall":
                     powerUps.Move();
@@ -482,6 +560,7 @@ namespace BrickBreaker
                     if (spaceBarDown == true)
                     {
                         powerUps.Active();
+                        spaceBarDown = false;
                     }
                     break;
                 case "power":
@@ -594,8 +673,8 @@ namespace BrickBreaker
                 {
                     if (powerUps.BlockCollision(b))
                     {
+                        powerUps.explode(1);
                         powerUps.projectile = "done";
-                        powerUps.explode();
                         break;
                     }
                 }
@@ -638,12 +717,64 @@ namespace BrickBreaker
                 {
                     if (powerUps.BlockCollision(b))
                     {
+                        powerUps.explode(3);
                         powerUps.projectile = "done";
-                        powerUps.explode();
                         break;
                     }
                 }
 
+            }
+        }
+
+        public void SamCreate(int _x, int _y)
+        {
+            if (ready)
+            {
+                ready = false;
+                random = randGen.Next(1, 14);
+                switch (random)
+                {
+                    case 1:
+                        temp = "1-up";
+                        break;
+                    case 2:
+                        temp = "cherry";
+                        break;
+                    case 3:
+                        temp = "mushroom";
+                        break;
+                    case 4:
+                        temp = "balloon";
+                        break;
+                    case 5:
+                        temp = "buzzsaw";
+                        break;
+                    case 6:
+                        temp = "star";
+                        break;
+                    case 7:
+                        temp = "koopa";
+                        break;
+                    case 8:
+                        temp = "arrow";
+                        break;
+                    case 9:
+                        temp = "fireFlower";
+                        break;
+                    case 10:
+                        temp = "missile";
+                        break;
+                    case 11:
+                        temp = "boomerang";
+                        break;
+                    case 12:
+                        temp = "fireBall";
+                        break;
+                    case 13:
+                        temp = "condor";
+                        break;
+                }
+                powerUps.Create(temp, _x, _y);
             }
         }
 

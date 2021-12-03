@@ -10,6 +10,7 @@ namespace BrickBreaker
         public Color colour;
         public bool bounce = true;
         public static Random rand = new Random();
+        int temp;
 
         public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize, int _defaultSpeed, int _strength, bool _bounce)
         {
@@ -53,9 +54,10 @@ namespace BrickBreaker
             if (ballRec.IntersectsWith(blockRec) && bounce && GameScreen.ballBlockBouceTimer <= 0)
             {
                 b.hp -= strength;
+                b.crackCount++;
 
                 if (b.hp <= 0)
-                {
+                {                   
                     GameScreen.blocks.Remove(b);
                     GameScreen.score++;
                 }
@@ -68,10 +70,10 @@ namespace BrickBreaker
         public void PaddleCollision(Paddle p, Ball ball)
         {
             Rectangle ballRec = new Rectangle(x + xSpeed, y + ySpeed, size, size);
-            Rectangle topPaddleRec = new Rectangle(p.x - 2, p.y - 2, 85, 1);
+            Rectangle topPaddleRec = new Rectangle(p.x - 2, p.y - 2, p.width, 1);
             Rectangle leftPaddleRec = new Rectangle(p.x - 4, p.y - 2, 1, p.height + 4);
             Rectangle rightPaddleRec = new Rectangle(p.x + 84, p.y - 2, 1, p.height + 4);
-            Rectangle bottomPaddleRec = new Rectangle(p.x - 2, p.y + 22, 85, 1);
+            Rectangle bottomPaddleRec = new Rectangle(p.x - 2, p.y + 22, p.width, 1);
 
             if (ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(leftPaddleRec) ||
                 ballRec.IntersectsWith(topPaddleRec) && ballRec.IntersectsWith(rightPaddleRec))

@@ -21,25 +21,17 @@ namespace BrickBreaker
         /// "mushroom", "cherry", "fireFlower"
             //Star(one shot everything for short amount of time, doesn't bounce off blocks)    
             //1-up (genaric) (1 life increase)                        
-        //Pac man cherry(score increase)                        
+            //Pac man cherry(score increase)                        
             //Balloon (balloon fight)(slows the ball speed)       
-            //Mushroom(increases paddle size)
-            //Megaman buzzsaw (increases the strenth of ball to 2)
-        //
-            //Fire flower(Shoot projectile on an angle, break block and self on contact)          
-            //Zelda  bow and arrow(Shoot projectile, break block and break self onb contact)               
-            //Koopa shell(shells that act like ball but won't count towards lives)   
-            //Metroid bomb (explodes in an area if doesn't hit any bricks falls back down)
-            //Boomerang (from castlevania) 
-        //Dk barrel (??) 
-            //condor evil paddle
-            //launch a fire ball up that explodes or falls to the ground.
-        
-
-        /// method is call three places
-        /// 1. in ball colistion, create a powerup in "wait" state
-        /// 2. in game tick, either move down in "fall" state. Or use power in "power" state
-        /// 3. in spacebar press, activate the power in "activate" state
+            //Mushroom(increases paddle size)                         
+            //Megaman buzzsaw (increases the strenth of ball to 2)    
+            //Fire flower(Shoot projectile on an angle, break block and self on contact)           
+            //Zelda  bow and arrow(Shoot projectile, break block and break self on contact)               
+            //Koopa shell(shells that act like ball but won't count towards lives)          
+            //Metroid bomb (explodes in an area if doesn't hit any bricks falls back down)     
+            //Boomerang (from castlevania)      
+            //condor evil paddle            
+            //launch a fire ball up that explodes or falls to the ground.       
 
 
         /// States: wait, fall, activate, power.
@@ -48,9 +40,9 @@ namespace BrickBreaker
         /// activate is waiting for the powerup to get activated
         /// power is what the powerup does
         public string type;
-        public int speedY = 3;
+        public int speedY = 7;
         public int speedX = 0;
-        public string state = "fall";
+        public string state = "wait";
         public int x, y;
         public int size = 20;
         public int timer = 250;
@@ -69,6 +61,7 @@ namespace BrickBreaker
 
         public void Move()
         {
+            //update the position
             y += speedY;
             x += speedX;
         }
@@ -103,17 +96,24 @@ namespace BrickBreaker
                 case "1-up":
                     GameScreen.lives++;
                     state = "wait";
+                    GameScreen.ready = true;
+                    break;
+                case "cherry":
+                    GameScreen.score += 25;
+                    state = "wait";
+                    GameScreen.ready = true;
                     break;
                 case "mushroom":
                     timer--;
                     if (timer > 0)
                     {
-                        GameScreen.p.width = 160;
+                        GameScreen.p.width = 160;                      
                     }
                     else
                     {
                         GameScreen.p.width = 80;
                         state = "wait";
+                        GameScreen.ready = true;
                         timer = 250;
                     }
                     break;
@@ -146,6 +146,7 @@ namespace BrickBreaker
                         }
                         else GameScreen.ball.ySpeed = 13;
                         state = "wait";
+                        GameScreen.ready = true;
                         timer = 250;
                     }
                     break;
@@ -159,6 +160,7 @@ namespace BrickBreaker
                     {
                         GameScreen.ball.strength = 1;
                         state = "wait";
+                        GameScreen.ready = true;
                         timer = 250;
                     }
                     break;
@@ -193,8 +195,9 @@ namespace BrickBreaker
                         }
                         else GameScreen.ball.ySpeed = 13;
                         GameScreen.ball.strength = 1;
-                        GameScreen.ball.bounce = false;
+                        GameScreen.ball.bounce = true;
                         state = "wait";
+                        GameScreen.ready = true;
                         timer = 250;
                     }
                     break;
@@ -205,6 +208,7 @@ namespace BrickBreaker
                     GameScreen.koopa.x = ((GameScreen.p.x - (GameScreen.koopa.size / 2)) + (GameScreen.p.width / 2));
                     GameScreen.koopa.y = GameScreen.p.y - 70;
                     state = "wait";
+                    GameScreen.ready = true;
                     break;
                 case "arrow":
                     if (projectile == "")
@@ -218,6 +222,9 @@ namespace BrickBreaker
                     if (projectile == "done")
                     {
                         state = "wait";
+                        GameScreen.ready = true;
+                        speedX = 0;
+                        speedY = 6;
                         projectile = "";
                     }
                     break;
@@ -234,6 +241,9 @@ namespace BrickBreaker
                     if (projectile == "done")
                     {
                         state = "wait";
+                        GameScreen.ready = true;
+                        speedX = 0;
+                        speedY = 6;
                         projectile = "";
                     }
                     break;
@@ -245,11 +255,14 @@ namespace BrickBreaker
                         speedX = 0;
                         speedY = -26;
                         projectile = "missile";
-                    }
 
+                    }
                     if (projectile == "done")
                     {
                         state = "wait";
+                        GameScreen.ready = true;
+                        speedX = 0;
+                        speedY = 6;
                         projectile = "";
                     }
                     break;
@@ -265,6 +278,9 @@ namespace BrickBreaker
                     if (projectile == "done")
                     {
                         state = "wait";
+                        GameScreen.ready = true;
+                        speedX = 0;
+                        speedY = 6;
                         projectile = "";
                     }
                     break;
@@ -277,10 +293,12 @@ namespace BrickBreaker
                         speedY = -10;
                         projectile = "fireBall";
                     }
-
                     if (projectile == "done")
                     {
                         state = "wait";
+                        GameScreen.ready = true;
+                        speedX = 0;
+                        speedY = 6;
                         projectile = "";
                     }
                     break;
@@ -290,6 +308,7 @@ namespace BrickBreaker
                     GameScreen.condor.x = 1200;
                     GameScreen.condor.y = 200;
                     state = "wait";
+                    GameScreen.ready = true;
                     break;
             }
         }
@@ -309,7 +328,7 @@ namespace BrickBreaker
             // Collision with top wall
             if (y <= 2)
             {
-                if (projectile == "missile") explode();
+                if (projectile == "missile") explode(1);
                 if (projectile == "turn") speedY = 15;
                 if (projectile != "turn") projectile = "done";
             }
@@ -330,18 +349,31 @@ namespace BrickBreaker
 
         }
 
-        public void explode()
+        public void BottomCollision(UserControl UC)
         {
+
+            if (y >= UC.Height)
+            {
+                state = "wait";
+                GameScreen.ready = true;
+            }
+
+            
+        }
+
+        public void explode( int _power)
+        {
+            projectile = "explotion";
             size = 100;
             y = y - 50;
             x = x - 50;
-            for (int i = 1; i <= 10; i++)
+            for (int i = 1; i <= 20; i++)
             {
                 foreach (Block d in GameScreen.blocks)
                 {
                     if (BlockCollision(d))
                     {
-                        d.hp--;
+                        d.hp -= _power;
                         if (d.hp <= 0)
                         {
                             GameScreen.blocks.Remove(d);
@@ -354,15 +386,13 @@ namespace BrickBreaker
             y = -size;
             x = -size;
         }
-
-        public void TimerEnd()
+        public void Create(string _type, int _x, int _y)
         {
-            //an indicator to show when a powerUp is close to ending the timer
+            type = _type;
+            x = _x;
+            y = _y;
+            state = "fall";
         }
 
-        public void Stun()
-        {
-            //stop the paddle from moving for a breif period of time
-        }
     }
 }

@@ -276,7 +276,7 @@ namespace BrickBreaker
             }
 
             // Check for collision of ball with p, (incl. p movement)
-            ball.PaddleCollision(p, ball);
+            ball.PaddleCollision(p);
 
             // Check if ball has collided with any blocks
             foreach (Block b in blocks)
@@ -285,7 +285,7 @@ namespace BrickBreaker
                 {
                     score++;
 
-                    random = randGen.Next(1, 3);
+                    random = randGen.Next(1, 11);
                     if (random == 1)
                     {
                         SamCreate(b.x, b.y);
@@ -541,11 +541,12 @@ namespace BrickBreaker
             }
 
             // Draws score
-            e.Graphics.DrawString("SCORE: " + Convert.ToString(score), DefaultFont, pBrush, 900, 20);
+            e.Graphics.DrawString("SCORE: " + Convert.ToString(score), new Font("Arial", 18), pBrush, 900, 20);
         }
 
         public void SamMethod()
         {
+            powerUps.BottomCollision(this);
             switch (powerUps.state)
             {
                 case "wait":
@@ -589,7 +590,7 @@ namespace BrickBreaker
                 }
 
                 // Check for collision of koopa with p, (incl. p movement)
-                koopa.PaddleCollision(p, koopa);
+                koopa.PaddleCollision(p);
 
                 // Check if koopa has collided with any blocks
                 foreach (Block b in blocks)
@@ -614,10 +615,10 @@ namespace BrickBreaker
             {
                 condor.speed = 2;
                 condor.Move("left");
-                ball.PaddleCollision(condor, ball);
+                ball.PaddleCollision(condor);
                 if (koopaLive)
                 {
-                    koopa.PaddleCollision(condor, koopa);
+                    koopa.PaddleCollision(condor);
                 }
                 if (condor.x <= 0 - condor.width)
                 {
@@ -673,7 +674,7 @@ namespace BrickBreaker
                 {
                     if (powerUps.BlockCollision(b))
                     {
-                        powerUps.explode(1);
+                        powerUps.explode(4);
                         powerUps.projectile = "done";
                         break;
                     }
@@ -717,7 +718,7 @@ namespace BrickBreaker
                 {
                     if (powerUps.BlockCollision(b))
                     {
-                        powerUps.explode(3);
+                        powerUps.explode(4);
                         powerUps.projectile = "done";
                         break;
                     }

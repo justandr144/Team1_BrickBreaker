@@ -146,6 +146,14 @@ namespace BrickBreaker
                         e.Graphics.DrawImage(Properties.Resources.Pointer, 380, 260);
                         break;
                 }
+
+                e.Graphics.DrawString("HIGHSCORES:", new Font("Arial", 18), new SolidBrush(Color.White), 500, 340);
+                int y = 350;
+                foreach(int s in Form1.scoreList)
+                {
+                    y += 25;
+                    e.Graphics.DrawString(Convert.ToString(s), new Font("Arial", 18), new SolidBrush(Color.White), 560, y);
+                }
             }
 
             if (bDown)

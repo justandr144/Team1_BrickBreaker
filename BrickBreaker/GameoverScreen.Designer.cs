@@ -45,7 +45,6 @@ namespace BrickBreaker
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = global::BrickBreaker.Properties.Resources.GameOverScreen;
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "GameoverScreen";
             this.Size = new System.Drawing.Size(1200, 700);
             this.Load += new System.EventHandler(this.GameoverScreen_Load);

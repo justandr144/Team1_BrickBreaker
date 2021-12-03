@@ -44,6 +44,7 @@ namespace BrickBreaker
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::BrickBreaker.Properties.Resources.instructionScreen;
+            this.DoubleBuffered = true;
             this.Name = "InstructScreen";
             this.Size = new System.Drawing.Size(1200, 700);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.InstructionsScreen_KeyUp);

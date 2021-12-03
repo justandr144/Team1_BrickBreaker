@@ -32,12 +32,6 @@ namespace BrickBreaker
             //Boomerang (from castlevania)      
             //condor evil paddle            
             //launch a fire ball up that explodes or falls to the ground.       
-        
-
-        /// method is call three places
-        /// 1. in ball colistion, create a powerup in "wait" state
-        /// 2. in game tick, either move down in "fall" state. Or use power in "power" state
-        /// 3. in spacebar press, activate the power in "activate" state
 
 
         /// States: wait, fall, activate, power.
@@ -67,6 +61,7 @@ namespace BrickBreaker
 
         public void Move()
         {
+            //update the position
             y += speedY;
             x += speedX;
         }
@@ -390,16 +385,6 @@ namespace BrickBreaker
             size = 20;
             y = -size;
             x = -size;
-        }
-
-        public void TimerEnd()
-        {
-            //an indicator to show when a powerUp is close to ending the timer
-        }
-
-        public void Stun()
-        {
-            //stop the paddle from moving for a breif period of time
         }
         public void Create(string _type, int _x, int _y)
         {

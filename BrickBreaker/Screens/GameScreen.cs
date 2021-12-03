@@ -135,7 +135,7 @@ namespace BrickBreaker
         {
             blocks.Clear();
 
-            string level = $"level0{5}.xml";
+            string level = $"level0{currentLevel}.xml";
 
             try
             {
@@ -322,10 +322,12 @@ namespace BrickBreaker
             //halt game engine
             gameTimer.Enabled = false;
 
+            ScoreListUpdate();
+
             // add score to scorelist and refresh scorelist
-            Form1.scoreList.Add(score);
-            Form1.scoreList.Sort();
-            Form1.scoreList.Reverse();
+            //Form1.scoreList.Add(score);
+            //Form1.scoreList.Sort();
+            //Form1.scoreList.Reverse();
 
             // Goes to the game over screen
             music.Stop();
@@ -347,10 +349,7 @@ namespace BrickBreaker
             //halt game engine
             gameTimer.Enabled = false;
 
-            //add score to scorelist and refresh scorelist
-            Form1.scoreList.Add(score);
-            Form1.scoreList.Sort();
-            Form1.scoreList.Reverse();
+            ScoreListUpdate();
 
             //goes to victory screen
             Form form = this.FindForm();
@@ -362,6 +361,20 @@ namespace BrickBreaker
             form.Controls.Remove(this);
         }
 
+        public void ScoreListUpdate()
+        {
+            // add score to scorelist and refresh scorelist
+            Form1.scoreList.Add(score);
+            Form1.scoreList.Sort();
+            Form1.scoreList.Reverse();
+
+            //if scorelist is longer than five scores, get rid of lowest scores
+            if (Form1.scoreList.Count() > 5)
+            {
+                Form1.scoreList.RemoveRange(5, (Form1.scoreList.Count() - 5));
+            }
+        }
+        
         public void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             // Draws p

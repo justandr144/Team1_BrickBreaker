@@ -128,7 +128,6 @@ namespace BrickBreaker
                         Application.Exit();
                     }
                     break;
-
             }
 
             Refresh();

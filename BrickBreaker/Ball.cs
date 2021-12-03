@@ -10,6 +10,7 @@ namespace BrickBreaker
         public Color colour;
         public bool bounce = true;
         public static Random rand = new Random();
+        int temp;
 
         public Ball(int _x, int _y, int _xSpeed, int _ySpeed, int _ballSize, int _defaultSpeed, int _strength, bool _bounce)
         {
@@ -56,7 +57,7 @@ namespace BrickBreaker
                 b.crackCount++;
 
                 if (b.hp <= 0)
-                {
+                {                   
                     GameScreen.blocks.Remove(b);
                     GameScreen.score++;
                 }
